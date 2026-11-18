@@ -1,5 +1,5 @@
 // ESV page windows (D§3.1 ESV windowing; SPEC §8.1 "500 verses or half a book").
-import { chapterVerses, getBook, verseCount, type BookId } from "./books.js";
+import { chapterVerses, getBook, verseCount, type BookId } from "./books.ts";
 
 export interface EsvWindow {
   readonly part: number;

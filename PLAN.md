@@ -86,7 +86,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: USFM for the three translations is committed; `SOURCES.md` lists URL, date, version, SHA-256, and the public-domain status check done that day. Any licence doubt is recorded, not guessed.
   - Verify: `shasum -a 256 -c data/sources/checksums.txt`
 
-- [ ] **P0.10 · USFM → Chapter JSON** (M)
+- [x] **P0.10 · USFM → Chapter JSON** (M)
   - Needs: P0.4, P0.9 · Refs: D§6.2 mapping list, D§3.2
   - Files: `scripts/usfm/parse.ts`, `scripts/build-data.ts` (parse step), fixtures, tests
   - Done when: output is `public/data/{tr}/{book}/{n}.json` matching D§4.1; prose, poetry indents, psalm titles, section headings, `\nd`, footnotes handled; no red-letter data.
@@ -467,6 +467,8 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P0.8 · Versemap files live in `packages/core/data/versemap/{tr}.json` (schema 1: `{book, ch, v, canonical[]}` exceptions) and are imported statically, so core stays I/O-free; `toCanonical` returns [] for a local verse with no canonical counterpart. · Routine (standing autonomy).
 - 2026-11-18 · P0.6 · Route canonical form: lowercase translation + slug, no leading zeros, no trailing slash needed (trailing slash tolerated, not redirected); `/{tr}/{book}` → 301 `/{tr}/{book}/1`; `v-v` → single verse; reversed or out-of-range verses → notfound (URLs are strict, the parser is forgiving); ESV parts use `?part=n` (bad part → 301 to part 1). `resolveRoute` takes a `{get()}` query so core stays DOM-free. · Routine (standing autonomy).
 - 2026-11-18 · P0.9 · Sources: BSB = berean.bible official USFM (lean, USFM 3.1); KJV = eBible eng-kjv2006 (same edition as books.json, newer build); WEB = eBible eng-web classic, 66 books only. Files vendored unmodified (≈ 37 MB) with `-diff linguist-vendored`. · Routine (standing autonomy); matches SPEC §8.2 and D§6.2 [A: confirm at M0].
+- 2026-11-18 · P0.10 · Scripts run with Node 24 type stripping; core switched to `.ts` relative imports (`allowImportingTsExtensions`, `erasableSyntaxOnly`) instead of adding tsx. · Avoids a new dependency; Vite/esbuild accept the same imports.
+- 2026-11-18 · P0.10 · Chapter items carry no leading space after `{ v }`; the renderer supplies verse-number spacing. `books.json` gains a `usfm` code (additive). · Keeps Scripture text exact and the pipeline derived from core.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

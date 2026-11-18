@@ -12,7 +12,7 @@ import {
   toBookId,
   verseCount,
   type Book,
-} from "./books.js";
+} from "./books.ts";
 
 const sum = (ns: readonly number[]) => ns.reduce((a, b) => a + b, 0);
 const book = (id: string): Book => getBook(toBookId(id));

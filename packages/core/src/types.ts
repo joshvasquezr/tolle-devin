@@ -1,5 +1,5 @@
 // Content model (D§3.2). Chapter JSON uses these short keys on disk (D§4.1).
-import type { BookId } from "./books.js";
+import type { BookId } from "./books.ts";
 
 export const TRANSLATIONS = ["bsb", "kjv", "web", "esv"] as const;
 export type Translation = (typeof TRANSLATIONS)[number];

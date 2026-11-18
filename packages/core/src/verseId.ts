@@ -1,6 +1,6 @@
 // Verse identity (D§3.1 Verse ID, D§1 D3): bookOrder*1_000_000 + chapter*1_000 + verse.
 // Bounds come from books.json, so every VerseId names a real canonical verse.
-import { bookByOrder, chapterVerses, getBook, type BookId } from "./books.js";
+import { bookByOrder, chapterVerses, getBook, type BookId } from "./books.ts";
 
 declare const verseIdBrand: unique symbol;
 

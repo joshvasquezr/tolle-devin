@@ -1,8 +1,8 @@
 // URL ↔ route, shared by Worker and client router (D§3.1 Route, D§2 routing; SPEC "URLs").
-import { BOOKS, bookByAlias, chapterVerses, getBook, type Book, type BookId } from "./books.js";
-import { esvWindows } from "./esvWindows.js";
-import type { Ref } from "./parse.js";
-import { DEFAULT_TRANSLATION, isTranslation, type Translation } from "./types.js";
+import { BOOKS, bookByAlias, chapterVerses, getBook, type Book, type BookId } from "./books.ts";
+import { esvWindows } from "./esvWindows.ts";
+import type { Ref } from "./parse.ts";
+import { DEFAULT_TRANSLATION, isTranslation, type Translation } from "./types.ts";
 
 export type Route =
   | { kind: "chapter"; tr: Translation; book: BookId; chapter: number; part?: number }

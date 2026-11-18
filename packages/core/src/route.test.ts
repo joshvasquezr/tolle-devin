@@ -1,9 +1,9 @@
 // D§3.1 Route, D§2 request routing; SPEC "URLs".
 import { describe, expect, it } from "vitest";
-import { BOOKS, toBookId } from "./books.js";
-import { parseInput } from "./parse.js";
-import { formatPath, resolveRoute, type Route } from "./route.js";
-import { PD_TRANSLATIONS, TRANSLATIONS } from "./types.js";
+import { BOOKS, toBookId } from "./books.ts";
+import { parseInput } from "./parse.ts";
+import { formatPath, resolveRoute, type Route } from "./route.ts";
+import { PD_TRANSLATIONS, TRANSLATIONS } from "./types.ts";
 
 // Core has no DOM/Node types, so tests pass a get()-able stand-in for URLSearchParams.
 const query = (s = "") => {

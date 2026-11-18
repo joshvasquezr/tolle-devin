@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc -p tsconfig.json",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "build:data": "node build-data.ts"
+  },
+  "dependencies": {
+    "@tolle/core": "workspace:*"
   }
 }

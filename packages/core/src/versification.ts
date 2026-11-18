@@ -1,9 +1,9 @@
 // Translation ↔ canonical versification (D§3.1 Versification, D§6.2).
 // Identity by default; data/versemap/{tr}.json lists only the exceptions the
 // build validator finds. Omitted verses keep their numbers and are just absent.
-import { getBook, isBookId, type BookId } from "./books.js";
-import type { Translation } from "./types.js";
-import { encodeVerseId, isVerseId, toVerseId, type VerseId } from "./verseId.js";
+import { getBook, isBookId, type BookId } from "./books.ts";
+import type { Translation } from "./types.ts";
+import { encodeVerseId, isVerseId, toVerseId, type VerseId } from "./verseId.ts";
 import bsb from "../data/versemap/bsb.json" with { type: "json" };
 import esv from "../data/versemap/esv.json" with { type: "json" };
 import kjv from "../data/versemap/kjv.json" with { type: "json" };

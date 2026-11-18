@@ -1,8 +1,8 @@
 // SPEC P2–P5, §5.3 parser table; D§3.1 Reference parser. Contract: test-vectors/refs.json.
 import { describe, expect, it } from "vitest";
 import rawVectors from "../../../test-vectors/refs.json" with { type: "json" };
-import { formatRef, parseInput, type ParseResult, type Ref } from "./parse.js";
-import { toBookId } from "./books.js";
+import { formatRef, parseInput, type ParseResult, type Ref } from "./parse.ts";
+import { toBookId } from "./books.ts";
 
 interface Case {
   input: string;

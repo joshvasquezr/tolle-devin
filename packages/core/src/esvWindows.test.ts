@@ -1,7 +1,7 @@
 // SPEC §8.1 half-book rule; D§3.1 ESV windowing invariants over all 1,189 chapters.
 import { describe, expect, it } from "vitest";
-import { BOOKS, toBookId, verseCount } from "./books.js";
-import { esvCap, esvPartForVerse, esvWindows } from "./esvWindows.js";
+import { BOOKS, toBookId, verseCount } from "./books.ts";
+import { esvCap, esvPartForVerse, esvWindows } from "./esvWindows.ts";
 
 const sizes = (b: string, ch: number) => esvWindows(toBookId(b), ch).map((w) => w.vEnd - w.vStart + 1);
 

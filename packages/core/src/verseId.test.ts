@@ -1,8 +1,8 @@
 // PLAN P0.4 · D§3.1 Verse ID, D§3.2 · SPEC H4 (translation-independent ids).
 import { describe, expect, expectTypeOf, it } from "vitest";
-import { BOOKS, toBookId } from "./books.js";
-import type { Block, Chapter, Item, Line, Translation } from "./types.js";
-import { isTranslation, PD_TRANSLATIONS, TRANSLATIONS } from "./types.js";
+import { BOOKS, toBookId } from "./books.ts";
+import type { Block, Chapter, Item, Line, Translation } from "./types.ts";
+import { isTranslation, PD_TRANSLATIONS, TRANSLATIONS } from "./types.ts";
 import {
   chapterVerseIdRange,
   decodeVerseId,
@@ -10,7 +10,7 @@ import {
   isVerseId,
   toVerseId,
   type VerseId,
-} from "./verseId.js";
+} from "./verseId.ts";
 import rawVectors from "../../../test-vectors/verse-ids.json" with { type: "json" };
 
 type Vectors = {

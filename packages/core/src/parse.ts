@@ -1,5 +1,5 @@
 // Reference parser (D§3.1 Reference parser; SPEC P2–P5, §5.3). Pure, no I/O.
-import { BOOKS, bookByAlias, chapterVerses, ordinalValue, type Book, type BookId } from "./books.js";
+import { BOOKS, bookByAlias, chapterVerses, ordinalValue, type Book, type BookId } from "./books.ts";
 
 export interface Ref {
   readonly book: BookId;

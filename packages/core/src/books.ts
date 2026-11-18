@@ -18,6 +18,8 @@ export interface Book {
   readonly slug: string;
   readonly name: string;
   readonly short: string;
+  /** USFM book code (`GEN`, `1CO`), used only by the data pipeline (D§6.2). */
+  readonly usfm: string;
   readonly testament: Testament;
   /** 1..66; also the book part of a verse id (D§3.1 Verse ID). */
   readonly order: number;

@@ -1,9 +1,9 @@
 // D§3.1 Versification: identity default, exceptions from data/versemap/{tr}.json.
 import { describe, expect, it } from "vitest";
-import { BOOKS, toBookId } from "./books.js";
-import { TRANSLATIONS } from "./types.js";
-import { encodeVerseId } from "./verseId.js";
-import { buildVerseMap, fromCanonical, toCanonical } from "./versification.js";
+import { BOOKS, toBookId } from "./books.ts";
+import { TRANSLATIONS } from "./types.ts";
+import { encodeVerseId } from "./verseId.ts";
+import { buildVerseMap, fromCanonical, toCanonical } from "./versification.ts";
 
 const john = toBookId("john");
 
