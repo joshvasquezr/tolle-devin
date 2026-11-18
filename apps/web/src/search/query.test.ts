@@ -1,18 +1,21 @@
 // P3.3 Verify: D§3.11 / SPEC S1, S3, S4, S7 against the real generated indexes; timing < 200 ms.
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { PD_TRANSLATIONS } from "@tolle/core";
 import { PAGE_SIZE, loadEngine, parseQuery, search, type SearchFile } from "./query.ts";
 
 const DATA = join(process.cwd(), "public/data");
-const manifest = JSON.parse(readFileSync(join(DATA, "search-manifest.json"), "utf8")) as Record<string, string>;
-const engines = Object.fromEntries(
-  PD_TRANSLATIONS.map((tr) => [tr, loadEngine(JSON.parse(readFileSync(join(DATA, tr, manifest[tr]!), "utf8")) as SearchFile)]),
-);
+// Needs generated data (`pnpm build:data`): skipped in the CI unit job, run in the build job after the build.
+const HAVE_DATA = existsSync(join(DATA, "search-manifest.json"));
+const engines: Record<string, ReturnType<typeof loadEngine>> = {};
+if (HAVE_DATA) {
+  const manifest = JSON.parse(readFileSync(join(DATA, "search-manifest.json"), "utf8")) as Record<string, string>;
+  for (const tr of PD_TRANSLATIONS) engines[tr] = loadEngine(JSON.parse(readFileSync(join(DATA, tr, manifest[tr]!), "utf8")) as SearchFile);
+}
 const ids = (r: { hits: { id: number }[] }) => r.hits.map((h) => h.id);
 
-describe("query engine", () => {
+describe.skipIf(!HAVE_DATA)("query engine (real indexes)", () => {
   it.each(PD_TRANSLATIONS)("S1: 'love your enemies' has Matthew 5:44 in the top 3 (%s), < 200 ms", (tr) => {
     const t0 = performance.now();
     const r = search(engines[tr]!, "love your enemies");
