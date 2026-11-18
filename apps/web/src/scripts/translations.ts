@@ -35,6 +35,14 @@ function anchor(): { v: number; offset: number } | undefined {
 
 export function switchTo(tr: Translation): void {
   const a = article();
+  if (location.pathname === "/search") {
+    // Search results switch by query parameter (SPEC T3: the translation lives in the URL).
+    const u = new URL(location.href);
+    u.searchParams.set("t", tr);
+    u.searchParams.delete("page");
+    location.assign(u.href);
+    return;
+  }
   if (!a?.dataset.book || !a.dataset.ch) return;
   pop?.hidePopover();
   const focus = document.getElementById("main")?.dataset.focus?.match(/^(\d+)-(\d+)$/);

@@ -230,7 +230,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: AND semantics, quoted phrase filter, scope filter, stemming; "love your enemies" returns Matthew 5:44 in the top 3 for each PD translation; < 200 ms after load.
   - Verify: Vitest with the real index; timing assertion.
 
-- [ ] **P3.4 · Results page** (M)
+- [x] **P3.4 · Results page** (M)
   - Needs: P3.3, P2.3 · Refs: SPEC S2, §5.4
   - Files: `src/pages/search.astro`, island
   - Done when: `/search?q&t&scope&page`; 25 per page with pagination; match emphasis is subtle; each result links to the verse URL; scope control; empty state is one calm line; reference bar routes non-references here.
