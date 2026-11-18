@@ -190,7 +190,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: heading button opens a Popover API panel; two columns; chapter grid view with back; marks current book/chapter; type-ahead; arrow-key navigation; focus returns to heading; open < 150 ms with no network.
   - Verify: Playwright keyboard-only path `B → rom → Enter → 8 → Enter`; mouse path; trace shows no requests on open.
 
-- [ ] **P2.5 · Keyboard dispatcher and shortcut list** (S)
+- [x] **P2.5 · Keyboard dispatcher and shortcut list** (S)
   - Needs: P2.3, P2.4, P1.4 · Refs: D§3.6; SPEC §6.9
   - Files: `keys.ts`, shortcut popover
   - Done when: all shortcuts in SPEC §6.9 work; ignored in inputs, with IME composition, and when a popover owns the key; `?` popover is generated from the same binding table.

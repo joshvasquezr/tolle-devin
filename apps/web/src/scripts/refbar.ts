@@ -146,12 +146,4 @@ if (input) {
     close();
     input.value = label();
   });
-  // SPEC §6.9 "/" focuses the bar (P2.5 moves this into the shared dispatcher).
-  document.addEventListener("keydown", (e) => {
-    if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey || e.isComposing) return;
-    const t = e.target as HTMLElement;
-    if (t.closest("input, textarea, select, [contenteditable='true']")) return;
-    e.preventDefault();
-    input.focus();
-  });
 }

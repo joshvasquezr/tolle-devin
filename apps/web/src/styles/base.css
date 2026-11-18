@@ -58,3 +58,11 @@ h1.ch:focus { outline: none; }
 .prose h3 { font-size: 17px; font-weight: 600; margin: 1.5em 0 .25em; }
 .prose p { margin: 0 0 .75em; }
 .prose code { font-size: 13px; overflow-wrap: anywhere; }
+#keys-help {
+  margin: auto; inline-size: min(360px, calc(100vw - 32px)); padding: 16px 20px;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 12px; font-size: 14px;
+}
+#keys-help h2 { font-size: 15px; font-weight: 500; margin: 0 0 12px; }
+#keys-help dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; }
+#keys-help dd { margin: 0; color: var(--text-2); }
+#keys-help kbd { font: inherit; font-variant-numeric: tabular-nums; border: 1px solid var(--border); border-radius: 4px; padding: 0 6px; }

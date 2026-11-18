@@ -25,6 +25,15 @@ function save(s: Settings): void {
   }
 }
 
+/** SPEC §6.9 "D": flip between light and dark from whatever is showing now. */
+export function toggleTheme(): void {
+  const s = load();
+  const dark = s.theme === "dark" || (s.theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+  const next: Settings = { ...s, theme: dark ? "light" : "dark" };
+  apply(next);
+  save(next);
+}
+
 function init(): void {
   const btn = document.getElementById("aa-btn");
   const pop = document.getElementById("aa-pop");

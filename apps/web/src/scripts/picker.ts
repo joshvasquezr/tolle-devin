@@ -140,11 +140,4 @@ if (panel) {
       typeAhead(e.key);
     }
   });
-  // SPEC §6.9 "B" opens the picker (P2.5 moves this into the shared dispatcher).
-  document.addEventListener("keydown", (e) => {
-    if (e.key.toLowerCase() !== "b" || e.metaKey || e.ctrlKey || e.altKey || e.isComposing) return;
-    if ((e.target as HTMLElement).closest("input, textarea, select, [contenteditable='true'], [popover]")) return;
-    e.preventDefault();
-    openPicker();
-  });
 }
