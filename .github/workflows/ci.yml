@@ -77,7 +77,7 @@ jobs:
   # D§9: static build and browser flows (Playwright + axe) on every PR.
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -103,8 +103,14 @@ jobs:
 
       - name: Unit tests that need generated data (search indexes)
         run: pnpm --filter @tolle/web test search && pnpm --filter @tolle/scripts check:search
-      - name: Install Playwright Chromium
-        run: pnpm --filter @tolle/web exec playwright install --with-deps chromium firefox webkit
+      # Ubuntu mirrors occasionally stall during install-deps; retry with a bounded wait instead of burning the job timeout.
+      - name: Install Playwright browsers
+        run: |
+          for attempt in 1 2 3; do
+            timeout 9m pnpm --filter @tolle/web exec playwright install --with-deps chromium firefox webkit && exit 0
+            echo "::warning::playwright install attempt ${attempt} failed or stalled; retrying"
+          done
+          exit 1
 
       - name: Playwright + axe
         run: pnpm --filter @tolle/web e2e

@@ -20,7 +20,7 @@ None unblocked · stopped at external/human blockers (see Blockers)
 
 ## Blockers
 - Throttled mobile LCP on the live preview is 1.9 s (> 1.0 s budget); desktop 0.6 s. P7.2 open.
-- No ESV API key: P5.1 live fixtures; P5.2/P5.4–P5.7 cannot be verified against real responses. P5.0 is human-only (Crossway email).
+- No ESV API key: P5.1 live fixtures; P5.2/P5.4–P5.7 cannot be verified against real responses. P5.0: Josh emailed Crossway 2026-11-18 (caching, half-book, indexing, attribution); awaiting reply → `docs/esv-compliance.md`.
 - No email provider configured: magic-link mail is a no-op outside local dev (Playwright uses a `DEV_MAIL` sink).
 - P7.5 private beta and P7.6 launch (production deploy) are human/deploy-gated.
 - Open doc issue: SPEC §11 "field data" Core Web Vitals has no defined source after the Cloudflare analytics removal.
