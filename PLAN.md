@@ -68,7 +68,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: `resolveRoute` and `formatPath` cover chapter, verses, alias redirect, default-translation redirect, static, notfound; `parse → formatPath → resolveRoute` round-trips for every chapter.
   - Verify: `pnpm --filter core test route`
 
-- [ ] **P0.7 · ESV windowing** (S)
+- [x] **P0.7 · ESV windowing** (S)
   - Needs: P0.3 · Refs: D§3.1 ESV windowing; SPEC §8.1
   - Files: `packages/core/src/esvWindows.ts`, tests
   - Done when: for all 1,189 chapters windows are contiguous, cover each verse once, and never exceed `min(500, floor(bookVerses/2))`; examples Jude → 9/9/7, 3 John → 7/7, Haggai 2 → 12/11 hold.
