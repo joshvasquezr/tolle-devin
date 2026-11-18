@@ -16,9 +16,15 @@ from the publishers' own pages that day. Nothing here is ESV or any licensed tex
 - Strong's `\w …|strong="…"\w*` attributes, `\wj` (words of Jesus) and cross-references stay in the files; the parser drops them (D§6.2: no red-letter data).
 
 ## Recorded doubts (not guessed)
-- **KJV edition drift.** `books.json` counts were taken from the 2026-11-10 build of the same `eng-kjv2006` zip (SHA `dce1ec3e…`, see `packages/core/data/books.SOURCE.md`). This is the 2026-11-15 build (SHA `b6faa671…`). P0.11's validators recheck counts against these files.
+- **KJV edition drift.** `books.json` counts were taken from the 2026-11-10 build of the same `eng-kjv2006` zip (SHA `dce1ec3e…`, see `packages/core/data/books.SOURCE.md`). This is the 2026-11-15 build (SHA `b6faa671…`). Checked by P0.11's validators: every KJV chapter and verse count still matches `books.json`; the text-level differences between builds were not diffed.
 - **WEB trademark.** The build must not alter WEB wording (normalization to NFC and quote styling only, D§6.2). Any source fix to WEB text must be recorded here, and if one is ever needed the name question goes to Josh.
 - **BSB host.** berean.bible's download link points to `bereanbible.com`; both are the publisher's domains per the downloads page. No license file ships in the zip; the dedication above is the publisher's terms page.
+
+## Versification and omissions (P0.11, in `packages/core/data/versemap/`)
+No source text was edited. Real mismatches are recorded as versemap entries:
+- BSB omits 16 verses that its footnotes give as later additions (Matt 17:21, 18:11, 23:14; Mark 7:16, 9:44, 9:46, 11:26, 15:28; Luke 17:36, 23:17; John 5:4; Acts 8:37, 15:34, 24:7, 28:29; Rom 16:24) → `omitted`.
+- WEB numbers the Romans doxology 14:24–26 (canonical 16:25–27) → `exceptions`; its empty 16:25 and the footnote-only Luke 17:36, Acts 8:37, 15:34, 24:7 → `omitted`.
+- KJV: identity, no entries.
 
 ## Updating
 Download, replace the 66 files, regenerate `checksums.txt` (`find data/sources -name '*.usfm' | sort | xargs shasum -a 256 > data/sources/checksums.txt`), and update this table and its date.

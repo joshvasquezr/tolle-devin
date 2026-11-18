@@ -28,6 +28,7 @@ function noteText(body: string): string {
   return body
     .replace(/^\s*\S+\s*/, "") // caller `+`, `-` or `?`
     .replace(/\\fr\s[^\\]*/, "")
+    .replace(/\\fv\*/g, " ")
     .replace(/\\\+?[a-z]+[0-9]*\*/g, "")
     .replace(/\\\+?[a-z]+[0-9]* ?/g, " ")
     .replace(/\s+/g, " ")

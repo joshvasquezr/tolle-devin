@@ -18,14 +18,23 @@ export interface VerseMapException {
   readonly canonical: readonly number[];
 }
 
+export interface LocalVerse {
+  readonly book: string;
+  readonly ch: number;
+  readonly v: number;
+}
+
 export interface VerseMapFile {
   readonly schema: number;
   readonly exceptions: readonly VerseMapException[];
+  /** Local verses intentionally absent or empty in this translation (D§6.2). */
+  readonly omitted?: readonly LocalVerse[];
 }
 
 interface VerseMap {
   readonly toCanon: ReadonlyMap<string, readonly VerseId[]>;
   readonly fromCanon: ReadonlyMap<number, { ch: number; v: number }>;
+  readonly omitted: ReadonlySet<string>;
 }
 
 const FILES: Record<Translation, VerseMapFile> = { bsb, kjv, web, esv };
@@ -53,7 +62,17 @@ export function buildVerseMap(file: VerseMapFile): VerseMap {
       fromCanon.set(id, { ch: e.ch, v: e.v });
     }
   }
-  return { toCanon, fromCanon };
+  const omitted = new Set<string>();
+  for (const o of file.omitted ?? []) {
+    if (!isBookId(o.book)) throw new RangeError(`versemap: unknown book ${o.book}`);
+    const k = key(o.book, o.ch, o.v);
+    if (!Number.isInteger(o.ch) || o.ch < 1 || !Number.isInteger(o.v) || o.v < 1) {
+      throw new RangeError(`versemap: bad omitted verse ${k}`);
+    }
+    if (omitted.has(k) || toCanon.has(k)) throw new RangeError(`versemap: ${k} listed twice`);
+    omitted.add(k);
+  }
+  return { toCanon, fromCanon, omitted };
 }
 
 function mapFor(tr: Translation): VerseMap {
@@ -65,10 +84,16 @@ function mapFor(tr: Translation): VerseMap {
   return m;
 }
 
-/** Canonical ids for a translation-local verse; [] if it has no canonical counterpart. */
+/** True if the translation intentionally omits (or leaves empty) this local verse. */
+export function isOmitted(tr: Translation, book: BookId, ch: number, v: number): boolean {
+  return mapFor(tr).omitted.has(key(getBook(book).id, ch, v));
+}
+
+/** Canonical ids for a translation-local verse; [] if it has no canonical counterpart or is omitted. */
 export function toCanonical(tr: Translation, book: BookId, ch: number, v: number): VerseId[] {
   const hit = mapFor(tr).toCanon.get(key(getBook(book).id, ch, v));
   if (hit) return [...hit];
+  if (isOmitted(tr, book, ch, v)) return [];
   try {
     return [encodeVerseId(book, ch, v)];
   } catch {

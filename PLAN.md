@@ -92,7 +92,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: output is `public/data/{tr}/{book}/{n}.json` matching D§4.1; prose, poetry indents, psalm titles, section headings, `\nd`, footnotes handled; no red-letter data.
   - Verify: fixture tests for John 3, Psalm 23, Genesis 1, one KJV `\nd` verse.
 
-- [ ] **P0.11 · Data validators** (M)
+- [x] **P0.11 · Data validators** (M)
   - Needs: P0.10 · Refs: D§6.2 validators; SPEC §12, risk 11
   - Files: `scripts/validate.ts`, tests with crafted bad inputs
   - Done when: build fails on missing books, wrong chapter/verse counts (unless in `versemap`), empty verses, stray markers, non-NFC text. Any real mismatch in BSB/KJV/WEB is fixed by a `versemap` entry or a recorded source fix.
@@ -469,6 +469,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P0.9 · Sources: BSB = berean.bible official USFM (lean, USFM 3.1); KJV = eBible eng-kjv2006 (same edition as books.json, newer build); WEB = eBible eng-web classic, 66 books only. Files vendored unmodified (≈ 37 MB) with `-diff linguist-vendored`. · Routine (standing autonomy); matches SPEC §8.2 and D§6.2 [A: confirm at M0].
 - 2026-11-18 · P0.10 · Scripts run with Node 24 type stripping; core switched to `.ts` relative imports (`allowImportingTsExtensions`, `erasableSyntaxOnly`) instead of adding tsx. · Avoids a new dependency; Vite/esbuild accept the same imports.
 - 2026-11-18 · P0.10 · Chapter items carry no leading space after `{ v }`; the renderer supplies verse-number spacing. `books.json` gains a `usfm` code (additive). · Keeps Scripture text exact and the pipeline derived from core.
+- 2026-11-18 · P0.11 · Versemap files gain an optional `omitted` list of local verses that are absent or empty (BSB's 16 bracketed verses, WEB footnote-only verses); identity otherwise. · D§3.1 says omitted verses keep their numbers; D§6.2 needs them listed so the validator can tell intent from loss.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

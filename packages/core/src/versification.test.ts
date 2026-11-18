@@ -3,13 +3,14 @@ import { describe, expect, it } from "vitest";
 import { BOOKS, toBookId } from "./books.ts";
 import { TRANSLATIONS } from "./types.ts";
 import { encodeVerseId } from "./verseId.ts";
-import { buildVerseMap, fromCanonical, toCanonical } from "./versification.ts";
+import { buildVerseMap, fromCanonical, isOmitted, toCanonical } from "./versification.ts";
 
 const john = toBookId("john");
 
 describe("versification", () => {
-  it.each(TRANSLATIONS)("%s: identity for every canonical verse (empty exception file loads)", (tr) => {
+  it.each(TRANSLATIONS)("%s: identity for every canonical verse outside the exception file", (tr) => {
     for (const b of BOOKS) {
+      if (tr === "web" && b.id === "romans") continue; // doxology, tested below
       b.verses.forEach((n, i) => {
         for (const v of [1, n]) {
           const id = encodeVerseId(b.id, i + 1, v);
@@ -18,6 +19,34 @@ describe("versification", () => {
         }
       });
     }
+  });
+
+  it("real data: WEB Romans doxology at 14:24–26, BSB and WEB omitted verses", () => {
+    const romans = toBookId("romans");
+    expect(toCanonical("web", romans, 14, 24)).toEqual([45016025]);
+    expect(fromCanonical("web", 45016027)).toEqual({ ch: 14, v: 26 });
+    expect(isOmitted("web", romans, 16, 25)).toBe(true);
+    expect(toCanonical("web", romans, 16, 25)).toEqual([]);
+    expect(isOmitted("bsb", toBookId("matthew"), 17, 21)).toBe(true);
+    expect(toCanonical("bsb", toBookId("matthew"), 17, 21)).toEqual([]);
+    expect(isOmitted("kjv", toBookId("matthew"), 17, 21)).toBe(false);
+  });
+
+  it("rejects bad omitted entries", () => {
+    for (const omitted of [
+      [{ book: "nope", ch: 1, v: 1 }],
+      [{ book: "john", ch: 1, v: 0 }],
+      [{ book: "john", ch: 1, v: 1 }, { book: "john", ch: 1, v: 1 }],
+    ]) {
+      expect(() => buildVerseMap({ schema: 1, exceptions: [], omitted })).toThrow(RangeError);
+    }
+    expect(() =>
+      buildVerseMap({
+        schema: 1,
+        exceptions: [{ book: "john", ch: 1, v: 1, canonical: [43001001] }],
+        omitted: [{ book: "john", ch: 1, v: 1 }],
+      }),
+    ).toThrow(RangeError);
   });
 
   it("a local verse outside canonical bounds maps to []; invalid ids map to null", () => {
