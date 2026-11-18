@@ -236,7 +236,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: `/search?q&t&scope&page`; 25 per page with pagination; match emphasis is subtle; each result links to the verse URL; scope control; empty state is one calm line; reference bar routes non-references here.
   - Verify: Playwright: type "faith without works" → James 2 appears; pagination works; axe clean.
 
-- [ ] **P3.5 · Service worker (PD assets only)** (M)
+- [x] **P3.5 · Service worker (PD assets only)** (M)
   - Needs: P3.2, P1.8 · Refs: D§3.13
   - Files: `sw.ts`, registration
   - Done when: precache build assets; runtime cache `/data/*` only; never `/api/*` or `/esv/*`; kill switch; old caches cleaned.

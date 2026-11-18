@@ -24,5 +24,5 @@ export function contentSecurityPolicy(): string {
 
 /** Workers Static Assets `_headers` file (applied to asset responses). */
 export function headersFile(): string {
-  return `/*\n  Content-Security-Policy: ${contentSecurityPolicy()}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n`;
+  return `/*\n  Content-Security-Policy: ${contentSecurityPolicy()}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/sw.js\n  Cache-Control: no-cache\n/sw-kill.json\n  Cache-Control: no-store\n`;
 }
