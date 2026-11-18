@@ -15,5 +15,5 @@ export default defineConfig({
   ],
   ...(external
     ? {}
-    : { webServer: { command: "pnpm --filter @tolle/worker exec wrangler dev --local --port 4322", url: "http://localhost:4322/bsb/john/3", reuseExistingServer: true, timeout: 60_000 } }),
+    : { webServer: { command: "pnpm --filter @tolle/worker exec wrangler d1 migrations apply tolle --local && pnpm --filter @tolle/worker exec wrangler dev --local --port 4322 --var DEV_MAIL:1", url: "http://localhost:4322/bsb/john/3", reuseExistingServer: true, timeout: 60_000 } }),
 });

@@ -5,6 +5,7 @@ import "../styles/base.css";
 import "../styles/type.css";
 import { SITE_NAME } from "@tolle/core";
 import Settings from "../components/Settings.astro";
+import Account from "../components/Account.astro";
 import RefBar from "../components/RefBar.astro";
 import Picker from "../components/Picker.astro";
 import Translations from "../components/Translations.astro";
@@ -42,7 +43,7 @@ const url = new URL(canonical, Astro.site).href;
   </head>
   <body>
     <a class="skip" href="#main">Skip to text</a>
-    <header class="bar col"><RefBar /><Translations /><slot name="bar" /><Settings /></header>
+    <header class="bar col"><RefBar /><Translations /><slot name="bar" /><Settings /><Account /></header>
     <main id="main" class="col"><slot /></main>
     <Picker />
     <slot name="after" />
@@ -61,6 +62,8 @@ const url = new URL(canonical, Astro.site).href;
       import "../scripts/search-page.ts";
       import "../scripts/sw-register.ts";
       import "../highlights/index.ts";
+      import "../scripts/account.ts";
+      import "../scripts/auth-verify.ts";
       import "../scripts/router.ts";
     </script>
   </body>

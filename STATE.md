@@ -1,9 +1,9 @@
 # STATE
-Updated: 2026-11-18 08:14 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
+Updated: 2026-11-18 08:15 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P6.6 · Sign-in UI · in progress (P6.5 waits on P5.4)
+P6.7 · Sync engine · in progress
 
 ## Progress
 - Branch `devin/autonomous-p0-p7` (from `main` = `045d980`); one draft PR to `main` (#1).
@@ -18,6 +18,7 @@ P6.6 · Sign-in UI · in progress (P6.5 waits on P5.4)
 ## Blockers
 - No Cloudflare account/token: P0.12, P1.8 deploy verification, MVP-gate preview.
 - No ESV API key: P5.1 live fixtures; P5.2/P5.4–P5.7 cannot be verified against real responses. P5.0 is human-only (Crossway email).
+- No email provider configured: magic-link mail is a no-op outside local dev (Playwright uses a `DEV_MAIL` sink).
 - Open doc issue: SPEC §11 "field data" Core Web Vitals has no defined source after the Cloudflare analytics removal.
 
 ## Next

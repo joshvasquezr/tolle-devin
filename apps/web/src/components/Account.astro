@@ -1,0 +1,38 @@
+---
+// SPEC A1, A2: a quiet "Sign in" link in the corner; email → "check your inbox" (D§1 D4).
+---
+<div class="acct">
+  <button id="acct-btn" class="link-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="acct-pop">Sign in</button>
+  <div id="acct-pop" class="pop" role="dialog" aria-labelledby="acct-title" hidden>
+    <form id="acct-form" novalidate>
+      <h2 id="acct-title" class="t">Sign in to sync highlights</h2>
+      <label for="acct-email">Email</label>
+      <input id="acct-email" name="email" type="email" autocomplete="email" required />
+      <button type="submit" class="go">Email me a link</button>
+      <p id="acct-err" class="note" role="alert"></p>
+    </form>
+    <div id="acct-sent" hidden>
+      <h2 class="t" tabindex="-1">Check your inbox</h2>
+      <p class="note">We sent a sign-in link to <span id="acct-to"></span>. It works once, for 15 minutes.</p>
+    </div>
+  </div>
+</div>
+<style>
+  .acct { position: relative; margin-inline-start: 8px; }
+  .link-btn { font: inherit; font-size: 14px; color: var(--text-2); background: none; border: 0; padding: 6px 4px; cursor: pointer; }
+  .link-btn:hover { color: var(--text); }
+  .pop {
+    position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; width: 280px;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; font-size: 14px; animation: pop-in var(--t-open) var(--ease);
+  }
+  form { display: grid; gap: 6px; }
+  .t { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  label { color: var(--text-2); font-size: 12px; }
+  input { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+  .go { font: inherit; color: var(--text); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; cursor: pointer; justify-self: start; }
+  .note { margin: 0; color: var(--text-2); font-size: 12px; }
+  .note:empty { display: none; }
+  @keyframes pop-in { from { opacity: 0; transform: translateY(4px); } }
+  @media (prefers-reduced-motion: reduce) { @keyframes pop-in { from { opacity: 0; } } }
+</style>

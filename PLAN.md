@@ -383,7 +383,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: auth, me, account, sync, ESV endpoints described; a contract test checks Worker responses against it.
   - Verify: `pnpm --filter api-spec validate && pnpm --filter worker test contract`
 
-- [ ] **P6.6 · Sign-in UI** (M)
+- [x] **P6.6 · Sign-in UI** (M)
   - Needs: P6.2 · Refs: SPEC A1, A2; D§1 D4
   - Files: corner link, sign-in popover, `/auth/verify` page
   - Done when: quiet "Sign in" link; email → "check your inbox" state; verify page posts the fragment token; expired-link state with one button.

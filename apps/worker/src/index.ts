@@ -3,7 +3,7 @@ export { EsvBudget } from "./esv/budget.ts";
 import type { Env } from "./env.ts";
 import { handlePage } from "./routes.ts";
 import { json, newLimits, requestLink, verifyLink } from "./auth/auth.ts";
-import { noMailer } from "./auth/mail.ts";
+import { devMailer, devOutbox, noMailer } from "./auth/mail.ts";
 import { handleAccount } from "./auth/account.ts";
 import { handleSync } from "./highlights/api.ts";
 import { purge } from "./db.ts";
@@ -13,8 +13,9 @@ const limits = newLimits();
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(req.url);
+    if (env.DEV_MAIL === "1" && pathname === "/api/v1/dev/mail") return json(devOutbox.last);
     if (env.DB && req.method === "POST") {
-      const auth = { DB: env.DB, mailer: env.MAILER ?? noMailer, limits };
+      const auth = { DB: env.DB, mailer: env.MAILER ?? (env.DEV_MAIL === "1" ? devMailer : noMailer), limits };
       if (pathname === "/api/v1/auth/request") return requestLink(req, auth, Date.now());
       if (pathname === "/api/v1/auth/verify") return verifyLink(req, auth, Date.now());
     }
