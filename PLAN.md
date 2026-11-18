@@ -479,6 +479,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P1.8 · Deploy skeleton code (wrangler.jsonc, minimal Worker, deploy workflow) is committed and verified under local `wrangler dev`; the box stays unticked until a real preview deploy. P2+ tasks that need P1.8 only for its code proceed (standing autonomy: "document external blockers and continue independent tasks"). · No Cloudflare credentials; the dependency is on the deploy, not on code.
 - 2026-11-18 · P2.1 · Verse pages are rewritten with string edits on our own build markup (not HTMLRewriter), so the logic runs and is tested in Node. · Input is our generated HTML; keeps tests runtime-free.
 - 2026-11-18 · P3.1 · MiniSearch GO with stopwords, verse text stored in the index file, adjacency re-rank and OR fallback when AND is empty · baseline DESIGN config fails the WEB "love your enemies" check (rank 5) and BSB "faith without works" (BSB says "deeds"); chosen config is 2.54–2.58 MB gz, ≤ 7 ms queries, Mt 5:44 rank ≤ 2 in all PD translations (docs/spikes/search-index.md).
+2026-11-18 · P4 checkpoint · MVP-gate budgets measured locally only: first-load JS 20.2 KB gz (≤ 60); desktop Lighthouse (P1 run) LCP 0.4 s, CLS 0; throttled mobile LCP 1.8 s exceeds 1.0 s · real preview + Josh's session still required, gate stays unticked.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
