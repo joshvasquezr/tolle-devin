@@ -104,7 +104,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: a toy deploy shows asset hits skip the Worker and unmatched paths reach it; write findings to the Decisions log.
   - Verify: written result with request logs; if it fails, stop and choose Pages (needs user decision).
 
-- [ ] **P0.13 · Spike: font and JS budget baseline** (S)
+- [x] **P0.13 · Spike: font and JS budget baseline** (S)
   - Needs: P0.3 · Refs: D§12 last row, SPEC §7
   - Files: `docs/spikes/js-budget.md`
   - Done when: measured gz size of books metadata + parser; decision on lazy-loading aliases recorded.
