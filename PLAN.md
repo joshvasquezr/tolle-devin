@@ -270,7 +270,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: `Cmd/Ctrl+Z` undoes the last 50 operations as new writes with fresh timestamps.
   - Verify: unit + property test: apply/undo sequences restore state.
 
-- [ ] **P4.5 · Persist, repaint on navigation, cross-tab** (S)
+- [x] **P4.5 · Persist, repaint on navigation, cross-tab** (S)
   - Needs: P4.3, P1.6 · Refs: SPEC H3, H4
   - Files: `paint.ts`, router hook
   - Done when: highlights survive reload and browser restart; repaint on client navigation and translation switch; second tab updates live.
