@@ -1,0 +1,15 @@
+---
+// SPEC R5: previous/next across books; absent at Genesis 1 / Revelation 22 (disabled state).
+import { formatPath, formatRef, type ChapterRef, type Translation } from "@tolle/core";
+
+interface Props { tr: Translation; prev: ChapterRef | null; next: ChapterRef | null }
+const { tr, prev, next } = Astro.props;
+---
+<nav class="chnav" aria-label="Chapters">
+  {prev ? <a class="btn" rel="prev" href={formatPath(tr, prev)}>← {formatRef(prev)}</a> : <span class="btn" aria-disabled="true">← Previous</span>}
+  {next ? <a class="btn" rel="next" href={formatPath(tr, next)}>{formatRef(next)} →</a> : <span class="btn" aria-disabled="true">Next →</span>}
+</nav>
+<style>
+  .chnav { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; font-size: 14px; color: var(--text-2); }
+  .chnav a { text-decoration: none; }
+</style>

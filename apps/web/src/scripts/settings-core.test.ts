@@ -2,6 +2,7 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { contentSecurityPolicy } from "../csp.ts";
+import { LANDING_SCRIPT } from "./pos-core.ts";
 import { BOOT_SCRIPT, DEFAULTS, attributesFor, parseSettings } from "./settings-core.ts";
 
 describe("settings", () => {
@@ -24,6 +25,7 @@ describe("settings", () => {
   it("CSP allows the boot script by its sha256 and nothing inline otherwise", () => {
     const h = createHash("sha256").update(BOOT_SCRIPT).digest("base64");
     expect(contentSecurityPolicy()).toContain(`script-src 'self' 'sha256-${h}'`);
+    expect(contentSecurityPolicy()).toContain(`'sha256-${createHash("sha256").update(LANDING_SCRIPT).digest("base64")}'`);
     expect(contentSecurityPolicy()).not.toContain("unsafe-inline");
   });
 });

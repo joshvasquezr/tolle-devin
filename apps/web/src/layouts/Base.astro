@@ -41,5 +41,8 @@ const url = new URL(canonical, Astro.site).href;
     <header class="bar col"><slot name="bar" /><Settings /></header>
     <main id="main" class="col"><slot /></main>
     <slot name="after" />
+    <script>
+      import "../scripts/pos.ts";
+    </script>
   </body>
 </html>

@@ -1,13 +1,17 @@
 // D§8 CSP. The inline boot script is allowed by hash, computed from the exact bytes served.
 import { createHash } from "node:crypto";
+import { LANDING_SCRIPT } from "./scripts/pos-core.ts";
 import { BOOT_SCRIPT } from "./scripts/settings-core.ts";
 
-export const bootHash = (): string => `'sha256-${createHash("sha256").update(BOOT_SCRIPT).digest("base64")}'`;
+export const scriptHash = (src: string): string => `'sha256-${createHash("sha256").update(src).digest("base64")}'`;
+
+/** Every inline script the site serves (boot on all pages, landing redirect on `/`). */
+export const INLINE_SCRIPTS = [BOOT_SCRIPT, LANDING_SCRIPT] as const;
 
 export function contentSecurityPolicy(): string {
   return [
     "default-src 'self'",
-    `script-src 'self' ${bootHash()}`,
+    `script-src 'self' ${INLINE_SCRIPTS.map(scriptHash).join(" ")}`,
     "style-src 'self'",
     "img-src 'self' data:",
     "font-src 'self'",

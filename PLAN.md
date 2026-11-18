@@ -138,7 +138,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: inline boot script sets theme before paint (no flash); Aa popover: size (5), font, width, headings, theme, auto-hide; persisted in `localStorage`; CSP-hash for the inline script is generated at build.
   - Verify: Playwright: set dark, reload, no light frame (screenshot at first paint); settings persist.
 
-- [ ] **P1.5 · Prev/next links and landing page** (S)
+- [x] **P1.5 · Prev/next links and landing page** (S)
   - Needs: P1.3 · Refs: SPEC R5, R6; D§4.4
   - Files: layout nav links, `src/pages/index.astro`, `pos` module
   - Done when: prev/next links cross book boundaries and are absent at Genesis 1 / Revelation 22; `/` is a copy of BSB John 1 with inline redirect to the stored position.
