@@ -82,3 +82,8 @@ h1.ch {
 .notes { font-size: 15px; color: var(--text-2); line-height: 1.5; }
 /* SPEC R8 focus marker: quiet, distinct from the four highlight tints. */
 .chapter .v.focus { background: var(--hover); box-shadow: 0 0 0 2px var(--hover); border-radius: 2px; }
+
+/* D§3.10 verse selection via verse numbers or keyboard (text selection uses ::selection). */
+.chapter .v.sel { background: var(--hover); box-shadow: 0 0 0 2px var(--hover); border-radius: 2px; }
+.chapter .vn { cursor: pointer; }
+article.chapter:focus-visible { outline-offset: 8px; }

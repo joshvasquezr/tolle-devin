@@ -98,7 +98,7 @@ jobs:
       - name: Unit tests that need generated data (search indexes)
         run: pnpm --filter @tolle/web test search && pnpm --filter @tolle/scripts check:search
       - name: Install Playwright Chromium
-        run: pnpm --filter @tolle/web exec playwright install --with-deps chromium
+        run: pnpm --filter @tolle/web exec playwright install --with-deps chromium firefox webkit
 
       - name: Playwright + axe
         run: pnpm --filter @tolle/web e2e

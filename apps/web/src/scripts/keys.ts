@@ -1,4 +1,5 @@
 // D§3.6 keyboard dispatcher. Bindings are data; the "?" list is rendered from the same table (no drift).
+import { clearVerseSelection, hasVerseSelection } from "../highlights/selection.ts";
 import { openPicker } from "./picker.ts";
 import { toggleTheme } from "./settings.ts";
 import { openSwitcher } from "./translations.ts";
@@ -12,7 +13,7 @@ interface Binding {
   run: () => void;
 }
 
-const noSelection = () => (getSelection()?.isCollapsed ?? true);
+const noSelection = () => (getSelection()?.isCollapsed ?? true) && !hasVerseSelection();
 const onPage = () => {
   const a = document.activeElement;
   return !a || a === document.body || !!a.closest("article.chapter, #main");
@@ -32,7 +33,7 @@ export const BINDINGS: Binding[] = [
   { keys: ["t", "T"], label: "T", desc: "Switch translation", run: openSwitcher },
   { keys: ["d", "D"], label: "D", desc: "Toggle light / dark", run: toggleTheme },
   { keys: ["?"], label: "?", desc: "Show keyboard shortcuts", run: () => showHelp() },
-  { keys: ["Escape"], label: "Esc", desc: "Close, clear selection, leave input", run: () => getSelection()?.removeAllRanges() },
+  { keys: ["Escape"], label: "Esc", desc: "Close, clear selection, leave input", run: clearVerseSelection },
 ];
 
 function showHelp(): void {

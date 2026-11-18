@@ -252,7 +252,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: `highlights`, `outbox`, `meta` stores; range read by chapter; `BroadcastChannel` updates; `localStorage` fallback; values contain only `color`, `updatedAt`, `deleted` (H6).
   - Verify: unit tests including the "no text fields" assertion.
 
-- [ ] **P4.2 · Selection model** (M)
+- [x] **P4.2 · Selection model** (M)
   - Needs: P1.2, P4.1 · Refs: D§3.10 Selection; SPEC H1
   - Files: `highlights/selection.ts`
   - Done when: mouse selection → verse set (single, range, multi-paragraph, poetry fragments); verse-number click and `Shift`+click path; keyboard verse cursor with `Shift+Arrow`; live-region announcements.
