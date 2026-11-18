@@ -94,3 +94,5 @@ article.chapter:focus-visible { outline-offset: 8px; }
 .chapter .v[data-hl="sage"] { background: var(--hl-sage); }
 .chapter .v[data-hl="slate"] { background: var(--hl-slate); }
 .chapter .v[data-hl="rose"] { background: var(--hl-rose); }
+/* P7.1: --text-3 fails 4.5:1 on --hover (Decisions log P1.1), so selected verse numbers use --text-2. */
+.chapter .v.sel .vn { color: var(--text-2); }

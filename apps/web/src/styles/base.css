@@ -105,3 +105,5 @@ header.bar.chrome-hidden { transform: translateY(-100%); }
 .hl-dot[data-color="rose"]::before { background: var(--hl-rose); }
 .hl-remove[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .hl-toolbar, .hl-toolbar.on { transition: none; } }
+/* P7.1 320 px reflow: long URLs in prose wrap instead of scrolling the page. */
+.prose a { overflow-wrap: anywhere; }
