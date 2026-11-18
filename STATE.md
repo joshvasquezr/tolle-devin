@@ -1,35 +1,29 @@
 # STATE
-Updated: 2026-11-17 23:00 · Lead: Claude Code
-Approved phase: P0 (approved by Josh 2026-11-10)
+Updated: 2026-11-17 23:10 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
+Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-None in progress. Baseline documentation refinement (E1–E19 plus follow-up corrections) is complete and independently approved by Codex; committed locally as `docs: finalize baseline documentation refinement`, not pushed. P0.3 is done and merged (PR #2 → `main` as `fcbc20a`). P0.4 is not approved and not started.
+P0.4 · Verse IDs and types · in progress
 
 ## Progress
-- Lead handoff ended 2026-11-17: Kiro CLI was temporary lead solely for the documentation refinement. Claude Code is lead again. No push, PR or P0.4 work is authorized.
-- P0.1–P0.3 merged to `main`; CI on `main` (run 42983874534) is green.
-- Branch `kiro-baseline-refinement` holds the docs commit on top of `8e4526a`. Local `main` is at `8e4526a`, one ahead of `origin/main`. Nothing pushed.
-- Working tree after the commit: only `.kiro/` is untracked (spec artifacts for this work, including `change-plan.md`; not authoritative documents, not committed). Nothing staged.
-- Follow-ups applied after Codex review (done): (1) SPEC §8.1, §12 risk 2, §14 Q13 now require Crossway confirmation before ESV is made publicly available; (2) Cloudflare Web Analytics removed from DESIGN (Metrics, CSP), PLAN P7.4 and SPEC §7; first-party metrics kept; (3) this file shortened; (4) PLAN P0.11 (Data validators) cites `SPEC §12, risk 11`.
-- Branches `p0.3-books-metadata` (also on origin) and `p0.4-verse-ids-types` (empty, local) exist; delete when Josh says.
-- Failing checks: none known.
+- Baseline verified: `main` = `045d980` (docs refinement pushed). Branch `devin/autonomous-p0-p7` from it; one draft PR to `main`.
+- P0.4 decisions approved by Josh: invalid ids throw `RangeError` + `isVerseId()`; branded numeric `VerseId`; `Translation = 'bsb' | 'kjv' | 'web' | 'esv'`; content types in `packages/core/src/types.ts`; 10–20 shared vectors in `test-vectors/verse-ids.json`.
+- Toolchain on this VM: Node 24.22.2 (nvm), pnpm 12.16.1 global. Baseline `install --frozen-lockfile`, `-r typecheck`, `-r test` green (72 tests).
 
 ## Needs decision
-- Josh to decide whether to push the docs commit or open a PR. Not authorized yet.
-- Approve `P0.4 · Verse IDs and types` and its open points (proposed defaults): a. `decodeVerseId` throws on invalid input, plus `isVerseId`; b. branded `VerseId` (yes; log the deviation from D§3.1); c. `Translation = 'bsb' | 'kjv' | 'web' | 'esv'` in `types.ts`; d. use `src/types.ts` (DESIGN says `types.ts`); e. `test-vectors/verse-ids.json` (optional).
+- (none; external blockers are listed below)
 
 ## Blockers
-- None. Open doc issue: SPEC §11 "field data" Core Web Vitals now has no defined source after the Cloudflare removal.
+- No Cloudflare account/token: P0.12, P1.8 deploy verification and any preview deploy cannot run.
+- No ESV API key: P5.1 live fixtures cannot be captured. P5.0 is human-only (Crossway email).
+- Open doc issue: SPEC §11 "field data" Core Web Vitals has no defined source after the Cloudflare analytics removal.
 
 ## Next
-1. Wait for Josh's decision on pushing the docs commit. 2. P0.4 only after Josh approves it (branch from `main`; Refs: D§3.1 Verse ID, D§3.2).
+- Finish P0.4 (`verseId.ts`, `types.ts`, vectors), then P0.5 onward in PLAN order.
 
 ## Notes for next session
-- pnpm is not installed globally; corepack 0.33 can't run pnpm 12. Use `npx --yes pnpm@12.16.1 <cmd>`.
-- Toolchain: pnpm 12.16.1, TypeScript 6.0.3 (not 7.x; revisit at P1.3), Vitest 5.0.5, @types/node 24.19.2, Node ≥ 24.
-- CI pins: actions/checkout v7.0.1, actions/setup-node v7.1.0 (commit SHAs), gitleaks 8.30.1 (SHA-256). Bump deliberately.
-- Josh prefers simple git commands, one at a time (no chained heredocs or pipes). Feature branch + draft PR per task.
+- Toolchain: pnpm 12.16.1, TypeScript 6.0.3, Vitest 5.0.5, @types/node 24.19.2, Node ≥ 24.
+- CI pins: actions/checkout v7.0.1, actions/setup-node v7.1.0 (SHAs), gitleaks 8.30.1 (SHA-256).
 - `BookId` is branded: use `toBookId()`/`isBookId()` or a `Book`; never cast a raw string.
 - P0.9: reuse eBible `eng-kjv2006` (checksum in `packages/core/data/books.SOURCE.md`); P0.10 must strip its Strong's markup.
-- Package names are `@tolle/<dir>`; `render`, `web`, `worker` are `export {}` placeholders.
-- `P5.0` (email Crossway) has no dependencies; start early.
+- Old branches `p0.3-books-metadata`, `p0.4-verse-ids-types` (local, empty) may be deleted when Josh says.

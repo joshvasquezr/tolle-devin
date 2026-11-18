@@ -112,6 +112,15 @@ Work on one task at a time. You may run approved tasks one after another in a se
   - Budgets, once CI checks them.
 - **Honesty.** Report only checks you actually ran, with their real results. If a command doesn't exist yet (before `P0.1`), or a check couldn't run, say so. Never weaken a test, a vector or a budget to get a pass. A failing check means the box stays unticked.
 
+## Standing autonomy (Devin lead, granted by Josh 2026-11-17)
+
+Josh designated **Devin** (Cognition) as lead for P0.4 through P7 on branch `devin/autonomous-p0-p7`, with one draft PR to `main`. Within that grant, and only while STATE's `Lead:` line names Devin:
+- Phase starts (P0–P7, including the MVP line) and moving between tasks need no further approval. Routine engineering decisions, refactors inside the established architecture, tests and bug fixes need none either. Each non-trivial decision is still logged in PLAN's Decisions log.
+- Devin may commit, push development branches, and keep a draft PR updated. The "Git rules" limits on pushing and PRs are lifted for that branch only.
+- These stay in force: never push to `main`, merge PRs, force-push published history, bypass branch protection, deploy to production, or incur external costs; never touch the separate `tolle` repo; every hard constraint above (ESV, privacy, monetization, budgets, stable URLs); honest verification; no fabricated licensing approval, beta results or checks.
+- Human-only tasks (`P5.0`, `P7.5`, sign-offs) are not done by Devin. Tasks whose `Verify` needs an external account Devin does not have (Cloudflare deploys, the ESV API) are implemented as far as possible, left unticked, and recorded as blockers. Dependent tasks may proceed on the implemented code when the Decisions log says why.
+- The precedence rule (SPEC > DESIGN > PLAN) still applies. A real conflict is resolved by the stricter reading and logged, not silently.
+
 ## Approvals
 
 Get **explicit human approval** for each of these. Write the request under `## Needs decision` in STATE, then stop.
