@@ -473,6 +473,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P0.12 · Local workerd run (wrangler 4.156.2) shows asset hits skip the Worker and unmatched/`run_worker_first` paths reach it; use `html_handling: "drop-trailing-slash"` and `not_found_handling: "none"`. Box stays open until a real deploy confirms it (no Cloudflare credentials). Downstream Worker work proceeds locally on this result. · Standing autonomy: continue independent work; deploy facts are not claimed.
 - 2026-11-18 · P1.1 · `--text-3` (#767676 / #808080) fails 4.5:1 on `--hover` (4.17) and on dark `--surface`/`--hover`, and on every tint. It is used as text only for verse numbers on `--bg`; inside highlights verse numbers use `--text-2`. A test enforces the usage. · Token values kept as D7 set them; restricting use avoids changing the palette.
 - 2026-11-18 · P1.1 · Fonts: Source Serif 4 instanced to opsz 12–48, wght 400–500 (72 KB) and Inter wght 400–600 (35 KB), Fontsource Latin subsets. · Keeps optical sizing (D§5.2) at ~60% of the full opsz file's size.
+- 2026-11-18 · P0.13 · No lazy-loading of aliases or picker data: router + parser + books = 6.7 KB gz (aliases ≈ 0.7 KB). Revisit if first-load JS passes 45 KB gz. · Measured in docs/spikes/js-budget.md.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
