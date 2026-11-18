@@ -17,3 +17,14 @@ test("inline scripts on built pages all match CSP hashes", async ({ request }) =
     expect(html).not.toMatch(/\sstyle="/);
   }
 });
+
+test("P7.3 security headers on pages (D§8)", async ({ request }) => {
+  const h = (await request.get("/bsb/john/3")).headers();
+  expect(h["strict-transport-security"]).toBe("max-age=31536000; includeSubDomains");
+  expect(h["permissions-policy"]).toBe("camera=(), microphone=(), geolocation=()");
+  expect(h["cross-origin-opener-policy"]).toBe("same-origin");
+  expect(h["x-content-type-options"]).toBe("nosniff");
+  expect(h["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+  expect(h["content-security-policy"]).toContain("frame-ancestors 'none'");
+  expect(h["set-cookie"]).toBeUndefined();
+});

@@ -417,7 +417,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: Lighthouse CI ≥ 95 (perf, a11y, SEO); first-load JS ≤ 60 KB gz; CLS ≤ 0.02; ESV hit/miss times meet targets if ESV ships at launch.
   - Verify: CI budgets green on the production build.
 
-- [ ] **P7.3 · Security and privacy review** (S)
+- [x] **P7.3 · Security and privacy review** (S)
   - Needs: P6.8 (or P4 if P6 slips) · Refs: D§8, D§9 "Compliance checks"; SPEC §7 Privacy
   - Files: CSP/headers config, `docs/runbook.md`, `scripts/compliance.ts` and its CI step (general checks; P5.8 adds the ESV-specific checks if ESV ships)
   - Done when: headers and CSP in place and tested; logging contains no IP/query/email/token; CI fails if ad, donation or third-party script patterns are found, on every build and whether or not ESV ships; runbook covers ESV key rotation (if ESV ships), kill switch, restore.
