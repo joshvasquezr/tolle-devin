@@ -423,7 +423,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: headers and CSP in place and tested; logging contains no IP/query/email/token; CI fails if ad, donation or third-party script patterns are found, on every build and whether or not ESV ships; runbook covers ESV key rotation (if ESV ships), kill switch, restore.
   - Verify: header test in CI; log-redaction test; a deliberately bad file in a test branch fails the compliance CI step.
 
-- [ ] **P7.4 · Analytics (cookieless) and metrics** (S)
+- [x] **P7.4 · Analytics (cookieless) and metrics** (S)
   - Needs: P7.3 · Refs: D§3.12 Metrics; SPEC §11
   - Files: metrics beacon, dashboard notes
   - Done when: allow-listed counters only; no identifiers; no cookies.

@@ -13,6 +13,8 @@ export interface Env {
   MAILER?: import("./auth/mail.ts").Mailer;
   /** "1" only under local `wrangler dev` (Playwright mail sink). */
   DEV_MAIL?: string;
+  /** Workers Analytics Engine dataset for anonymous counters (P7.4); optional. */
+  METRICS?: import("./metrics.ts").AnalyticsEngine;
 }
 
 /** Durable Object namespace, structural subset (D§3.12 EsvBudget). */
