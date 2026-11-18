@@ -395,7 +395,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: triggers (load, focus, online, 2 s after write); first-sign-in merge; outbox backoff; repaint on pulled changes; sign-out options.
   - Verify: fast-check convergence test with two simulated clients; Playwright two-context test within 10 s.
 
-- [ ] **P6.8 · Account settings** (S)
+- [x] **P6.8 · Account settings** (S)
   - Needs: P6.6 · Refs: SPEC A7, A8; D§4.3 backups
   - Files: settings section
   - Done when: shows email, last synced, "Sync now", sign out (with clear-device option), export, delete account with one confirmation; privacy page mentions backup retention.

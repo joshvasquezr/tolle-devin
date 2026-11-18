@@ -127,6 +127,10 @@ export async function signOut(store: Store, clearDevice: boolean, fetcher: Fetch
 let engine: Engine | undefined;
 export const currentEngine = () => engine;
 
-if (typeof document !== "undefined" && localStorage.getItem(ACCOUNT_KEY)) {
-  void openStore().then((s) => (engine = startSync(s)));
+if (typeof document !== "undefined") {
+  if (localStorage.getItem(ACCOUNT_KEY)) void openStore().then((s) => (engine = startSync(s)));
+  addEventListener("quiet:sync-now", () => void engine?.syncNow());
+  addEventListener("quiet:sign-out", (e) => {
+    void openStore().then((s) => signOut(s, !!(e as CustomEvent<{ clear?: boolean }>).detail?.clear));
+  });
 }
