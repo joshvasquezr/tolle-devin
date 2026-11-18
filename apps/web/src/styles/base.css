@@ -91,3 +91,17 @@ header.bar.chrome-hidden { transform: translateY(-100%); }
 .search-results mark { background: var(--hover); color: inherit; border-radius: 2px; box-shadow: 0 0 0 1px var(--hover); }
 .search-pager { display: flex; gap: 16px; justify-content: center; align-items: center; padding: 24px 0; font-size: 14px; }
 .search-pager a[aria-disabled="true"] { color: var(--text-2); pointer-events: none; }
+/* SPEC §6.8 highlight toolbar. */
+.hl-toolbar { position: fixed; z-index: 30; height: 36px; display: flex; align-items: center; gap: 0; padding: 0 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 2px 8px color-mix(in srgb, var(--text) 8%, transparent); opacity: 0; visibility: hidden; transition: opacity 100ms var(--ease), visibility 0s 100ms; }
+:root[data-theme="dark"] .hl-toolbar { box-shadow: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) .hl-toolbar { box-shadow: none; } }
+.hl-toolbar.on { opacity: 1; visibility: visible; transition: opacity 100ms var(--ease); }
+.hl-toolbar button { width: 28px; height: 28px; display: grid; place-items: center; border: 0; background: none; border-radius: 6px; cursor: pointer; color: var(--text-2); font: inherit; font-size: 18px; line-height: 1; padding: 0; }
+.hl-toolbar button:hover { background: var(--hover); }
+.hl-dot::before { content: ""; width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--text-2); }
+.hl-dot[data-color="sand"]::before { background: var(--hl-sand); }
+.hl-dot[data-color="sage"]::before { background: var(--hl-sage); }
+.hl-dot[data-color="slate"]::before { background: var(--hl-slate); }
+.hl-dot[data-color="rose"]::before { background: var(--hl-rose); }
+.hl-remove[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .hl-toolbar, .hl-toolbar.on { transition: none; } }

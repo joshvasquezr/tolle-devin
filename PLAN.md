@@ -258,7 +258,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: mouse selection → verse set (single, range, multi-paragraph, poetry fragments); verse-number click and `Shift`+click path; keyboard verse cursor with `Shift+Arrow`; live-region announcements.
   - Verify: Playwright in Chromium, WebKit, Firefox with identical expectations.
 
-- [ ] **P4.3 · Toolbar and apply/remove** (M)
+- [x] **P4.3 · Toolbar and apply/remove** (M)
   - Needs: P4.2 · Refs: D§3.10 Toolbar/Apply; SPEC §5.5, §6.8
   - Files: `toolbar.ts`, `paint.ts`, CSS tints
   - Done when: toolbar shows four tints and remove; places above or below; applies to whole verses; repaint via `data-hl`; `box-decoration-break: clone` on wraps; `1`–`4`/`0` keys; "highlighted" text for screen readers.

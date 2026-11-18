@@ -1,5 +1,7 @@
 // D§3.6 keyboard dispatcher. Bindings are data; the "?" list is rendered from the same table (no drift).
 import { clearVerseSelection, hasVerseSelection } from "../highlights/selection.ts";
+import { highlight } from "../highlights/toolbar.ts";
+import { COLORS } from "../highlights/store.ts";
 import { openPicker } from "./picker.ts";
 import { toggleTheme } from "./settings.ts";
 import { openSwitcher } from "./translations.ts";
@@ -33,7 +35,9 @@ export const BINDINGS: Binding[] = [
   { keys: ["t", "T"], label: "T", desc: "Switch translation", run: openSwitcher },
   { keys: ["d", "D"], label: "D", desc: "Toggle light / dark", run: toggleTheme },
   { keys: ["?"], label: "?", desc: "Show keyboard shortcuts", run: () => showHelp() },
-  { keys: ["Escape"], label: "Esc", desc: "Close, clear selection, leave input", run: clearVerseSelection },
+  ...COLORS.map((c, i) => ({ keys: [String(i + 1)], label: i ? "" : "1 – 4", desc: i ? "" : "Highlight selected verses (Sand, Sage, Slate, Rose)", when: hasVerseSelection, run: () => void highlight(c) })),
+  { keys: ["0", "Backspace"], label: "0", desc: "Remove highlight from selected verses", when: hasVerseSelection, run: () => void highlight(null) },
+  { keys: ["Escape"], label: "Esc", desc: "Close, clear selection, leave input", run: () => clearVerseSelection() },
 ];
 
 function showHelp(): void {

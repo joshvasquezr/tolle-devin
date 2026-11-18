@@ -53,9 +53,11 @@ export function selectVerses(vs: number[], speak = true): void {
   set(vs, "verse", speak);
 }
 
-export function clearVerseSelection(): void {
+/** keepCursor: after applying a tint, arrows continue from the same verse. */
+export function clearVerseSelection(keepCursor = false): void {
   getSelection()?.removeAllRanges();
-  anchor = cursor = null;
+  anchor = null;
+  if (!keepCursor) cursor = null;
   set([], "verse", true);
 }
 
