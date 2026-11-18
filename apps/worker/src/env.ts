@@ -9,6 +9,8 @@ export interface Env {
   ESV_BUDGET?: DoNamespace;
   /** P6: accounts and sync (D§4.2). */
   DB?: import("./db.ts").D1;
+  /** Magic-link email sender; none configured yet (sending is a no-op). */
+  MAILER?: import("./auth/mail.ts").Mailer;
 }
 
 /** Durable Object namespace, structural subset (D§3.12 EsvBudget). */

@@ -359,7 +359,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: schema as in D§4.2 applies cleanly; cascade delete verified.
   - Verify: `wrangler d1 migrations apply --local` and tests.
 
-- [ ] **P6.2 · Magic-link request and verify** (M)
+- [x] **P6.2 · Magic-link request and verify** (M)
   - Needs: P6.1 · Refs: D§3.12 Auth, D§1 D4
   - Files: `auth/*`, email sender, tests
   - Done when: always-202 request; hashed tokens; 15 min expiry; single use; POST verify; web cookie flags; native bearer; rate limits; Origin check.
