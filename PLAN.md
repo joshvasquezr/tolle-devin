@@ -126,7 +126,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: prose, poetry (indent levels), headings, psalm titles, `nd` small caps, multi-fragment verses; text escaped; verse numbers not selectable.
   - Verify: snapshot tests plus an XSS-string test.
 
-- [ ] **P1.3 · Astro site and chapter pages** (M)
+- [x] **P1.3 · Astro site and chapter pages** (M)
   - Needs: P0.11, P1.1, P1.2 · Refs: D§6.1, D§6.3
   - Files: `apps/web/astro.config.*`, `src/pages/[tr]/[book]/[chapter].astro`, layout
   - Done when: 3 × 1,189 pages generated at `/{tr}/{book}/{n}`; single centered column; `h1` heading (plain text for now); correct `<title>`, description, canonical, OG.
@@ -474,6 +474,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P1.1 · `--text-3` (#767676 / #808080) fails 4.5:1 on `--hover` (4.17) and on dark `--surface`/`--hover`, and on every tint. It is used as text only for verse numbers on `--bg`; inside highlights verse numbers use `--text-2`. A test enforces the usage. · Token values kept as D7 set them; restricting use avoids changing the palette.
 - 2026-11-18 · P1.1 · Fonts: Source Serif 4 instanced to opsz 12–48, wght 400–500 (72 KB) and Inter wght 400–600 (35 KB), Fontsource Latin subsets. · Keeps optical sizing (D§5.2) at ~60% of the full opsz file's size.
 - 2026-11-18 · P0.13 · No lazy-loading of aliases or picker data: router + parser + books = 6.7 KB gz (aliases ≈ 0.7 KB). Revisit if first-load JS passes 45 KB gz. · Measured in docs/spikes/js-budget.md.
+- 2026-11-18 · P1.3 · Astro build reads chapter JSON from `public/data` relative to the app root (process.cwd()), and canonical/OG URLs use `SITE_URL` until the domain is chosen. · Prerender bundles run from dist/, so import.meta.url paths break.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

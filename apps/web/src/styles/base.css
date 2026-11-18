@@ -12,6 +12,7 @@ body {
   margin-inline: auto;
   padding-inline: clamp(20px, 6vw, 48px);
 }
+main.col { padding-block: 32px 96px; }
 a { color: inherit; text-underline-offset: .15em; }
 ::selection { background: color-mix(in srgb, var(--text) 18%, transparent); }
 :focus { outline: none; }

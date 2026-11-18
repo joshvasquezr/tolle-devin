@@ -4,7 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@tolle/core": "workspace:*",
+    "@tolle/render": "workspace:*",
+    "astro": "7.4.5"
   }
 }

@@ -45,3 +45,14 @@ export interface Chapter {
   parts?: number;
   part?: number;
 }
+
+/** Display names (D§6.3 titles). */
+export const TRANSLATION_NAMES: Readonly<Record<Translation, string>> = {
+  bsb: "Berean Standard Bible",
+  kjv: "King James Version",
+  web: "World English Bible",
+  esv: "English Standard Version",
+};
+
+/** Working title (SPEC §14 open question 1; D§6.3 uses it in the ESV shell title). */
+export const SITE_NAME = "Quiet Bible";

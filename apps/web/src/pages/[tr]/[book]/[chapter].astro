@@ -1,0 +1,22 @@
+---
+// P1.3: one static page per public-domain chapter (3 × 1,189). D§6.3 metadata.
+import Base from "../../../layouts/Base.astro";
+import { TRANSLATION_NAMES, formatPath, formatRef, type Book, type PdTranslation } from "@tolle/core";
+import { renderChapter } from "@tolle/render";
+import { chapterPaths, describe, loadChapter } from "../../../lib/chapters.ts";
+
+export function getStaticPaths() {
+  return chapterPaths();
+}
+
+interface Props { tr: PdTranslation; book: Book; n: number }
+const { tr, book, n } = Astro.props;
+const chapter = loadChapter(tr, book, n);
+const label = formatRef({ book: book.id, chapter: n }); // "Psalm 23", "Jude"
+const title = `${label} — ${TRANSLATION_NAMES[tr]}`;
+const path = formatPath(tr, { book: book.id, chapter: n });
+---
+<Base title={title} description={describe(chapter)} canonical={path} ogType="article">
+  <h1 class="ch">{label}</h1>
+  <Fragment set:html={renderChapter(chapter)} />
+</Base>
