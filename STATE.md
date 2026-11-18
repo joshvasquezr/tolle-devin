@@ -3,7 +3,7 @@ Updated: 2026-11-18 06:55 · Lead: Devin (Cognition), handed over by Josh 2026-1
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P0.8 · Versification stub · next
+P0.6 · Route resolver and path formatter · in progress
 
 ## Progress
 - Baseline verified: `main` = `045d980` (docs refinement pushed). Branch `devin/autonomous-p0-p7` from it; one draft PR to `main`.

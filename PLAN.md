@@ -74,7 +74,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: for all 1,189 chapters windows are contiguous, cover each verse once, and never exceed `min(500, floor(bookVerses/2))`; examples Jude → 9/9/7, 3 John → 7/7, Haggai 2 → 12/11 hold.
   - Verify: `pnpm --filter core test esvWindows`
 
-- [ ] **P0.8 · Versification stub** (S)
+- [x] **P0.8 · Versification stub** (S)
   - Needs: P0.4 · Refs: D§3.1 Versification
   - Files: `packages/core/src/versification.ts`, tests
   - Done when: identity mapping works; exceptions load from `data/versemap/{tr}.json` (empty files allowed).
@@ -464,6 +464,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-17 · P0.4 · `VerseId` is a branded `number` (`isVerseId`/`toVerseId`, or `encodeVerseId`); `encodeVerseId`/`decodeVerseId` throw `RangeError` on any id outside books.json bounds. Deviation from D§3.1's plain `number`. · Josh approved; matches the `BookId` pattern so unvalidated numbers cannot reach the store or the sync API.
 - 2026-11-17 · P0.4 · `Translation = 'bsb' | 'kjv' | 'web' | 'esv'` and the D§3.2 content types live in `packages/core/src/types.ts`; `PD_TRANSLATIONS` names the static three. Shared vectors in `test-vectors/verse-ids.json` (15 valid, 10 invalid). · Josh approved.
 - 2026-11-18 · P0.5 · Parser edge rules not fixed by SPEC/DESIGN: `c:v-c2:v2` keeps `c:v`; multi-chapter `john 3-4` keeps chapter 3; single-chapter `jude 3-5` is a verse range; a range end past the chapter is clamped; reversed/equal ends collapse to one verse; Roman/spelled ordinals need a separator (so `isa` is not `i sa`); single verse = `vStart` only, range = `vStart`+`vEnd`. · Routine (standing autonomy); stricter-or-simplest reading, all pinned in test-vectors/refs.json.
+- 2026-11-18 · P0.8 · Versemap files live in `packages/core/data/versemap/{tr}.json` (schema 1: `{book, ch, v, canonical[]}` exceptions) and are imported statically, so core stays I/O-free; `toCanonical` returns [] for a local verse with no canonical counterpart. · Routine (standing autonomy).
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
