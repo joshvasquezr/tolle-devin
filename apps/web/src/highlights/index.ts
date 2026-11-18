@@ -3,6 +3,7 @@
 import "./selection.ts";
 import "./toolbar.ts";
 import "./copy.ts";
+import "./transfer.ts";
 import { paint } from "./paint.ts";
 import { onRemoteChange } from "./store.ts";
 
@@ -12,3 +13,4 @@ addEventListener("pageshow", (e) => {
   if (e.persisted) void paint();
 });
 onRemoteChange(() => void paint());
+addEventListener("quiet:highlights-imported", () => void paint());

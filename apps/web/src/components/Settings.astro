@@ -25,6 +25,12 @@ const sizes = [0, 1, 2, 3, 4];
       <label><input type="checkbox" name="headings" />Section headings</label>
       <label><input type="checkbox" name="autohide" />Hide bar while reading</label>
     </fieldset>
+    <fieldset><legend>Highlights</legend>
+      <button type="button" id="hl-export" class="link">Export highlights</button>
+      <button type="button" id="hl-import" class="link">Import highlights</button>
+      <input type="file" id="hl-file" accept="application/json,.json" hidden />
+      <p id="hl-status" class="hl-status" role="status"></p>
+    </fieldset>
   </div>
 </div>
 <style>
@@ -40,6 +46,9 @@ const sizes = [0, 1, 2, 3, 4];
   label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
   .sz0 { font-size: 13px; } .sz1 { font-size: 14px; } .sz2 { font-size: 16px; } .sz3 { font-size: 18px; } .sz4 { font-size: 20px; }
   input { accent-color: var(--text); margin: 0; }
+  .link { font: inherit; color: var(--text); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .hl-status { width: 100%; margin: 0; color: var(--text-2); font-size: 12px; }
+  .hl-status:empty { display: none; }
   @keyframes pop-in { from { opacity: 0; transform: translateY(4px); } }
   @media (prefers-reduced-motion: reduce) { @keyframes pop-in { from { opacity: 0; } } }
 </style>

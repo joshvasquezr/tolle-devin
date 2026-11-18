@@ -282,7 +282,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: copying a range yields clean text plus `— John 3:16 (BSB)`; verse numbers excluded; ESV hook point exists but is unused until P5.
   - Verify: Playwright clipboard test.
 
-- [ ] **P4.7 · Export / import** (S)
+- [x] **P4.7 · Export / import** (S)
   - Needs: P4.1 · Refs: SPEC H8; D§3.10
   - Files: settings menu entries
   - Done when: JSON export/import round-trips; import merges by last-write-wins and reports a count.
