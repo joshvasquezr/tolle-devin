@@ -5,14 +5,14 @@ import { readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
 import MiniSearch from "minisearch";
-import { PD_TRANSLATIONS, indexTerms, plainVerses, toCanonical, type Book, type Chapter, type PdTranslation } from "@tolle/core";
+import { PD_TRANSLATIONS, SEARCH_INDEX_OPTIONS, plainVerses, toCanonical, type Book, type Chapter, type PdTranslation } from "@tolle/core";
 
 /** SPEC S5 [A]: first-use download under 3 MB gz per translation. */
 export const MAX_GZ_BYTES = 3_000_000;
 export const MANIFEST = "search-manifest.json";
 
 /** Options shared with the browser loader (apps/web/src/search). */
-export const SEARCH_OPTIONS = { fields: ["text"], storeFields: [], tokenize: indexTerms, processTerm: (t: string) => t };
+export const SEARCH_OPTIONS = SEARCH_INDEX_OPTIONS;
 
 export interface SearchFile {
   v: 1;

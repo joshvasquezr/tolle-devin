@@ -224,7 +224,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: versioned index per PD translation emitted to `/data/{tr}/search.v{hash}.json`; stemming and diacritic folding configured; deterministic output.
   - Verify: build twice, hashes match; size check script passes.
 
-- [ ] **P3.3 · Search worker and query engine** (M)
+- [x] **P3.3 · Search worker and query engine** (M)
   - Needs: P3.2 · Refs: D§3.11; SPEC S1, S3, S4, S7
   - Files: `apps/web/src/search/{worker,query}.ts`, tests
   - Done when: AND semantics, quoted phrase filter, scope filter, stemming; "love your enemies" returns Matthew 5:44 in the top 3 for each PD translation; < 200 ms after load.

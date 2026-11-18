@@ -85,3 +85,11 @@ export function adjacency(queryWords: readonly string[], verseWords: readonly st
   for (let i = 1; i < queryWords.length; i++) if (pairs.has(`${queryWords[i - 1]} ${queryWords[i]}`)) n++;
   return n / (queryWords.length - 1);
 }
+
+/** MiniSearch options shared by the index builder and the browser loader (must match exactly). */
+export const SEARCH_INDEX_OPTIONS = {
+  fields: ["text"],
+  storeFields: [] as string[],
+  tokenize: indexTerms,
+  processTerm: (t: string): string => t,
+};
