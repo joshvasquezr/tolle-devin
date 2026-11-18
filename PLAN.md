@@ -365,7 +365,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: always-202 request; hashed tokens; 15 min expiry; single use; POST verify; web cookie flags; native bearer; rate limits; Origin check.
   - Verify: Worker tests per D§9 (enumeration safety, expiry, replay, cookie flags, CSRF).
 
-- [ ] **P6.3 · Sessions, `me`, sign-out, export, delete** (S)
+- [x] **P6.3 · Sessions, `me`, sign-out, export, delete** (S)
   - Needs: P6.2 · Refs: SPEC A7, A8
   - Files: `auth/session.ts`, `account.ts`
   - Done when: 90-day sessions with extension; sign-out; account export; delete cascades all rows.

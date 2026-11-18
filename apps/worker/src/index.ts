@@ -4,6 +4,7 @@ import type { Env } from "./env.ts";
 import { handlePage } from "./routes.ts";
 import { json, newLimits, requestLink, verifyLink } from "./auth/auth.ts";
 import { noMailer } from "./auth/mail.ts";
+import { handleAccount } from "./auth/account.ts";
 
 const limits = newLimits();
 
@@ -14,6 +15,10 @@ export default {
       const auth = { DB: env.DB, mailer: env.MAILER ?? noMailer, limits };
       if (pathname === "/api/v1/auth/request") return requestLink(req, auth, Date.now());
       if (pathname === "/api/v1/auth/verify") return verifyLink(req, auth, Date.now());
+    }
+    if (env.DB && pathname.startsWith("/api/v1/")) {
+      const r = await handleAccount(req, env.DB, Date.now());
+      if (r) return r;
     }
     if (pathname.startsWith("/api/")) {
       if (pathname.startsWith("/api/v1/")) return json({ error: "not_found" }, 404);
