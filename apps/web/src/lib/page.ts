@@ -21,5 +21,5 @@ export function chapterMainHtml(chapter: Chapter): string {
   const { tr, book, chapter: n } = chapter;
   getBook(book);
   const { prev, next } = neighbors(book, n);
-  return `<h1 class="ch" tabindex="-1">${escapeHtml(chapterLabel(book, n))}</h1>\n${renderChapter(chapter)}\n${navHtml(tr, prev, next)}`;
+  return `<h1 class="ch"><button type="button" class="ch-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="picker">${escapeHtml(chapterLabel(book, n))}</button></h1>\n${renderChapter(chapter)}\n${navHtml(tr, prev, next)}`;
 }

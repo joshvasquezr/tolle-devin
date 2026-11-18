@@ -11,7 +11,7 @@ test("next/prev/back swap chapters without a page reload", async ({ page }) => {
   await page.getByRole("link", { name: "Exodus 1 →" }).click();
   await expect(page).toHaveURL("/bsb/exodus/1");
   await expect(page.locator("h1")).toHaveText("Exodus 1");
-  await expect(page.locator("h1")).toBeFocused();
+  await expect(page.locator("h1 .ch-btn")).toBeFocused();
   await expect(page.locator("#live")).toHaveText("Exodus 1");
   await expect(page).toHaveTitle("Exodus 1 — Berean Standard Bible");
   expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(1);

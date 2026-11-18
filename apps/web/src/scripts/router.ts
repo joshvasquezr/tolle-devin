@@ -81,7 +81,7 @@ async function go(t: Target, url: string, mode: "push" | "pop", scrollY = 0): Pr
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (document.startViewTransition && !reduce) await document.startViewTransition(swap).updateCallbackDone;
   else swap();
-  main.querySelector<HTMLElement>("h1")?.focus({ preventScroll: true });
+  (main.querySelector<HTMLElement>("h1 .ch-btn") ?? main.querySelector<HTMLElement>("h1"))?.focus({ preventScroll: true });
   document.getElementById("live")!.textContent = t.label ?? chapterLabel(t.book, t.chapter);
   dispatchEvent(new CustomEvent("quiet:chapter", { detail: { scroll: mode === "push" } }));
   prefetchAdjacent();

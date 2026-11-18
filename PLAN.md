@@ -184,7 +184,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: combobox ARIA; inline suggestion; ≤ 3 rows for ambiguity; invalid message with suggestion; `Esc` restores label; `Cmd/Ctrl+Enter` forces search; width animation; navigation via router.
   - Verify: Playwright flows for every SPEC §5.3 example; axe clean.
 
-- [ ] **P2.4 · Book/chapter picker** (M)
+- [x] **P2.4 · Book/chapter picker** (M)
   - Needs: P1.6, P0.3 · Refs: D§3.5; SPEC N1–N7, §6.6
   - Files: `picker.ts`, markup, CSS
   - Done when: heading button opens a Popover API panel; two columns; chapter grid view with back; marks current book/chapter; type-ahead; arrow-key navigation; focus returns to heading; open < 150 ms with no network.

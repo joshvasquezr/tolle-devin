@@ -22,7 +22,7 @@ test("every SPEC §5.3 example navigates via the bar", async ({ page }) => {
     await bar.press("Enter");
     await expect(page, input).toHaveURL(url);
     // The router moves focus to the new h1 once the chapter is swapped in (D§3.8).
-    await expect(page.locator("h1")).toBeFocused();
+    await expect(page.locator("h1 .ch-btn")).toBeFocused();
   }
 });
 

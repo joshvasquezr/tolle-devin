@@ -6,6 +6,7 @@ import "../styles/type.css";
 import { SITE_NAME } from "@tolle/core";
 import Settings from "../components/Settings.astro";
 import RefBar from "../components/RefBar.astro";
+import Picker from "../components/Picker.astro";
 import { BOOT_SCRIPT } from "../scripts/settings-core.ts";
 
 interface Props {
@@ -42,6 +43,7 @@ const url = new URL(canonical, Astro.site).href;
     <a class="skip" href="#main">Skip to text</a>
     <header class="bar col"><RefBar /><slot name="bar" /><Settings /></header>
     <main id="main" class="col"><slot /></main>
+    <Picker />
     <slot name="after" />
     <footer class="col foot"><a href="/about">About</a><a href="/privacy">Privacy</a></footer>
     <div id="live" class="sr-only" aria-live="polite"></div>
@@ -51,6 +53,7 @@ const url = new URL(canonical, Astro.site).href;
       import "../scripts/pos.ts";
       import "../scripts/focus.ts";
       import "../scripts/refbar.ts";
+      import "../scripts/picker.ts";
       import "../scripts/router.ts";
     </script>
   </body>
