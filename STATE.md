@@ -1,9 +1,9 @@
 # STATE
-Updated: 2026-11-18 08:15 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
+Updated: 2026-11-18 08:12 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P5.3 · Budget durable object · in progress
+P5.2 · Normalizer · in progress (synthetic markup; unticked until P5.1)
 
 ## Progress
 - Branch `devin/autonomous-p0-p7` (from `main` = `045d980`); one draft PR to `main` (#1).

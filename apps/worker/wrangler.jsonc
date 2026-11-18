@@ -14,5 +14,8 @@
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "none",
     "run_worker_first": ["/api/*"]
-  }
+  },
+  // D§3.12: one global EsvBudget instance counts upstream ESV calls (P5.3).
+  "durable_objects": { "bindings": [{ "name": "ESV_BUDGET", "class_name": "EsvBudget" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EsvBudget"] }]
 }

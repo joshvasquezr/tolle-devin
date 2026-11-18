@@ -5,4 +5,12 @@ export interface AssetsBinding {
 
 export interface Env {
   ASSETS: AssetsBinding;
+  /** P5: absent until ESV is enabled (compliance-gated). */
+  ESV_BUDGET?: DoNamespace;
+}
+
+/** Durable Object namespace, structural subset (D§3.12 EsvBudget). */
+export interface DoNamespace {
+  idFromName(name: string): unknown;
+  get(id: unknown): { fetch(input: Request | string, init?: RequestInit): Promise<Response> };
 }

@@ -313,7 +313,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: ESV markup → `Block[]` with headings, paragraphs, poetry indents, verse markers; unknown tags dropped; output has no HTML.
   - Verify: fixture tests plus a hostile-markup test.
 
-- [ ] **P5.3 · Budget durable object** (M)
+- [x] **P5.3 · Budget durable object** (M)
   - Needs: P1.8 · Refs: D§3.12 Budget table; SPEC §8.1
   - Files: `apps/worker/src/esv/budget.ts`, tests
   - Done when: sliding windows (60/min, 1,000/h, 5,000/day); open/soft(80%)/hard(95%) states; persisted across restarts.

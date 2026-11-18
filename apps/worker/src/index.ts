@@ -1,3 +1,4 @@
+export { EsvBudget } from "./esv/budget.ts";
 // Worker entry (D§2). Asset hits never reach it: it sees unmatched paths (P2.1) and /api/* (P5, P6).
 import type { Env } from "./env.ts";
 import { handlePage } from "./routes.ts";
