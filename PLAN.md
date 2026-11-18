@@ -246,7 +246,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
 
 ## P4 · Highlights (local)
 
-- [ ] **P4.1 · Highlight store** (M)
+- [x] **P4.1 · Highlight store** (M)
   - Needs: P0.4, P0.8 · Refs: D§3.10 Store, D§4.4
   - Files: `highlights/store.ts`, tests (fake-indexeddb)
   - Done when: `highlights`, `outbox`, `meta` stores; range read by chapter; `BroadcastChannel` updates; `localStorage` fallback; values contain only `color`, `updatedAt`, `deleted` (H6).
