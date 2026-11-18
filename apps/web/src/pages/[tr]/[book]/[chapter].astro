@@ -1,10 +1,9 @@
 ---
 // P1.3: one static page per public-domain chapter (3 × 1,189). D§6.3 metadata.
 import Base from "../../../layouts/Base.astro";
-import ChapterNav from "../../../components/ChapterNav.astro";
-import { TRANSLATION_NAMES, formatPath, formatRef, neighbors, type Book, type PdTranslation } from "@tolle/core";
-import { renderChapter } from "@tolle/render";
+import { formatPath, type Book, type PdTranslation } from "@tolle/core";
 import { chapterPaths, describe, loadChapter } from "../../../lib/chapters.ts";
+import { chapterMainHtml, chapterTitle } from "../../../lib/page.ts";
 
 export function getStaticPaths() {
   return chapterPaths();
@@ -13,13 +12,7 @@ export function getStaticPaths() {
 interface Props { tr: PdTranslation; book: Book; n: number }
 const { tr, book, n } = Astro.props;
 const chapter = loadChapter(tr, book, n);
-const label = formatRef({ book: book.id, chapter: n }); // "Psalm 23", "Jude"
-const title = `${label} — ${TRANSLATION_NAMES[tr]}`;
-const path = formatPath(tr, { book: book.id, chapter: n });
-const { prev, next } = neighbors(book.id, n);
 ---
-<Base title={title} description={describe(chapter)} canonical={path} ogType="article">
-  <h1 class="ch">{label}</h1>
-  <Fragment set:html={renderChapter(chapter)} />
-  <ChapterNav tr={tr} prev={prev} next={next} />
+<Base title={chapterTitle(tr, book.id, n)} description={describe(chapter)} canonical={formatPath(tr, { book: book.id, chapter: n })} ogType="article">
+  <Fragment set:html={chapterMainHtml(chapter)} />
 </Base>

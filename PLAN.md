@@ -144,7 +144,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: prev/next links cross book boundaries and are absent at Genesis 1 / Revelation 22; `/` is a copy of BSB John 1 with inline redirect to the stored position.
   - Verify: unit test of neighbor function over all chapters; Playwright for redirect.
 
-- [ ] **P1.6 · Client router, prefetch, transitions** (M)
+- [x] **P1.6 · Client router, prefetch, transitions** (M)
   - Needs: P1.5, P0.6 · Refs: D§3.8; SPEC §6.5, §7
   - Files: `apps/web/src/scripts/router.ts`, cache, live region
   - Done when: chapter changes without page reload; old content stays until new is ready; 120 ms cross-fade (reduced-motion safe); focus to `h1`, live-region announcement; popstate restores scroll; fetch failure falls back to normal navigation; adjacent chapters prefetched.

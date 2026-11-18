@@ -44,3 +44,11 @@ button { font: inherit; color: inherit; }
   :root { --t-hover: 0ms; --t-open: 50ms; --t-close: 0ms; --t-fade: 50ms; --t-toolbar: 0ms; }
 }
 .bar { display: flex; align-items: center; gap: 8px; height: 48px; }
+.chnav { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; font-size: 14px; color: var(--text-2); }
+.chnav a { text-decoration: none; }
+h1.ch:focus { outline: none; }
+/* SPEC §6.5: 120 ms cross-fade on chapter change. */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: var(--t-fade); animation-timing-function: var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

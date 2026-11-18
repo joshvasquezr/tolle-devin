@@ -1,15 +1,23 @@
-// D§4.4: write the reading position on pagehide and after a 1 s dwell.
+// D§4.4: write the reading position on pagehide and after a 1 s dwell (also after router navigations).
 import { POS_KEY } from "./pos-core.ts";
 
-const a = document.querySelector<HTMLElement>("article.chapter");
-if (a?.dataset.tr && a.dataset.tr !== "esv" && location.pathname !== "/") {
-  const save = () => {
-    try {
-      localStorage.setItem(POS_KEY, JSON.stringify({ tr: a.dataset.tr, book: a.dataset.book, chapter: Number(a.dataset.ch) }));
-    } catch {
-      // storage unavailable
-    }
-  };
-  setTimeout(save, 1000);
-  addEventListener("pagehide", save);
+let timer: ReturnType<typeof setTimeout> | undefined;
+
+function save(): void {
+  const a = document.querySelector<HTMLElement>("article.chapter");
+  if (!a?.dataset.tr || a.dataset.tr === "esv" || location.pathname === "/") return;
+  try {
+    localStorage.setItem(POS_KEY, JSON.stringify({ tr: a.dataset.tr, book: a.dataset.book, chapter: Number(a.dataset.ch) }));
+  } catch {
+    // storage unavailable
+  }
 }
+
+function arm(): void {
+  clearTimeout(timer);
+  timer = setTimeout(save, 1000);
+}
+
+arm();
+addEventListener("pagehide", save);
+addEventListener("quiet:chapter", arm);

@@ -41,8 +41,10 @@ const url = new URL(canonical, Astro.site).href;
     <header class="bar col"><slot name="bar" /><Settings /></header>
     <main id="main" class="col"><slot /></main>
     <slot name="after" />
+    <div id="live" class="sr-only" aria-live="polite"></div>
     <script>
       import "../scripts/pos.ts";
+      import "../scripts/router.ts";
     </script>
   </body>
 </html>
