@@ -22,14 +22,22 @@ function renderItems(items: readonly Item[], state: { v: number }, opts: Require
     if (num) out += `<sup class="vn">${state.v}</sup>`;
     open = true;
   };
-  if (state.v > 0) openSpan(false);
+  // A continuation fragment opens lazily, so a block that starts with a verse marker has no empty span.
+  const cont = () => {
+    if (!open && state.v > 0) openSpan(false);
+  };
   for (const it of items) {
-    if (typeof it === "string") out += escapeHtml(it);
-    else if ("v" in it) {
+    if (typeof it === "string") {
+      cont();
+      out += escapeHtml(it);
+    } else if ("v" in it) {
       state.v = it.v;
       openSpan(true);
-    } else if ("nd" in it) out += `<span class="nd">${escapeHtml(it.nd)}</span>`;
-    else if (opts.notes) {
+    } else if ("nd" in it) {
+      cont();
+      out += `<span class="nd">${escapeHtml(it.nd)}</span>`;
+    } else if (opts.notes) {
+      cont();
       const n = it.fn + 1;
       out += `<sup class="fn"><a href="#fn${n}" id="fnr${n}" aria-label="Footnote ${n}">${n}</a></sup>`;
     }

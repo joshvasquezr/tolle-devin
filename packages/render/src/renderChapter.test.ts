@@ -25,6 +25,7 @@ describe("structure", () => {
     const html = renderChapter(fixture(bsbJohn3));
     expect(html).toContain('<span class="v" data-v="16"><sup class="vn">16</sup>For God so loved the world');
     expect(html.match(/<sup class="vn">/g)).toHaveLength(36);
+    expect(html).not.toMatch(/<span class="v" data-v="\d+"><\/span>/);
     expect(html).toMatch(/^<article class="chapter" lang="en" data-tr="bsb" data-book="john" data-ch="3">/);
   });
 
