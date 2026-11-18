@@ -20,6 +20,10 @@ export interface Write {
 
 export interface Store {
   readonly kind: "idb" | "local";
+  /** Rows pulled from the server (D§4.3): highlights only, no outbox entry. */
+  applyRemote(writes: readonly Write[]): Promise<void>;
+  /** Sign-out "also clear this device" (SPEC A7): drops highlights, outbox and meta. */
+  clear(): Promise<void>;
   /** Writes highlights + outbox together (one transaction) and notifies other tabs. */
   apply(writes: readonly Write[]): Promise<void>;
   /** Live (not deleted) highlights with lo ≤ verseId ≤ hi. */
@@ -40,7 +44,9 @@ export const isColor = (c: unknown): c is Color => typeof c === "string" && (COL
 
 const row = (w: Write): HighlightRow => ({ color: w.color, updatedAt: w.updatedAt, deleted: w.color === null });
 
-function notify(ids: readonly number[]): void {
+/** Local writes also tell this tab's sync engine (D§4.3 "2 s after a local write"). */
+function notify(ids: readonly number[], local = true): void {
+  if (local) globalThis.dispatchEvent?.(new CustomEvent("quiet:highlight-written"));
   if (typeof BroadcastChannel === "undefined") return;
   const ch = new BroadcastChannel(CHANNEL);
   ch.postMessage({ ids });
@@ -92,6 +98,18 @@ async function idbStore(idb: IDBFactory): Promise<Store> {
       }
       await done(tx);
       notify(writes.map((w) => w.verseId));
+    },
+    async applyRemote(writes) {
+      const tx = db.transaction("highlights", "readwrite");
+      for (const w of writes) tx.objectStore("highlights").put(row(w), w.verseId);
+      await done(tx);
+      notify(writes.map((w) => w.verseId), false);
+    },
+    async clear() {
+      const tx = db.transaction(["highlights", "outbox", "meta"], "readwrite");
+      for (const s of ["highlights", "outbox", "meta"]) tx.objectStore(s).clear();
+      await done(tx);
+      notify([], false);
     },
     async range(lo, hi) {
       const rows = await read<HighlightRow>("highlights", IDBKeyRange.bound(lo, hi));
@@ -147,6 +165,16 @@ function localStore(storage: Storage | undefined): Store {
       }
       save();
       notify(writes.map((w) => w.verseId));
+    },
+    async applyRemote(writes) {
+      for (const w of writes) data.h[w.verseId] = row(w);
+      save();
+      notify(writes.map((w) => w.verseId), false);
+    },
+    async clear() {
+      data = { h: {}, o: {}, m: {} };
+      save();
+      notify([], false);
     },
     async range(lo, hi) {
       return new Map([...entries(data.h)].filter(([k, r]) => k >= lo && k <= hi && !r.deleted && r.color).map(([k, r]) => [k, r.color!]));

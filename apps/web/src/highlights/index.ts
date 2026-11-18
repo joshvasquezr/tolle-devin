@@ -4,6 +4,7 @@ import "./selection.ts";
 import "./toolbar.ts";
 import "./copy.ts";
 import "./transfer.ts";
+import "./sync.ts";
 import { paint } from "./paint.ts";
 import { onRemoteChange } from "./store.ts";
 
@@ -14,3 +15,5 @@ addEventListener("pageshow", (e) => {
 });
 onRemoteChange(() => void paint());
 addEventListener("quiet:highlights-imported", () => void paint());
+addEventListener("quiet:highlights-synced", () => void paint());
+addEventListener("quiet:signed-out", () => void paint());

@@ -4,18 +4,21 @@ import type { Env } from "./env.ts";
 import { handlePage } from "./routes.ts";
 import { json, newLimits, requestLink, verifyLink } from "./auth/auth.ts";
 import { devMailer, devOutbox, noMailer } from "./auth/mail.ts";
+import { Limiter } from "./auth/ratelimit.ts";
 import { handleAccount } from "./auth/account.ts";
 import { handleSync } from "./highlights/api.ts";
 import { purge } from "./db.ts";
 
 const limits = newLimits();
+// Local `wrangler dev` only: every Playwright request shares one IP key, so the 20/hour limit would trip.
+const devLimits = { email: new Limiter(1_000, 3_600_000), ip: new Limiter(10_000, 3_600_000) };
 
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(req.url);
-    if (env.DEV_MAIL === "1" && pathname === "/api/v1/dev/mail") return json(devOutbox.last);
+    if (env.DEV_MAIL === "1" && pathname === "/api/v1/dev/mail") return json(devOutbox.get(new URL(req.url).searchParams.get("to") ?? "") ?? null);
     if (env.DB && req.method === "POST") {
-      const auth = { DB: env.DB, mailer: env.MAILER ?? (env.DEV_MAIL === "1" ? devMailer : noMailer), limits };
+      const auth = { DB: env.DB, mailer: env.MAILER ?? (env.DEV_MAIL === "1" ? devMailer : noMailer), limits: env.DEV_MAIL === "1" ? devLimits : limits };
       if (pathname === "/api/v1/auth/request") return requestLink(req, auth, Date.now());
       if (pathname === "/api/v1/auth/verify") return verifyLink(req, auth, Date.now());
     }

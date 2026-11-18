@@ -72,6 +72,9 @@ test("keys 1–4 apply, 0 and Backspace remove; text selection path works", asyn
   await page.keyboard.press("ArrowDown");
   await page.keyboard.press("Backspace");
   await expect(verse(page, 3).first()).not.toHaveAttribute("data-hl", /.*/);
+  // Bring verse 7 on screen first: a later scroll (cursor smooth-scroll or Playwright's own) closes the toolbar by design.
+  await verse(page, 7).first().evaluate((el) => el.scrollIntoView({ block: "center" }));
+  await page.waitForFunction(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => r(true)))));
   await page.evaluate(() => {
     const r = document.createRange();
     const v = document.querySelector('article.chapter .v[data-v="7"]')!;

@@ -389,7 +389,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: quiet "Sign in" link; email → "check your inbox" state; verify page posts the fragment token; expired-link state with one button.
   - Verify: Playwright with a mail sink.
 
-- [ ] **P6.7 · Sync engine** (M)
+- [x] **P6.7 · Sync engine** (M)
   - Needs: P6.4, P4.5 · Refs: D§4.3 flow; SPEC A3–A6
   - Files: `highlights/sync.ts`, tests
   - Done when: triggers (load, focus, online, 2 s after write); first-sign-in merge; outbox backoff; repaint on pulled changes; sign-out options.

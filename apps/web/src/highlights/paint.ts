@@ -56,11 +56,16 @@ export async function colorsByVerse(): Promise<Map<number, Color>> {
   return out;
 }
 
+// A paint that started before a newer paint (e.g. the load-time paint racing a first write) must not
+// apply its stale read.
+let generation = 0;
+
 export async function paint(): Promise<void> {
   const a = article();
   if (!a) return;
+  const mine = ++generation;
   const colors = await colorsByVerse();
-  if (a !== article()) return; // navigated meanwhile
+  if (mine !== generation || a !== article()) return; // superseded or navigated meanwhile
   const verses = new Set([...a.querySelectorAll<HTMLElement>(".v[data-v]")].map((s) => Number(s.dataset.v)));
   for (const v of verses) setVerse(a, v, colors.get(v));
 }

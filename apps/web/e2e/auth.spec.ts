@@ -18,7 +18,7 @@ test("sign in by magic link sets the session cookie", async ({ page, context }) 
   await dialog.getByRole("button", { name: "Email me a link" }).click();
   await expect(page.getByRole("heading", { name: "Check your inbox" })).toBeFocused();
   await expect(dialog).toContainText("reader@example.com");
-  const mail = (await (await page.request.get("/api/v1/dev/mail")).json()) as { to: string; text: string };
+  const mail = (await (await page.request.get("/api/v1/dev/mail?to=reader@example.com")).json()) as { to: string; text: string };
   expect(mail.to).toBe("reader@example.com");
   const link = /https?:\/\/\S+\/auth\/verify#token=[0-9a-f]{64}/.exec(mail.text)![0];
   await page.keyboard.press("Escape");
