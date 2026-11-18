@@ -80,7 +80,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: identity mapping works; exceptions load from `data/versemap/{tr}.json` (empty files allowed).
   - Verify: unit tests.
 
-- [ ] **P0.9 · Source acquisition and checksums** (S)
+- [x] **P0.9 · Source acquisition and checksums** (S)
   - Needs: P0.1 · Refs: D§6.2; SPEC §8.2
   - Files: `data/sources/{bsb,kjv,web}/*.usfm`, `data/sources/SOURCES.md`
   - Done when: USFM for the three translations is committed; `SOURCES.md` lists URL, date, version, SHA-256, and the public-domain status check done that day. Any licence doubt is recorded, not guessed.
@@ -466,6 +466,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P0.5 · Parser edge rules not fixed by SPEC/DESIGN: `c:v-c2:v2` keeps `c:v`; multi-chapter `john 3-4` keeps chapter 3; single-chapter `jude 3-5` is a verse range; a range end past the chapter is clamped; reversed/equal ends collapse to one verse; Roman/spelled ordinals need a separator (so `isa` is not `i sa`); single verse = `vStart` only, range = `vStart`+`vEnd`. · Routine (standing autonomy); stricter-or-simplest reading, all pinned in test-vectors/refs.json.
 - 2026-11-18 · P0.8 · Versemap files live in `packages/core/data/versemap/{tr}.json` (schema 1: `{book, ch, v, canonical[]}` exceptions) and are imported statically, so core stays I/O-free; `toCanonical` returns [] for a local verse with no canonical counterpart. · Routine (standing autonomy).
 - 2026-11-18 · P0.6 · Route canonical form: lowercase translation + slug, no leading zeros, no trailing slash needed (trailing slash tolerated, not redirected); `/{tr}/{book}` → 301 `/{tr}/{book}/1`; `v-v` → single verse; reversed or out-of-range verses → notfound (URLs are strict, the parser is forgiving); ESV parts use `?part=n` (bad part → 301 to part 1). `resolveRoute` takes a `{get()}` query so core stays DOM-free. · Routine (standing autonomy).
+- 2026-11-18 · P0.9 · Sources: BSB = berean.bible official USFM (lean, USFM 3.1); KJV = eBible eng-kjv2006 (same edition as books.json, newer build); WEB = eBible eng-web classic, 66 books only. Files vendored unmodified (≈ 37 MB) with `-diff linguist-vendored`. · Routine (standing autonomy); matches SPEC §8.2 and D§6.2 [A: confirm at M0].
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

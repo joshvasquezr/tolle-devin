@@ -1,0 +1,2 @@
+# Upstream Scripture sources: vendored byte-for-byte, pinned by checksums.txt.
+data/sources/**/*.usfm -diff linguist-vendored
