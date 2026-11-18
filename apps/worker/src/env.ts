@@ -7,6 +7,8 @@ export interface Env {
   ASSETS: AssetsBinding;
   /** P5: absent until ESV is enabled (compliance-gated). */
   ESV_BUDGET?: DoNamespace;
+  /** P6: accounts and sync (D§4.2). */
+  DB?: import("./db.ts").D1;
 }
 
 /** Durable Object namespace, structural subset (D§3.12 EsvBudget). */

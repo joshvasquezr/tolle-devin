@@ -353,7 +353,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
 
 ## P6 · Accounts and sync
 
-- [ ] **P6.1 · D1 schema and migrations** (S)
+- [x] **P6.1 · D1 schema and migrations** (S)
   - Needs: P1.8 · Refs: D§4.2
   - Files: `apps/worker/migrations/0001_init.sql`, db helper, tests
   - Done when: schema as in D§4.2 applies cleanly; cascade delete verified.
