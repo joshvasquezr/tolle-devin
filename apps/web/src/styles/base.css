@@ -90,4 +90,4 @@ header.bar.chrome-hidden { transform: translateY(-100%); }
 .search-results p { margin: 4px 0 0; font-family: var(--font-read, inherit); line-height: var(--lh); }
 .search-results mark { background: var(--hover); color: inherit; border-radius: 2px; box-shadow: 0 0 0 1px var(--hover); }
 .search-pager { display: flex; gap: 16px; justify-content: center; align-items: center; padding: 24px 0; font-size: 14px; }
-.search-pager a[aria-disabled="true"] { color: var(--text-3); pointer-events: none; }
+.search-pager a[aria-disabled="true"] { color: var(--text-2); pointer-events: none; }
