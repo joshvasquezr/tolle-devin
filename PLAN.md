@@ -276,7 +276,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: highlights survive reload and browser restart; repaint on client navigation and translation switch; second tab updates live.
   - Verify: Playwright reload and two-page test.
 
-- [ ] **P4.6 · Copy handler** (S)
+- [x] **P4.6 · Copy handler** (S)
   - Needs: P4.2 · Refs: SPEC R9; D§10 note
   - Files: `copy.ts`
   - Done when: copying a range yields clean text plus `— John 3:16 (BSB)`; verse numbers excluded; ESV hook point exists but is unused until P5.

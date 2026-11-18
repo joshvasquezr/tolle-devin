@@ -2,6 +2,7 @@
 // (client navigation and translation switch), bfcache restore and writes from other tabs.
 import "./selection.ts";
 import "./toolbar.ts";
+import "./copy.ts";
 import { paint } from "./paint.ts";
 import { onRemoteChange } from "./store.ts";
 
