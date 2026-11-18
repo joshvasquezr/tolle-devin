@@ -70,8 +70,8 @@ export async function checkSearchIndexes(out: string): Promise<string[]> {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const { OUT } = await import("./build-data.ts");
-  const errors = await checkSearchIndexes(OUT);
+  // Not imported from build-data.ts: that module imports this one (a TLA import cycle deadlocks).
+  const errors = await checkSearchIndexes(join(new URL("..", import.meta.url).pathname, "apps/web/public/data"));
   for (const e of errors) console.error(e);
   if (errors.length) process.exit(1);
   console.log("search indexes ok");
