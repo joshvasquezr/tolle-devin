@@ -7,3 +7,4 @@ export * from "./versification.ts";
 export * from "./route.ts";
 export * from "./plain.ts";
 export * from "./nav.ts";
+export * from "./search.ts";

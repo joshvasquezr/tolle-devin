@@ -212,7 +212,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
 
 ## P3 · Search
 
-- [ ] **P3.1 · Spike: index size** (S)
+- [x] **P3.1 · Spike: index size** (S)
   - Needs: P0.11 · Refs: D§3.11, D§12
   - Files: `docs/spikes/search-index.md`
   - Done when: MiniSearch BSB index measured (gz size, build time, query time); go/no-go for MiniSearch vs custom postings recorded.
@@ -478,6 +478,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P1.4 · Inline boot script reads the whole `quiet.settings.v1` object (not a separate `localStorage.theme`); CSP and security headers ship as a build-generated `dist/_headers` for Static Assets. · One storage key per D§3.9; hash always matches served bytes.
 - 2026-11-18 · P1.8 · Deploy skeleton code (wrangler.jsonc, minimal Worker, deploy workflow) is committed and verified under local `wrangler dev`; the box stays unticked until a real preview deploy. P2+ tasks that need P1.8 only for its code proceed (standing autonomy: "document external blockers and continue independent tasks"). · No Cloudflare credentials; the dependency is on the deploy, not on code.
 - 2026-11-18 · P2.1 · Verse pages are rewritten with string edits on our own build markup (not HTMLRewriter), so the logic runs and is tested in Node. · Input is our generated HTML; keeps tests runtime-free.
+- 2026-11-18 · P3.1 · MiniSearch GO with stopwords, verse text stored in the index file, adjacency re-rank and OR fallback when AND is empty · baseline DESIGN config fails the WEB "love your enemies" check (rank 5) and BSB "faith without works" (BSB says "deeds"); chosen config is 2.54–2.58 MB gz, ≤ 7 ms queries, Mt 5:44 rank ≤ 2 in all PD translations (docs/spikes/search-index.md).
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
