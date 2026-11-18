@@ -1,8 +1,8 @@
 // D§3.8 History-API router for public-domain chapters. ESV and other routes use normal navigation.
-import { PD_TRANSLATIONS, getBook, neighbors, resolveRoute, formatPath, type BookId, type Chapter, type PdTranslation } from "@tolle/core";
+import { PD_TRANSLATIONS, TRANSLATION_NAMES, formatRef, getBook, neighbors, resolveRoute, formatPath, type BookId, type Chapter, type PdTranslation } from "@tolle/core";
 import { chapterLabel, chapterMainHtml, chapterTitle } from "../lib/page.ts";
 
-interface Target { tr: PdTranslation; book: BookId; chapter: number }
+interface Target { tr: PdTranslation; book: BookId; chapter: number; focus?: string; label?: string }
 
 const LIMIT = 20;
 const cache = new Map<string, Promise<Chapter>>();
@@ -13,6 +13,11 @@ function target(url: URL): Target | null {
   if (url.origin !== location.origin) return null;
   const r = resolveRoute(url.pathname, url.searchParams);
   if (r.kind === "chapter" && isPd(r.tr) && r.part === undefined) return { tr: r.tr, book: r.book, chapter: r.chapter };
+  // SPEC R8: verse URLs render the chapter with a focus range (the Worker does the same on direct load).
+  if (r.kind === "verses" && isPd(r.tr)) {
+    const { book, chapter, vStart, vEnd } = r.ref;
+    return { tr: r.tr, book, chapter, focus: `${vStart}-${vEnd ?? vStart}`, label: formatRef(r.ref) };
+  }
   return null;
 }
 
@@ -63,20 +68,22 @@ async function go(t: Target, url: string, mode: "push" | "pop", scrollY = 0): Pr
   const main = document.getElementById("main")!;
   const swap = () => {
     main.innerHTML = chapterMainHtml(ch);
+    if (t.focus) main.dataset.focus = t.focus;
+    else delete main.dataset.focus;
     // The footer is page chrome after <main>; re-insert it as with a full page load, so it is not
     // reported as a layout shift when the chapter length changes beneath a scrolled viewport.
     const foot = document.querySelector("body > footer");
     foot?.replaceWith(foot.cloneNode(true));
-    document.title = chapterTitle(t.tr, t.book, t.chapter);
-    document.querySelector('link[rel="canonical"]')?.setAttribute("href", new URL(formatPath(t.tr, t), location.origin).href);
+    document.title = t.label ? `${t.label} — ${TRANSLATION_NAMES[t.tr]}` : chapterTitle(t.tr, t.book, t.chapter);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", new URL(url, location.origin).href);
     window.scrollTo(0, scrollY);
   };
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (document.startViewTransition && !reduce) await document.startViewTransition(swap).updateCallbackDone;
   else swap();
   main.querySelector<HTMLElement>("h1")?.focus({ preventScroll: true });
-  document.getElementById("live")!.textContent = chapterLabel(t.book, t.chapter);
-  dispatchEvent(new Event("quiet:chapter"));
+  document.getElementById("live")!.textContent = t.label ?? chapterLabel(t.book, t.chapter);
+  dispatchEvent(new CustomEvent("quiet:chapter", { detail: { scroll: mode === "push" } }));
   prefetchAdjacent();
 }
 

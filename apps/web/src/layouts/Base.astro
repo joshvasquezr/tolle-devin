@@ -48,6 +48,7 @@ const url = new URL(canonical, Astro.site).href;
       // One external module for all islands: Astro would inline small component scripts, which CSP blocks.
       import "../scripts/settings.ts";
       import "../scripts/pos.ts";
+      import "../scripts/focus.ts";
       import "../scripts/router.ts";
     </script>
   </body>

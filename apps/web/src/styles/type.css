@@ -80,3 +80,5 @@ h1.ch {
 .chapter .poetry .i2 { padding-inline-start: 4.5em; }
 .chapter .poetry .i3 { padding-inline-start: 6em; }
 .notes { font-size: 15px; color: var(--text-2); line-height: 1.5; }
+/* SPEC R8 focus marker: quiet, distinct from the four highlight tints. */
+.chapter .v.focus { background: var(--hover); box-shadow: 0 0 0 2px var(--hover); border-radius: 2px; }

@@ -172,7 +172,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: alias and default-translation redirects (301); verse/range URLs return the chapter HTML with rewritten title, description, canonical, OG and `data-focus`; out-of-range verse → 302 to chapter; unknown → 404 page.
   - Verify: Worker tests (`/john/3`, `/bsb/jn/3`, `/bsb/john/3/16`, `/bsb/john/3/99`, `/bsb/john/99`).
 
-- [ ] **P2.2 · Focused-verse behavior** (S)
+- [x] **P2.2 · Focused-verse behavior** (S)
   - Needs: P2.1, P1.6 · Refs: SPEC R8; D§3.8
   - Files: `focus.ts`
   - Done when: `data-focus` range gets a quiet marker and is scrolled to viewport center; works on direct load and client navigation; the marker is not a highlight.
