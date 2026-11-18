@@ -52,3 +52,9 @@ h1.ch:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+.foot { display: flex; gap: 20px; padding-block: 24px 48px; font-size: 14px; color: var(--text-2); }
+.prose { font-size: 17px; line-height: 1.6; }
+.prose h2 { font-size: 20px; font-weight: 500; margin: 2em 0 .5em; }
+.prose h3 { font-size: 17px; font-weight: 600; margin: 1.5em 0 .25em; }
+.prose p { margin: 0 0 .75em; }
+.prose code { font-size: 13px; overflow-wrap: anywhere; }

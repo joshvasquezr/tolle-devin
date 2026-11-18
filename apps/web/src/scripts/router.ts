@@ -63,6 +63,10 @@ async function go(t: Target, url: string, mode: "push" | "pop", scrollY = 0): Pr
   const main = document.getElementById("main")!;
   const swap = () => {
     main.innerHTML = chapterMainHtml(ch);
+    // The footer is page chrome after <main>; re-insert it as with a full page load, so it is not
+    // reported as a layout shift when the chapter length changes beneath a scrolled viewport.
+    const foot = document.querySelector("body > footer");
+    foot?.replaceWith(foot.cloneNode(true));
     document.title = chapterTitle(t.tr, t.book, t.chapter);
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", new URL(formatPath(t.tr, t), location.origin).href);
     window.scrollTo(0, scrollY);

@@ -33,6 +33,7 @@ const url = new URL(canonical, Astro.site).href;
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={url} />
     <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/source-serif-4-latin-var.woff2" as="font" type="font/woff2" crossorigin />
     <slot name="head" />
   </head>
@@ -41,6 +42,7 @@ const url = new URL(canonical, Astro.site).href;
     <header class="bar col"><slot name="bar" /><Settings /></header>
     <main id="main" class="col"><slot /></main>
     <slot name="after" />
+    <footer class="col foot"><a href="/about">About</a><a href="/privacy">Privacy</a></footer>
     <div id="live" class="sr-only" aria-live="polite"></div>
     <script>
       import "../scripts/pos.ts";

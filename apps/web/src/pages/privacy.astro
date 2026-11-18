@@ -1,0 +1,20 @@
+---
+// P1.7: plain-language privacy page, under 300 words (SPEC §7 Privacy; D§8).
+import Base from "../layouts/Base.astro";
+import { SITE_NAME } from "@tolle/core";
+---
+<Base title={`Privacy — ${SITE_NAME}`} description="What this Bible reader stores, and what it never collects." canonical="/privacy">
+  <div class="prose" id="privacy">
+    <h1 class="ch">Privacy</h1>
+    <p>You can read without an account. Reading sets no cookies, and there are no ads, trackers or third-party scripts.</p>
+    <h2>On your device</h2>
+    <p>Your settings, your last reading position and your highlights are kept in your browser's storage. They never leave your device unless you sign in.</p>
+    <h2>If you sign in</h2>
+    <p>Signing in is optional and uses a link sent by email. We then store only your email address, a user ID, and your highlights (which verse, which color, and when). We use a single cookie to keep you signed in. Highlights may reveal something about your beliefs, so we keep them to a minimum, store them encrypted, and never sell or share them.</p>
+    <p>You can export your highlights at any time. Deleting your account deletes everything we hold about you.</p>
+    <h2>What we never collect</h2>
+    <p>We do not log IP addresses, searches, or what you read. We do not build profiles or fingerprint devices. Any usage counts we keep are anonymous totals.</p>
+    <h2>Other services</h2>
+    <p>When you read the ESV, your request passes through our server to Crossway's ESV API. We send only the passage reference, never anything about you.</p>
+  </div>
+</Base>

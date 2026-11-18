@@ -150,7 +150,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: chapter changes without page reload; old content stays until new is ready; 120 ms cross-fade (reduced-motion safe); focus to `h1`, live-region announcement; popstate restores scroll; fetch failure falls back to normal navigation; adjacent chapters prefetched.
   - Verify: Playwright: next/prev/back; assert no layout shift (CLS ≤ 0.02 in trace).
 
-- [ ] **P1.7 · Static support pages and SEO files** (S)
+- [x] **P1.7 · Static support pages and SEO files** (S)
   - Needs: P1.3 · Refs: D§6.3; SPEC §7 SEO, §8.2
   - Files: `about`, `privacy`, sitemap, `robots.txt`, JSON-LD
   - Done when: About lists sources and statuses from `SOURCES.md`; privacy under 300 words; sitemap lists 3,567 chapters; `BreadcrumbList` present.
