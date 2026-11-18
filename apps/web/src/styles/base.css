@@ -1,0 +1,44 @@
+/* D§5.2–5.4 base layout, focus, selection and motion. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.col {
+  max-width: calc(var(--measure) + 2 * clamp(20px, 6vw, 48px));
+  margin-inline: auto;
+  padding-inline: clamp(20px, 6vw, 48px);
+}
+a { color: inherit; text-underline-offset: .15em; }
+::selection { background: color-mix(in srgb, var(--text) 18%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+.skip {
+  position: absolute; left: 8px; top: -100px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); padding: 8px 12px; z-index: 10;
+}
+.skip:focus-visible { top: 8px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+button { font: inherit; color: inherit; }
+.btn {
+  background: transparent; border: 0; border-radius: 6px; padding: 6px 10px; cursor: pointer;
+  transition: background-color var(--t-hover) var(--ease);
+}
+.btn:hover { background: var(--hover); }
+.btn:active { background: var(--border); }
+.btn[aria-disabled="true"] { opacity: .4; cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  :root { --t-hover: 0ms; --t-open: 50ms; --t-close: 0ms; --t-fade: 50ms; --t-toolbar: 0ms; }
+}

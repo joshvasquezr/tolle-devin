@@ -1,0 +1,82 @@
+/* D§5.2 typography. Fonts: OFL, Latin subset, see public/fonts/*-OFL.txt and docs/spikes/js-budget.md. */
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/fonts/source-serif-4-latin-var.woff2") format("woff2");
+  font-weight: 400 500;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin-var.woff2") format("woff2");
+  font-weight: 400 600;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2212;
+}
+/* Metric-matched fallbacks (SPEC §6.2) so the swap does not shift layout.
+   Measured with fontTools against Liberation Serif/Sans, which share
+   Times New Roman/Arial metrics. */
+@font-face {
+  font-family: "Source Serif Fallback";
+  src: local("Times New Roman"), local("Liberation Serif"), local("TimesNewRomanPSMT");
+  size-adjust: 111.92%; ascent-override: 92.57%; descent-override: 29.93%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Liberation Sans"), local("ArialMT");
+  size-adjust: 107.48%; ascent-override: 90.14%; descent-override: 22.44%; line-gap-override: 0%;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+.chapter {
+  font-family: var(--font-read);
+  font-size: var(--step);
+  line-height: var(--lh);
+  font-optical-sizing: auto;
+  text-wrap: pretty;
+  hanging-punctuation: first;
+}
+.chapter p { margin: 0 0 1em; }
+h1.ch {
+  font-family: var(--font-read);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 .75em;
+}
+/* Section headings: 14 px grey sentence case (SPEC §6.2). */
+.chapter .sec {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin: 2em 0 .75em;
+  line-height: 1.4;
+}
+:root[data-headings="off"] .chapter .sec { display: none; }
+.chapter .d { font-style: italic; color: var(--text-2); }
+.chapter .vn {
+  font-size: .65em;
+  color: var(--text-3);
+  vertical-align: super;
+  line-height: 0;
+  margin-inline-end: .2em;
+  user-select: none;
+  -webkit-user-select: none;
+  font-variant-numeric: tabular-nums;
+}
+/* Tertiary grey fails 4.5:1 on tints; verse numbers inside highlights use secondary (contrast.test.ts). */
+.chapter [data-hl] .vn { color: var(--text-2); }
+.chapter .nd { font-variant-caps: all-small-caps; letter-spacing: .04em; }
+.chapter .fn { font-size: .65em; vertical-align: super; line-height: 0; color: var(--text-2); }
+/* Poetry: hanging indent per level (D§5.2). */
+.chapter .poetry { margin: 0 0 1em; }
+.chapter .poetry .l { margin: 0; padding-inline-start: 1.5em; text-indent: -1.5em; }
+.chapter .poetry .i1 { padding-inline-start: 3em; }
+.chapter .poetry .i2 { padding-inline-start: 4.5em; }
+.chapter .poetry .i3 { padding-inline-start: 6em; }
+.notes { font-size: 15px; color: var(--text-2); line-height: 1.5; }
