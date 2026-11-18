@@ -56,7 +56,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: `encodeVerseId`/`decodeVerseId` round-trip for all 31,102 verses; `Block`, `Item`, `Chapter` types match D§3.2.
   - Verify: `pnpm --filter core test`
 
-- [ ] **P0.5 · Reference parser** (M)
+- [x] **P0.5 · Reference parser** (M)
   - Needs: P0.3, P0.4 · Refs: D§3.1 Reference parser; SPEC P2–P5, §5.3 table
   - Files: `packages/core/src/parse.ts`, `test-vectors/refs.json`, tests
   - Done when: all rows in SPEC §5.3 pass; ≥ 300 vectors (abbreviations, spacing, `.`/`:`/space separators, en dash, Roman and spelled ordinals, single-chapter books, ambiguity, out-of-range, search fallback, `;` truncation); parse takes < 1 ms per input.
@@ -463,6 +463,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-17 · docs refinement · SPEC §14 Q17: repository is public on GitHub; license undecided. · Josh approved.
 - 2026-11-17 · P0.4 · `VerseId` is a branded `number` (`isVerseId`/`toVerseId`, or `encodeVerseId`); `encodeVerseId`/`decodeVerseId` throw `RangeError` on any id outside books.json bounds. Deviation from D§3.1's plain `number`. · Josh approved; matches the `BookId` pattern so unvalidated numbers cannot reach the store or the sync API.
 - 2026-11-17 · P0.4 · `Translation = 'bsb' | 'kjv' | 'web' | 'esv'` and the D§3.2 content types live in `packages/core/src/types.ts`; `PD_TRANSLATIONS` names the static three. Shared vectors in `test-vectors/verse-ids.json` (15 valid, 10 invalid). · Josh approved.
+- 2026-11-18 · P0.5 · Parser edge rules not fixed by SPEC/DESIGN: `c:v-c2:v2` keeps `c:v`; multi-chapter `john 3-4` keeps chapter 3; single-chapter `jude 3-5` is a verse range; a range end past the chapter is clamped; reversed/equal ends collapse to one verse; Roman/spelled ordinals need a separator (so `isa` is not `i sa`); single verse = `vStart` only, range = `vStart`+`vEnd`. · Routine (standing autonomy); stricter-or-simplest reading, all pinned in test-vectors/refs.json.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

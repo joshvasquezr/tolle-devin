@@ -1,0 +1,7147 @@
+{
+ "description": "Reference parser contract (D§3.1, SPEC §5.3). kind=ambiguous lists candidate books in order. Rows after the hand-written block were generated from books.json (name, short, every alias).",
+ "cases": [
+  {
+   "input": "jn 3",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3
+   },
+   "label": "John 3"
+  },
+  {
+   "input": "John 3",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3
+   },
+   "label": "John 3"
+  },
+  {
+   "input": "john3",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3
+   },
+   "label": "John 3"
+  },
+  {
+   "input": "Jn.3",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3
+   },
+   "label": "John 3"
+  },
+  {
+   "input": "romans 8:28",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 8,
+    "vStart": 28
+   },
+   "label": "Romans 8:28"
+  },
+  {
+   "input": "rom 8 28",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 8,
+    "vStart": 28
+   },
+   "label": "Romans 8:28"
+  },
+  {
+   "input": "Rom8.28",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 8,
+    "vStart": 28
+   },
+   "label": "Romans 8:28"
+  },
+  {
+   "input": "1 cor 13:4-7",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 13,
+    "vStart": 4,
+    "vEnd": 7
+   },
+   "label": "1 Corinthians 13:4–7"
+  },
+  {
+   "input": "1cor13:4-7",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 13,
+    "vStart": 4,
+    "vEnd": 7
+   },
+   "label": "1 Corinthians 13:4–7"
+  },
+  {
+   "input": "I Cor 13:4–7",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 13,
+    "vStart": 4,
+    "vEnd": 7
+   },
+   "label": "1 Corinthians 13:4–7"
+  },
+  {
+   "input": "first corinthians 13.4-7",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 13,
+    "vStart": 4,
+    "vEnd": 7
+   },
+   "label": "1 Corinthians 13:4–7"
+  },
+  {
+   "input": "ps 23",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 23
+   },
+   "label": "Psalm 23"
+  },
+  {
+   "input": "psalm 23",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 23
+   },
+   "label": "Psalm 23"
+  },
+  {
+   "input": "psalms 23",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 23
+   },
+   "label": "Psalm 23"
+  },
+  {
+   "input": "pslm 23",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 23
+   },
+   "label": "Psalm 23"
+  },
+  {
+   "input": "gen",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1
+   },
+   "label": "Genesis 1"
+  },
+  {
+   "input": "matt 5:3-12; 6:9",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 5,
+    "vStart": 3,
+    "vEnd": 12
+   },
+   "label": "Matthew 5:3–12"
+  },
+  {
+   "input": "jude 5",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 5
+   },
+   "label": "Jude 5"
+  },
+  {
+   "input": "obadiah 3",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 3
+   },
+   "label": "Obadiah 3"
+  },
+  {
+   "input": "ps 23:1-",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 23,
+    "vStart": 1
+   },
+   "label": "Psalm 23:1"
+  },
+  {
+   "input": "john 3:16-",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "  JOHN   3 : 16  ",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "John 3.16",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "john 3,16",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "jn3:16",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "Jn. 3:16",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "john 3 : 16 - 18",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16,
+    "vEnd": 18
+   },
+   "label": "John 3:16–18"
+  },
+  {
+   "input": "john 3:16—18",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16,
+    "vEnd": 18
+   },
+   "label": "John 3:16–18"
+  },
+  {
+   "input": "john 3:16‒18",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16,
+    "vEnd": 18
+   },
+   "label": "John 3:16–18"
+  },
+  {
+   "input": "john 3:16 – 18",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16,
+    "vEnd": 18
+   },
+   "label": "John 3:16–18"
+  },
+  {
+   "input": "Ｊｏｈｎ　３：１６",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "rom.8.28",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 8,
+    "vStart": 28
+   },
+   "label": "Romans 8:28"
+  },
+  {
+   "input": "ROM 8:28",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 8,
+    "vStart": 28
+   },
+   "label": "Romans 8:28"
+  },
+  {
+   "input": "gen.1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1
+   },
+   "label": "Genesis 1"
+  },
+  {
+   "input": "Gen. 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Genesis 1:1"
+  },
+  {
+   "input": "gen 1 1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Genesis 1:1"
+  },
+  {
+   "input": "mt 5:3-12",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 5,
+    "vStart": 3,
+    "vEnd": 12
+   },
+   "label": "Matthew 5:3–12"
+  },
+  {
+   "input": "john 3:16-16",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "john 3:18-16",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 18
+   },
+   "label": "John 3:18"
+  },
+  {
+   "input": "john 3:16-99",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16,
+    "vEnd": 36
+   },
+   "label": "John 3:16–36"
+  },
+  {
+   "input": "john 3:16-4:2",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "john 3-4",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3
+   },
+   "label": "John 3"
+  },
+  {
+   "input": "jude 3-5",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 3,
+    "vEnd": 5
+   },
+   "label": "Jude 3–5"
+  },
+  {
+   "input": "jude 1:5",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 5
+   },
+   "label": "Jude 5"
+  },
+  {
+   "input": "jude",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1
+   },
+   "label": "Jude"
+  },
+  {
+   "input": "3 john 2",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 2
+   },
+   "label": "3 John 2"
+  },
+  {
+   "input": "philemon 1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "2 john",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1
+   },
+   "label": "2 John"
+  },
+  {
+   "input": "obad 21",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 21
+   },
+   "label": "Obadiah 21"
+  },
+  {
+   "input": "jude 25",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 25
+   },
+   "label": "Jude 25"
+  },
+  {
+   "input": "ii kings 2",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 2
+   },
+   "label": "2 Kings 2"
+  },
+  {
+   "input": "II Kings 2:11",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 2,
+    "vStart": 11
+   },
+   "label": "2 Kings 2:11"
+  },
+  {
+   "input": "second kings 2",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 2
+   },
+   "label": "2 Kings 2"
+  },
+  {
+   "input": "2nd kings 2",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 2
+   },
+   "label": "2 Kings 2"
+  },
+  {
+   "input": "2kgs 2",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 2
+   },
+   "label": "2 Kings 2"
+  },
+  {
+   "input": "iii john 4",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 4
+   },
+   "label": "3 John 4"
+  },
+  {
+   "input": "third john 4",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 4
+   },
+   "label": "3 John 4"
+  },
+  {
+   "input": "3rd john 4",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 4
+   },
+   "label": "3 John 4"
+  },
+  {
+   "input": "3jn 4",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 4
+   },
+   "label": "3 John 4"
+  },
+  {
+   "input": "i john 1:9",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 9
+   },
+   "label": "1 John 1:9"
+  },
+  {
+   "input": "1st john 1:9",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 9
+   },
+   "label": "1 John 1:9"
+  },
+  {
+   "input": "First John 1:9",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 9
+   },
+   "label": "1 John 1:9"
+  },
+  {
+   "input": "1jn1:9",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 9
+   },
+   "label": "1 John 1:9"
+  },
+  {
+   "input": "1 jn 1.9",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 9
+   },
+   "label": "1 John 1:9"
+  },
+  {
+   "input": "i sam 17",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 17
+   },
+   "label": "1 Samuel 17"
+  },
+  {
+   "input": "1 Samuel 17:45",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 17,
+    "vStart": 45
+   },
+   "label": "1 Samuel 17:45"
+  },
+  {
+   "input": "second timothy 3:16",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "2 Timothy 3:16"
+  },
+  {
+   "input": "II Tim. 3:16",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "2 Timothy 3:16"
+  },
+  {
+   "input": "1 thess 4:16-17",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 4,
+    "vStart": 16,
+    "vEnd": 17
+   },
+   "label": "1 Thessalonians 4:16–17"
+  },
+  {
+   "input": "2 pet 3:9",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 3,
+    "vStart": 9
+   },
+   "label": "2 Peter 3:9"
+  },
+  {
+   "input": "ii chron 7:14",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 7,
+    "vStart": 14
+   },
+   "label": "2 Chronicles 7:14"
+  },
+  {
+   "input": "i. cor 13",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 13
+   },
+   "label": "1 Corinthians 13"
+  },
+  {
+   "input": "song of songs 2",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 2
+   },
+   "label": "Song of Solomon 2"
+  },
+  {
+   "input": "Song of Solomon 2:4",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 2,
+    "vStart": 4
+   },
+   "label": "Song of Solomon 2:4"
+  },
+  {
+   "input": "canticles 1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1
+   },
+   "label": "Song of Solomon 1"
+  },
+  {
+   "input": "sos 1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1
+   },
+   "label": "Song of Solomon 1"
+  },
+  {
+   "input": "revelations 21",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 21
+   },
+   "label": "Revelation 21"
+  },
+  {
+   "input": "revelation 21:4",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 21,
+    "vStart": 4
+   },
+   "label": "Revelation 21:4"
+  },
+  {
+   "input": "apocalypse 1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1
+   },
+   "label": "Revelation 1"
+  },
+  {
+   "input": "rev 22:21",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 22,
+    "vStart": 21
+   },
+   "label": "Revelation 22:21"
+  },
+  {
+   "input": "qoheleth 3",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 3
+   },
+   "label": "Ecclesiastes 3"
+  },
+  {
+   "input": "eccles 3:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 3,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 3:1"
+  },
+  {
+   "input": "mark",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1
+   },
+   "label": "Mark 1"
+  },
+  {
+   "input": "job",
+   "kind": "ref",
+   "ref": {
+    "book": "job",
+    "chapter": 1
+   },
+   "label": "Job 1"
+  },
+  {
+   "input": "acts",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 1
+   },
+   "label": "Acts 1"
+  },
+  {
+   "input": "Ruth",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 1
+   },
+   "label": "Ruth 1"
+  },
+  {
+   "input": "romans",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 1
+   },
+   "label": "Romans 1"
+  },
+  {
+   "input": "psalms",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1
+   },
+   "label": "Psalm 1"
+  },
+  {
+   "input": "genes 2",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 2
+   },
+   "label": "Genesis 2"
+  },
+  {
+   "input": "deuter 6:4",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 6,
+    "vStart": 4
+   },
+   "label": "Deuteronomy 6:4"
+  },
+  {
+   "input": "lament 3:22-23",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 3,
+    "vStart": 22,
+    "vEnd": 23
+   },
+   "label": "Lamentations 3:22–23"
+  },
+  {
+   "input": "habak 2:4",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 2,
+    "vStart": 4
+   },
+   "label": "Habakkuk 2:4"
+  },
+  {
+   "input": "zeph 3:17",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 3,
+    "vStart": 17
+   },
+   "label": "Zephaniah 3:17"
+  },
+  {
+   "input": "philip 4:13",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 4,
+    "vStart": 13
+   },
+   "label": "Philippians 4:13"
+  },
+  {
+   "input": "colos 3",
+   "kind": "ref",
+   "ref": {
+    "book": "colossians",
+    "chapter": 3
+   },
+   "label": "Colossians 3"
+  },
+  {
+   "input": "heb 11",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 11
+   },
+   "label": "Hebrews 11"
+  },
+  {
+   "input": "hebr 11:1",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 11,
+    "vStart": 1
+   },
+   "label": "Hebrews 11:1"
+  },
+  {
+   "input": "ph",
+   "kind": "ambiguous",
+   "books": [
+    "philippians",
+    "philemon"
+   ]
+  },
+  {
+   "input": "ph 1",
+   "kind": "ambiguous",
+   "books": [
+    "philippians",
+    "philemon"
+   ]
+  },
+  {
+   "input": "jo",
+   "kind": "ambiguous",
+   "books": [
+    "john",
+    "job",
+    "joshua"
+   ]
+  },
+  {
+   "input": "ju 1",
+   "kind": "ambiguous",
+   "books": [
+    "judges",
+    "jude"
+   ]
+  },
+  {
+   "input": "jud",
+   "kind": "ambiguous",
+   "books": [
+    "judges",
+    "jude"
+   ]
+  },
+  {
+   "input": "ma 1",
+   "kind": "ambiguous",
+   "books": [
+    "matthew",
+    "mark",
+    "malachi"
+   ]
+  },
+  {
+   "input": "Genesis 99",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "genesis",
+   "max": 50,
+   "suggestion": {
+    "book": "genesis",
+    "chapter": 50
+   }
+  },
+  {
+   "input": "genesis 51",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "genesis",
+   "max": 50,
+   "suggestion": {
+    "book": "genesis",
+    "chapter": 50
+   }
+  },
+  {
+   "input": "john 22",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "john",
+   "max": 21,
+   "suggestion": {
+    "book": "john",
+    "chapter": 21
+   }
+  },
+  {
+   "input": "ps 151",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "psalms",
+   "max": 150,
+   "suggestion": {
+    "book": "psalms",
+    "chapter": 150
+   }
+  },
+  {
+   "input": "rev 23:1",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "revelation",
+   "max": 22,
+   "suggestion": {
+    "book": "revelation",
+    "chapter": 22
+   }
+  },
+  {
+   "input": "gen 0",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "genesis",
+   "max": 50,
+   "suggestion": {
+    "book": "genesis",
+    "chapter": 1
+   }
+  },
+  {
+   "input": "john 3:37",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "john",
+   "max": 36,
+   "suggestion": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 36
+   }
+  },
+  {
+   "input": "ps 117:3",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "psalms",
+   "max": 2,
+   "suggestion": {
+    "book": "psalms",
+    "chapter": 117,
+    "vStart": 2
+   }
+  },
+  {
+   "input": "gen 1:0",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "genesis",
+   "max": 31,
+   "suggestion": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   }
+  },
+  {
+   "input": "jude 26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "jude",
+   "max": 25,
+   "suggestion": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "3 john 15",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "3-john",
+   "max": 14,
+   "suggestion": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 14
+   }
+  },
+  {
+   "input": "philemon 26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "philemon",
+   "max": 25,
+   "suggestion": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "obadiah 22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "obadiah",
+   "max": 21,
+   "suggestion": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "rom 8:40-41",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "romans",
+   "max": 39,
+   "suggestion": {
+    "book": "romans",
+    "chapter": 8,
+    "vStart": 39
+   }
+  },
+  {
+   "input": "john 3:0-5",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "john",
+   "max": 36,
+   "suggestion": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 1
+   }
+  },
+  {
+   "input": "love",
+   "kind": "search",
+   "query": "love"
+  },
+  {
+   "input": "faith hope love",
+   "kind": "search",
+   "query": "faith hope love"
+  },
+  {
+   "input": "In the beginning",
+   "kind": "search",
+   "query": "In the beginning"
+  },
+  {
+   "input": "Jesus wept",
+   "kind": "search",
+   "query": "Jesus wept"
+  },
+  {
+   "input": "i am the way",
+   "kind": "search",
+   "query": "i am the way"
+  },
+  {
+   "input": "grace",
+   "kind": "search",
+   "query": "grace"
+  },
+  {
+   "input": "peace be with you",
+   "kind": "search",
+   "query": "peace be with you"
+  },
+  {
+   "input": "the lord is my shepherd",
+   "kind": "search",
+   "query": "the lord is my shepherd"
+  },
+  {
+   "input": "god so loved",
+   "kind": "search",
+   "query": "god so loved"
+  },
+  {
+   "input": "light",
+   "kind": "search",
+   "query": "light"
+  },
+  {
+   "input": "123",
+   "kind": "search",
+   "query": "123"
+  },
+  {
+   "input": "",
+   "kind": "search",
+   "query": ""
+  },
+  {
+   "input": "   ",
+   "kind": "search",
+   "query": ""
+  },
+  {
+   "input": "john 3:16:4",
+   "kind": "search",
+   "query": "john 3:16:4"
+  },
+  {
+   "input": "john three",
+   "kind": "search",
+   "query": "john three"
+  },
+  {
+   "input": "john 3:abc",
+   "kind": "search",
+   "query": "john 3:abc"
+  },
+  {
+   "input": "x 3",
+   "kind": "search",
+   "query": "x 3"
+  },
+  {
+   "input": "?",
+   "kind": "search",
+   "query": "?"
+  },
+  {
+   "input": "3:16",
+   "kind": "search",
+   "query": "3:16"
+  },
+  {
+   "input": "1 2 3",
+   "kind": "search",
+   "query": "1 2 3"
+  },
+  {
+   "input": "blessed are the meek",
+   "kind": "search",
+   "query": "blessed are the meek"
+  },
+  {
+   "input": "shepherd",
+   "kind": "search",
+   "query": "shepherd"
+  },
+  {
+   "input": "let there be light",
+   "kind": "search",
+   "query": "let there be light"
+  },
+  {
+   "input": "abba father",
+   "kind": "search",
+   "query": "abba father"
+  },
+  {
+   "input": "verily verily",
+   "kind": "search",
+   "query": "verily verily"
+  },
+  {
+   "input": "john 3:16; 3:17",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 3,
+    "vStart": 16
+   },
+   "label": "John 3:16"
+  },
+  {
+   "input": "rom 8;9",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 8
+   },
+   "label": "Romans 8"
+  },
+  {
+   "input": "gen 1;",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1
+   },
+   "label": "Genesis 1"
+  },
+  {
+   "input": "; john 3",
+   "kind": "search",
+   "query": "; john 3"
+  },
+  {
+   "input": "ps 23 ; foo bar",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 23
+   },
+   "label": "Psalm 23"
+  },
+  {
+   "input": "Genesis 1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1
+   },
+   "label": "Genesis 1"
+  },
+  {
+   "input": "gen 50:26",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 50,
+    "vStart": 26
+   },
+   "label": "Genesis 50:26"
+  },
+  {
+   "input": "GENESIS 50",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 50
+   },
+   "label": "Genesis 50"
+  },
+  {
+   "input": "Genesis 51",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "genesis",
+   "max": 50,
+   "suggestion": {
+    "book": "genesis",
+    "chapter": 50
+   }
+  },
+  {
+   "input": "Genesis 50:27",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "genesis",
+   "max": 26,
+   "suggestion": {
+    "book": "genesis",
+    "chapter": 50,
+    "vStart": 26
+   }
+  },
+  {
+   "input": "genesis 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Genesis 1:1"
+  },
+  {
+   "input": "gen 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Genesis 1:1"
+  },
+  {
+   "input": "ge 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Genesis 1:1"
+  },
+  {
+   "input": "gn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "genesis",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Genesis 1:1"
+  },
+  {
+   "input": "Exodus 1",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 1
+   },
+   "label": "Exodus 1"
+  },
+  {
+   "input": "exod 40:38",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 40,
+    "vStart": 38
+   },
+   "label": "Exodus 40:38"
+  },
+  {
+   "input": "EXODUS 40",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 40
+   },
+   "label": "Exodus 40"
+  },
+  {
+   "input": "Exodus 41",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "exodus",
+   "max": 40,
+   "suggestion": {
+    "book": "exodus",
+    "chapter": 40
+   }
+  },
+  {
+   "input": "Exodus 40:39",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "exodus",
+   "max": 38,
+   "suggestion": {
+    "book": "exodus",
+    "chapter": 40,
+    "vStart": 38
+   }
+  },
+  {
+   "input": "exodus 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Exodus 1:1"
+  },
+  {
+   "input": "exod 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Exodus 1:1"
+  },
+  {
+   "input": "exo 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Exodus 1:1"
+  },
+  {
+   "input": "ex 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "exodus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Exodus 1:1"
+  },
+  {
+   "input": "Leviticus 1",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 1
+   },
+   "label": "Leviticus 1"
+  },
+  {
+   "input": "lev 27:34",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 27,
+    "vStart": 34
+   },
+   "label": "Leviticus 27:34"
+  },
+  {
+   "input": "LEVITICUS 27",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 27
+   },
+   "label": "Leviticus 27"
+  },
+  {
+   "input": "Leviticus 28",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "leviticus",
+   "max": 27,
+   "suggestion": {
+    "book": "leviticus",
+    "chapter": 27
+   }
+  },
+  {
+   "input": "Leviticus 27:35",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "leviticus",
+   "max": 34,
+   "suggestion": {
+    "book": "leviticus",
+    "chapter": 27,
+    "vStart": 34
+   }
+  },
+  {
+   "input": "leviticus 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Leviticus 1:1"
+  },
+  {
+   "input": "lev 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Leviticus 1:1"
+  },
+  {
+   "input": "le 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Leviticus 1:1"
+  },
+  {
+   "input": "lv 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "leviticus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Leviticus 1:1"
+  },
+  {
+   "input": "Numbers 1",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 1
+   },
+   "label": "Numbers 1"
+  },
+  {
+   "input": "num 36:13",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 36,
+    "vStart": 13
+   },
+   "label": "Numbers 36:13"
+  },
+  {
+   "input": "NUMBERS 36",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 36
+   },
+   "label": "Numbers 36"
+  },
+  {
+   "input": "Numbers 37",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "numbers",
+   "max": 36,
+   "suggestion": {
+    "book": "numbers",
+    "chapter": 36
+   }
+  },
+  {
+   "input": "Numbers 36:14",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "numbers",
+   "max": 13,
+   "suggestion": {
+    "book": "numbers",
+    "chapter": 36,
+    "vStart": 13
+   }
+  },
+  {
+   "input": "numbers 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Numbers 1:1"
+  },
+  {
+   "input": "num 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Numbers 1:1"
+  },
+  {
+   "input": "nu 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Numbers 1:1"
+  },
+  {
+   "input": "nm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Numbers 1:1"
+  },
+  {
+   "input": "nb 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "numbers",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Numbers 1:1"
+  },
+  {
+   "input": "Deuteronomy 1",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 1
+   },
+   "label": "Deuteronomy 1"
+  },
+  {
+   "input": "deut 34:12",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 34,
+    "vStart": 12
+   },
+   "label": "Deuteronomy 34:12"
+  },
+  {
+   "input": "DEUTERONOMY 34",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 34
+   },
+   "label": "Deuteronomy 34"
+  },
+  {
+   "input": "Deuteronomy 35",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "deuteronomy",
+   "max": 34,
+   "suggestion": {
+    "book": "deuteronomy",
+    "chapter": 34
+   }
+  },
+  {
+   "input": "Deuteronomy 34:13",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "deuteronomy",
+   "max": 12,
+   "suggestion": {
+    "book": "deuteronomy",
+    "chapter": 34,
+    "vStart": 12
+   }
+  },
+  {
+   "input": "deuteronomy 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Deuteronomy 1:1"
+  },
+  {
+   "input": "deut 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Deuteronomy 1:1"
+  },
+  {
+   "input": "deu 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Deuteronomy 1:1"
+  },
+  {
+   "input": "dt 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Deuteronomy 1:1"
+  },
+  {
+   "input": "de 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "deuteronomy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Deuteronomy 1:1"
+  },
+  {
+   "input": "Joshua 1",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 1
+   },
+   "label": "Joshua 1"
+  },
+  {
+   "input": "josh 24:33",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 24,
+    "vStart": 33
+   },
+   "label": "Joshua 24:33"
+  },
+  {
+   "input": "JOSHUA 24",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 24
+   },
+   "label": "Joshua 24"
+  },
+  {
+   "input": "Joshua 25",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "joshua",
+   "max": 24,
+   "suggestion": {
+    "book": "joshua",
+    "chapter": 24
+   }
+  },
+  {
+   "input": "Joshua 24:34",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "joshua",
+   "max": 33,
+   "suggestion": {
+    "book": "joshua",
+    "chapter": 24,
+    "vStart": 33
+   }
+  },
+  {
+   "input": "joshua 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Joshua 1:1"
+  },
+  {
+   "input": "josh 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Joshua 1:1"
+  },
+  {
+   "input": "jos 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Joshua 1:1"
+  },
+  {
+   "input": "jsh 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "joshua",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Joshua 1:1"
+  },
+  {
+   "input": "Judges 1",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 1
+   },
+   "label": "Judges 1"
+  },
+  {
+   "input": "judg 21:25",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 21,
+    "vStart": 25
+   },
+   "label": "Judges 21:25"
+  },
+  {
+   "input": "JUDGES 21",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 21
+   },
+   "label": "Judges 21"
+  },
+  {
+   "input": "Judges 22",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "judges",
+   "max": 21,
+   "suggestion": {
+    "book": "judges",
+    "chapter": 21
+   }
+  },
+  {
+   "input": "Judges 21:26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "judges",
+   "max": 25,
+   "suggestion": {
+    "book": "judges",
+    "chapter": 21,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "judges 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Judges 1:1"
+  },
+  {
+   "input": "judg 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Judges 1:1"
+  },
+  {
+   "input": "jdg 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Judges 1:1"
+  },
+  {
+   "input": "jdgs 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Judges 1:1"
+  },
+  {
+   "input": "jg 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "judges",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Judges 1:1"
+  },
+  {
+   "input": "Ruth 1",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 1
+   },
+   "label": "Ruth 1"
+  },
+  {
+   "input": "ruth 4:22",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 4,
+    "vStart": 22
+   },
+   "label": "Ruth 4:22"
+  },
+  {
+   "input": "RUTH 4",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 4
+   },
+   "label": "Ruth 4"
+  },
+  {
+   "input": "Ruth 5",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "ruth",
+   "max": 4,
+   "suggestion": {
+    "book": "ruth",
+    "chapter": 4
+   }
+  },
+  {
+   "input": "Ruth 4:23",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "ruth",
+   "max": 22,
+   "suggestion": {
+    "book": "ruth",
+    "chapter": 4,
+    "vStart": 22
+   }
+  },
+  {
+   "input": "ruth 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ruth 1:1"
+  },
+  {
+   "input": "rth 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ruth 1:1"
+  },
+  {
+   "input": "ru 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ruth",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ruth 1:1"
+  },
+  {
+   "input": "1 Samuel 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 1
+   },
+   "label": "1 Samuel 1"
+  },
+  {
+   "input": "1 sam 31:13",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 31,
+    "vStart": 13
+   },
+   "label": "1 Samuel 31:13"
+  },
+  {
+   "input": "1 SAMUEL 31",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 31
+   },
+   "label": "1 Samuel 31"
+  },
+  {
+   "input": "1 Samuel 32",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-samuel",
+   "max": 31,
+   "suggestion": {
+    "book": "1-samuel",
+    "chapter": 31
+   }
+  },
+  {
+   "input": "1 Samuel 31:14",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-samuel",
+   "max": 13,
+   "suggestion": {
+    "book": "1-samuel",
+    "chapter": 31,
+    "vStart": 13
+   }
+  },
+  {
+   "input": "1 samuel 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Samuel 1:1"
+  },
+  {
+   "input": "1 sam 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Samuel 1:1"
+  },
+  {
+   "input": "1 sa 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Samuel 1:1"
+  },
+  {
+   "input": "1 sm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Samuel 1:1"
+  },
+  {
+   "input": "2 Samuel 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 1
+   },
+   "label": "2 Samuel 1"
+  },
+  {
+   "input": "2 sam 24:25",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 24,
+    "vStart": 25
+   },
+   "label": "2 Samuel 24:25"
+  },
+  {
+   "input": "2 SAMUEL 24",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 24
+   },
+   "label": "2 Samuel 24"
+  },
+  {
+   "input": "2 Samuel 25",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-samuel",
+   "max": 24,
+   "suggestion": {
+    "book": "2-samuel",
+    "chapter": 24
+   }
+  },
+  {
+   "input": "2 Samuel 24:26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-samuel",
+   "max": 25,
+   "suggestion": {
+    "book": "2-samuel",
+    "chapter": 24,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "2 samuel 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Samuel 1:1"
+  },
+  {
+   "input": "2 sam 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Samuel 1:1"
+  },
+  {
+   "input": "2 sa 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Samuel 1:1"
+  },
+  {
+   "input": "2 sm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-samuel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Samuel 1:1"
+  },
+  {
+   "input": "1 Kings 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 1
+   },
+   "label": "1 Kings 1"
+  },
+  {
+   "input": "1 kgs 22:53",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 22,
+    "vStart": 53
+   },
+   "label": "1 Kings 22:53"
+  },
+  {
+   "input": "1 KINGS 22",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 22
+   },
+   "label": "1 Kings 22"
+  },
+  {
+   "input": "1 Kings 23",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-kings",
+   "max": 22,
+   "suggestion": {
+    "book": "1-kings",
+    "chapter": 22
+   }
+  },
+  {
+   "input": "1 Kings 22:54",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-kings",
+   "max": 53,
+   "suggestion": {
+    "book": "1-kings",
+    "chapter": 22,
+    "vStart": 53
+   }
+  },
+  {
+   "input": "1 kings 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Kings 1:1"
+  },
+  {
+   "input": "1 kgs 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Kings 1:1"
+  },
+  {
+   "input": "1 ki 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Kings 1:1"
+  },
+  {
+   "input": "1 kg 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Kings 1:1"
+  },
+  {
+   "input": "1 kin 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Kings 1:1"
+  },
+  {
+   "input": "2 Kings 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 1
+   },
+   "label": "2 Kings 1"
+  },
+  {
+   "input": "2 kgs 25:30",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 25,
+    "vStart": 30
+   },
+   "label": "2 Kings 25:30"
+  },
+  {
+   "input": "2 KINGS 25",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 25
+   },
+   "label": "2 Kings 25"
+  },
+  {
+   "input": "2 Kings 26",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-kings",
+   "max": 25,
+   "suggestion": {
+    "book": "2-kings",
+    "chapter": 25
+   }
+  },
+  {
+   "input": "2 Kings 25:31",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-kings",
+   "max": 30,
+   "suggestion": {
+    "book": "2-kings",
+    "chapter": 25,
+    "vStart": 30
+   }
+  },
+  {
+   "input": "2 kings 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Kings 1:1"
+  },
+  {
+   "input": "2 kgs 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Kings 1:1"
+  },
+  {
+   "input": "2 ki 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Kings 1:1"
+  },
+  {
+   "input": "2 kg 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Kings 1:1"
+  },
+  {
+   "input": "2 kin 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-kings",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Kings 1:1"
+  },
+  {
+   "input": "1 Chronicles 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 1
+   },
+   "label": "1 Chronicles 1"
+  },
+  {
+   "input": "1 chr 29:30",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 29,
+    "vStart": 30
+   },
+   "label": "1 Chronicles 29:30"
+  },
+  {
+   "input": "1 CHRONICLES 29",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 29
+   },
+   "label": "1 Chronicles 29"
+  },
+  {
+   "input": "1 Chronicles 30",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-chronicles",
+   "max": 29,
+   "suggestion": {
+    "book": "1-chronicles",
+    "chapter": 29
+   }
+  },
+  {
+   "input": "1 Chronicles 29:31",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-chronicles",
+   "max": 30,
+   "suggestion": {
+    "book": "1-chronicles",
+    "chapter": 29,
+    "vStart": 30
+   }
+  },
+  {
+   "input": "1 chronicles 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Chronicles 1:1"
+  },
+  {
+   "input": "1 chron 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Chronicles 1:1"
+  },
+  {
+   "input": "1 chr 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Chronicles 1:1"
+  },
+  {
+   "input": "1 ch 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Chronicles 1:1"
+  },
+  {
+   "input": "2 Chronicles 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 1
+   },
+   "label": "2 Chronicles 1"
+  },
+  {
+   "input": "2 chr 36:23",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 36,
+    "vStart": 23
+   },
+   "label": "2 Chronicles 36:23"
+  },
+  {
+   "input": "2 CHRONICLES 36",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 36
+   },
+   "label": "2 Chronicles 36"
+  },
+  {
+   "input": "2 Chronicles 37",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-chronicles",
+   "max": 36,
+   "suggestion": {
+    "book": "2-chronicles",
+    "chapter": 36
+   }
+  },
+  {
+   "input": "2 Chronicles 36:24",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-chronicles",
+   "max": 23,
+   "suggestion": {
+    "book": "2-chronicles",
+    "chapter": 36,
+    "vStart": 23
+   }
+  },
+  {
+   "input": "2 chronicles 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Chronicles 1:1"
+  },
+  {
+   "input": "2 chron 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Chronicles 1:1"
+  },
+  {
+   "input": "2 chr 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Chronicles 1:1"
+  },
+  {
+   "input": "2 ch 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-chronicles",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Chronicles 1:1"
+  },
+  {
+   "input": "Ezra 1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezra",
+    "chapter": 1
+   },
+   "label": "Ezra 1"
+  },
+  {
+   "input": "ezra 10:44",
+   "kind": "ref",
+   "ref": {
+    "book": "ezra",
+    "chapter": 10,
+    "vStart": 44
+   },
+   "label": "Ezra 10:44"
+  },
+  {
+   "input": "EZRA 10",
+   "kind": "ref",
+   "ref": {
+    "book": "ezra",
+    "chapter": 10
+   },
+   "label": "Ezra 10"
+  },
+  {
+   "input": "Ezra 11",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "ezra",
+   "max": 10,
+   "suggestion": {
+    "book": "ezra",
+    "chapter": 10
+   }
+  },
+  {
+   "input": "Ezra 10:45",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "ezra",
+   "max": 44,
+   "suggestion": {
+    "book": "ezra",
+    "chapter": 10,
+    "vStart": 44
+   }
+  },
+  {
+   "input": "ezra 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezra",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ezra 1:1"
+  },
+  {
+   "input": "ezr 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezra",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ezra 1:1"
+  },
+  {
+   "input": "Nehemiah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "nehemiah",
+    "chapter": 1
+   },
+   "label": "Nehemiah 1"
+  },
+  {
+   "input": "neh 13:31",
+   "kind": "ref",
+   "ref": {
+    "book": "nehemiah",
+    "chapter": 13,
+    "vStart": 31
+   },
+   "label": "Nehemiah 13:31"
+  },
+  {
+   "input": "NEHEMIAH 13",
+   "kind": "ref",
+   "ref": {
+    "book": "nehemiah",
+    "chapter": 13
+   },
+   "label": "Nehemiah 13"
+  },
+  {
+   "input": "Nehemiah 14",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "nehemiah",
+   "max": 13,
+   "suggestion": {
+    "book": "nehemiah",
+    "chapter": 13
+   }
+  },
+  {
+   "input": "Nehemiah 13:32",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "nehemiah",
+   "max": 31,
+   "suggestion": {
+    "book": "nehemiah",
+    "chapter": 13,
+    "vStart": 31
+   }
+  },
+  {
+   "input": "nehemiah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "nehemiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Nehemiah 1:1"
+  },
+  {
+   "input": "neh 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "nehemiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Nehemiah 1:1"
+  },
+  {
+   "input": "ne 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "nehemiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Nehemiah 1:1"
+  },
+  {
+   "input": "Esther 1",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 1
+   },
+   "label": "Esther 1"
+  },
+  {
+   "input": "esth 10:3",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 10,
+    "vStart": 3
+   },
+   "label": "Esther 10:3"
+  },
+  {
+   "input": "ESTHER 10",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 10
+   },
+   "label": "Esther 10"
+  },
+  {
+   "input": "Esther 11",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "esther",
+   "max": 10,
+   "suggestion": {
+    "book": "esther",
+    "chapter": 10
+   }
+  },
+  {
+   "input": "Esther 10:4",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "esther",
+   "max": 3,
+   "suggestion": {
+    "book": "esther",
+    "chapter": 10,
+    "vStart": 3
+   }
+  },
+  {
+   "input": "esther 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Esther 1:1"
+  },
+  {
+   "input": "esth 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Esther 1:1"
+  },
+  {
+   "input": "est 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Esther 1:1"
+  },
+  {
+   "input": "es 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "esther",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Esther 1:1"
+  },
+  {
+   "input": "Job 1",
+   "kind": "ref",
+   "ref": {
+    "book": "job",
+    "chapter": 1
+   },
+   "label": "Job 1"
+  },
+  {
+   "input": "job 42:17",
+   "kind": "ref",
+   "ref": {
+    "book": "job",
+    "chapter": 42,
+    "vStart": 17
+   },
+   "label": "Job 42:17"
+  },
+  {
+   "input": "JOB 42",
+   "kind": "ref",
+   "ref": {
+    "book": "job",
+    "chapter": 42
+   },
+   "label": "Job 42"
+  },
+  {
+   "input": "Job 43",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "job",
+   "max": 42,
+   "suggestion": {
+    "book": "job",
+    "chapter": 42
+   }
+  },
+  {
+   "input": "Job 42:18",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "job",
+   "max": 17,
+   "suggestion": {
+    "book": "job",
+    "chapter": 42,
+    "vStart": 17
+   }
+  },
+  {
+   "input": "job 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "job",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Job 1:1"
+  },
+  {
+   "input": "jb 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "job",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Job 1:1"
+  },
+  {
+   "input": "Psalms 1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1
+   },
+   "label": "Psalm 1"
+  },
+  {
+   "input": "ps 150:6",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 150,
+    "vStart": 6
+   },
+   "label": "Psalm 150:6"
+  },
+  {
+   "input": "PSALMS 150",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 150
+   },
+   "label": "Psalm 150"
+  },
+  {
+   "input": "Psalms 151",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "psalms",
+   "max": 150,
+   "suggestion": {
+    "book": "psalms",
+    "chapter": 150
+   }
+  },
+  {
+   "input": "Psalms 150:7",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "psalms",
+   "max": 6,
+   "suggestion": {
+    "book": "psalms",
+    "chapter": 150,
+    "vStart": 6
+   }
+  },
+  {
+   "input": "psalms 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "psalm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "ps 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "psa 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "pss 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "psm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "pslm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "psalms",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Psalm 1:1"
+  },
+  {
+   "input": "Proverbs 1",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 1
+   },
+   "label": "Proverbs 1"
+  },
+  {
+   "input": "prov 31:31",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 31,
+    "vStart": 31
+   },
+   "label": "Proverbs 31:31"
+  },
+  {
+   "input": "PROVERBS 31",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 31
+   },
+   "label": "Proverbs 31"
+  },
+  {
+   "input": "Proverbs 32",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "proverbs",
+   "max": 31,
+   "suggestion": {
+    "book": "proverbs",
+    "chapter": 31
+   }
+  },
+  {
+   "input": "Proverbs 31:32",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "proverbs",
+   "max": 31,
+   "suggestion": {
+    "book": "proverbs",
+    "chapter": 31,
+    "vStart": 31
+   }
+  },
+  {
+   "input": "proverbs 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Proverbs 1:1"
+  },
+  {
+   "input": "prov 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Proverbs 1:1"
+  },
+  {
+   "input": "pro 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Proverbs 1:1"
+  },
+  {
+   "input": "prv 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Proverbs 1:1"
+  },
+  {
+   "input": "pr 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "proverbs",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Proverbs 1:1"
+  },
+  {
+   "input": "Ecclesiastes 1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1
+   },
+   "label": "Ecclesiastes 1"
+  },
+  {
+   "input": "eccl 12:14",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 12,
+    "vStart": 14
+   },
+   "label": "Ecclesiastes 12:14"
+  },
+  {
+   "input": "ECCLESIASTES 12",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 12
+   },
+   "label": "Ecclesiastes 12"
+  },
+  {
+   "input": "Ecclesiastes 13",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "ecclesiastes",
+   "max": 12,
+   "suggestion": {
+    "book": "ecclesiastes",
+    "chapter": 12
+   }
+  },
+  {
+   "input": "Ecclesiastes 12:15",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "ecclesiastes",
+   "max": 14,
+   "suggestion": {
+    "book": "ecclesiastes",
+    "chapter": 12,
+    "vStart": 14
+   }
+  },
+  {
+   "input": "ecclesiastes 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "eccl 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "eccles 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "ecc 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "ec 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "qoh 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "qoheleth 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ecclesiastes",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ecclesiastes 1:1"
+  },
+  {
+   "input": "Song of Solomon 1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1
+   },
+   "label": "Song of Solomon 1"
+  },
+  {
+   "input": "song 8:14",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 8,
+    "vStart": 14
+   },
+   "label": "Song of Solomon 8:14"
+  },
+  {
+   "input": "SONG OF SOLOMON 8",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 8
+   },
+   "label": "Song of Solomon 8"
+  },
+  {
+   "input": "Song of Solomon 9",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "song-of-solomon",
+   "max": 8,
+   "suggestion": {
+    "book": "song-of-solomon",
+    "chapter": 8
+   }
+  },
+  {
+   "input": "Song of Solomon 8:15",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "song-of-solomon",
+   "max": 14,
+   "suggestion": {
+    "book": "song-of-solomon",
+    "chapter": 8,
+    "vStart": 14
+   }
+  },
+  {
+   "input": "songofsolomon 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "songofsongs 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "song 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "sos 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "ss 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "cant 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "canticles 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "canticleofcanticles 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "song-of-solomon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Song of Solomon 1:1"
+  },
+  {
+   "input": "Isaiah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "isaiah",
+    "chapter": 1
+   },
+   "label": "Isaiah 1"
+  },
+  {
+   "input": "isa 66:24",
+   "kind": "ref",
+   "ref": {
+    "book": "isaiah",
+    "chapter": 66,
+    "vStart": 24
+   },
+   "label": "Isaiah 66:24"
+  },
+  {
+   "input": "ISAIAH 66",
+   "kind": "ref",
+   "ref": {
+    "book": "isaiah",
+    "chapter": 66
+   },
+   "label": "Isaiah 66"
+  },
+  {
+   "input": "Isaiah 67",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "isaiah",
+   "max": 66,
+   "suggestion": {
+    "book": "isaiah",
+    "chapter": 66
+   }
+  },
+  {
+   "input": "Isaiah 66:25",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "isaiah",
+   "max": 24,
+   "suggestion": {
+    "book": "isaiah",
+    "chapter": 66,
+    "vStart": 24
+   }
+  },
+  {
+   "input": "isaiah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "isaiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Isaiah 1:1"
+  },
+  {
+   "input": "isa 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "isaiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Isaiah 1:1"
+  },
+  {
+   "input": "is 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "isaiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Isaiah 1:1"
+  },
+  {
+   "input": "Jeremiah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 1
+   },
+   "label": "Jeremiah 1"
+  },
+  {
+   "input": "jer 52:34",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 52,
+    "vStart": 34
+   },
+   "label": "Jeremiah 52:34"
+  },
+  {
+   "input": "JEREMIAH 52",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 52
+   },
+   "label": "Jeremiah 52"
+  },
+  {
+   "input": "Jeremiah 53",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "jeremiah",
+   "max": 52,
+   "suggestion": {
+    "book": "jeremiah",
+    "chapter": 52
+   }
+  },
+  {
+   "input": "Jeremiah 52:35",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "jeremiah",
+   "max": 34,
+   "suggestion": {
+    "book": "jeremiah",
+    "chapter": 52,
+    "vStart": 34
+   }
+  },
+  {
+   "input": "jeremiah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jeremiah 1:1"
+  },
+  {
+   "input": "jer 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jeremiah 1:1"
+  },
+  {
+   "input": "je 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jeremiah 1:1"
+  },
+  {
+   "input": "jr 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jeremiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jeremiah 1:1"
+  },
+  {
+   "input": "Lamentations 1",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 1
+   },
+   "label": "Lamentations 1"
+  },
+  {
+   "input": "lam 5:22",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 5,
+    "vStart": 22
+   },
+   "label": "Lamentations 5:22"
+  },
+  {
+   "input": "LAMENTATIONS 5",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 5
+   },
+   "label": "Lamentations 5"
+  },
+  {
+   "input": "Lamentations 6",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "lamentations",
+   "max": 5,
+   "suggestion": {
+    "book": "lamentations",
+    "chapter": 5
+   }
+  },
+  {
+   "input": "Lamentations 5:23",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "lamentations",
+   "max": 22,
+   "suggestion": {
+    "book": "lamentations",
+    "chapter": 5,
+    "vStart": 22
+   }
+  },
+  {
+   "input": "lamentations 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Lamentations 1:1"
+  },
+  {
+   "input": "lam 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Lamentations 1:1"
+  },
+  {
+   "input": "la 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "lamentations",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Lamentations 1:1"
+  },
+  {
+   "input": "Ezekiel 1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 1
+   },
+   "label": "Ezekiel 1"
+  },
+  {
+   "input": "ezek 48:35",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 48,
+    "vStart": 35
+   },
+   "label": "Ezekiel 48:35"
+  },
+  {
+   "input": "EZEKIEL 48",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 48
+   },
+   "label": "Ezekiel 48"
+  },
+  {
+   "input": "Ezekiel 49",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "ezekiel",
+   "max": 48,
+   "suggestion": {
+    "book": "ezekiel",
+    "chapter": 48
+   }
+  },
+  {
+   "input": "Ezekiel 48:36",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "ezekiel",
+   "max": 35,
+   "suggestion": {
+    "book": "ezekiel",
+    "chapter": 48,
+    "vStart": 35
+   }
+  },
+  {
+   "input": "ezekiel 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ezekiel 1:1"
+  },
+  {
+   "input": "ezek 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ezekiel 1:1"
+  },
+  {
+   "input": "eze 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ezekiel 1:1"
+  },
+  {
+   "input": "ezk 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ezekiel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ezekiel 1:1"
+  },
+  {
+   "input": "Daniel 1",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 1
+   },
+   "label": "Daniel 1"
+  },
+  {
+   "input": "dan 12:13",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 12,
+    "vStart": 13
+   },
+   "label": "Daniel 12:13"
+  },
+  {
+   "input": "DANIEL 12",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 12
+   },
+   "label": "Daniel 12"
+  },
+  {
+   "input": "Daniel 13",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "daniel",
+   "max": 12,
+   "suggestion": {
+    "book": "daniel",
+    "chapter": 12
+   }
+  },
+  {
+   "input": "Daniel 12:14",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "daniel",
+   "max": 13,
+   "suggestion": {
+    "book": "daniel",
+    "chapter": 12,
+    "vStart": 13
+   }
+  },
+  {
+   "input": "daniel 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Daniel 1:1"
+  },
+  {
+   "input": "dan 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Daniel 1:1"
+  },
+  {
+   "input": "da 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Daniel 1:1"
+  },
+  {
+   "input": "dn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "daniel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Daniel 1:1"
+  },
+  {
+   "input": "Hosea 1",
+   "kind": "ref",
+   "ref": {
+    "book": "hosea",
+    "chapter": 1
+   },
+   "label": "Hosea 1"
+  },
+  {
+   "input": "hos 14:9",
+   "kind": "ref",
+   "ref": {
+    "book": "hosea",
+    "chapter": 14,
+    "vStart": 9
+   },
+   "label": "Hosea 14:9"
+  },
+  {
+   "input": "HOSEA 14",
+   "kind": "ref",
+   "ref": {
+    "book": "hosea",
+    "chapter": 14
+   },
+   "label": "Hosea 14"
+  },
+  {
+   "input": "Hosea 15",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "hosea",
+   "max": 14,
+   "suggestion": {
+    "book": "hosea",
+    "chapter": 14
+   }
+  },
+  {
+   "input": "Hosea 14:10",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "hosea",
+   "max": 9,
+   "suggestion": {
+    "book": "hosea",
+    "chapter": 14,
+    "vStart": 9
+   }
+  },
+  {
+   "input": "hosea 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "hosea",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Hosea 1:1"
+  },
+  {
+   "input": "hos 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "hosea",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Hosea 1:1"
+  },
+  {
+   "input": "ho 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "hosea",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Hosea 1:1"
+  },
+  {
+   "input": "Joel 1",
+   "kind": "ref",
+   "ref": {
+    "book": "joel",
+    "chapter": 1
+   },
+   "label": "Joel 1"
+  },
+  {
+   "input": "joel 3:21",
+   "kind": "ref",
+   "ref": {
+    "book": "joel",
+    "chapter": 3,
+    "vStart": 21
+   },
+   "label": "Joel 3:21"
+  },
+  {
+   "input": "JOEL 3",
+   "kind": "ref",
+   "ref": {
+    "book": "joel",
+    "chapter": 3
+   },
+   "label": "Joel 3"
+  },
+  {
+   "input": "Joel 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "joel",
+   "max": 3,
+   "suggestion": {
+    "book": "joel",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "Joel 3:22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "joel",
+   "max": 21,
+   "suggestion": {
+    "book": "joel",
+    "chapter": 3,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "joel 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "joel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Joel 1:1"
+  },
+  {
+   "input": "jl 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "joel",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Joel 1:1"
+  },
+  {
+   "input": "Amos 1",
+   "kind": "ref",
+   "ref": {
+    "book": "amos",
+    "chapter": 1
+   },
+   "label": "Amos 1"
+  },
+  {
+   "input": "amos 9:15",
+   "kind": "ref",
+   "ref": {
+    "book": "amos",
+    "chapter": 9,
+    "vStart": 15
+   },
+   "label": "Amos 9:15"
+  },
+  {
+   "input": "AMOS 9",
+   "kind": "ref",
+   "ref": {
+    "book": "amos",
+    "chapter": 9
+   },
+   "label": "Amos 9"
+  },
+  {
+   "input": "Amos 10",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "amos",
+   "max": 9,
+   "suggestion": {
+    "book": "amos",
+    "chapter": 9
+   }
+  },
+  {
+   "input": "Amos 9:16",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "amos",
+   "max": 15,
+   "suggestion": {
+    "book": "amos",
+    "chapter": 9,
+    "vStart": 15
+   }
+  },
+  {
+   "input": "amos 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "amos",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Amos 1:1"
+  },
+  {
+   "input": "am 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "amos",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Amos 1:1"
+  },
+  {
+   "input": "Obadiah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Obadiah 1"
+  },
+  {
+   "input": "obad 1:21",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 21
+   },
+   "label": "Obadiah 21"
+  },
+  {
+   "input": "OBADIAH 1",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Obadiah 1"
+  },
+  {
+   "input": "Obadiah 1:22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "obadiah",
+   "max": 21,
+   "suggestion": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "obadiah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Obadiah 1"
+  },
+  {
+   "input": "obad 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Obadiah 1"
+  },
+  {
+   "input": "oba 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Obadiah 1"
+  },
+  {
+   "input": "ob 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "obadiah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Obadiah 1"
+  },
+  {
+   "input": "Jonah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "jonah",
+    "chapter": 1
+   },
+   "label": "Jonah 1"
+  },
+  {
+   "input": "jonah 4:11",
+   "kind": "ref",
+   "ref": {
+    "book": "jonah",
+    "chapter": 4,
+    "vStart": 11
+   },
+   "label": "Jonah 4:11"
+  },
+  {
+   "input": "JONAH 4",
+   "kind": "ref",
+   "ref": {
+    "book": "jonah",
+    "chapter": 4
+   },
+   "label": "Jonah 4"
+  },
+  {
+   "input": "Jonah 5",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "jonah",
+   "max": 4,
+   "suggestion": {
+    "book": "jonah",
+    "chapter": 4
+   }
+  },
+  {
+   "input": "Jonah 4:12",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "jonah",
+   "max": 11,
+   "suggestion": {
+    "book": "jonah",
+    "chapter": 4,
+    "vStart": 11
+   }
+  },
+  {
+   "input": "jonah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jonah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jonah 1:1"
+  },
+  {
+   "input": "jon 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jonah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jonah 1:1"
+  },
+  {
+   "input": "jnh 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jonah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jonah 1:1"
+  },
+  {
+   "input": "Micah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "micah",
+    "chapter": 1
+   },
+   "label": "Micah 1"
+  },
+  {
+   "input": "mic 7:20",
+   "kind": "ref",
+   "ref": {
+    "book": "micah",
+    "chapter": 7,
+    "vStart": 20
+   },
+   "label": "Micah 7:20"
+  },
+  {
+   "input": "MICAH 7",
+   "kind": "ref",
+   "ref": {
+    "book": "micah",
+    "chapter": 7
+   },
+   "label": "Micah 7"
+  },
+  {
+   "input": "Micah 8",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "micah",
+   "max": 7,
+   "suggestion": {
+    "book": "micah",
+    "chapter": 7
+   }
+  },
+  {
+   "input": "Micah 7:21",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "micah",
+   "max": 20,
+   "suggestion": {
+    "book": "micah",
+    "chapter": 7,
+    "vStart": 20
+   }
+  },
+  {
+   "input": "micah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "micah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Micah 1:1"
+  },
+  {
+   "input": "mic 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "micah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Micah 1:1"
+  },
+  {
+   "input": "mi 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "micah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Micah 1:1"
+  },
+  {
+   "input": "Nahum 1",
+   "kind": "ref",
+   "ref": {
+    "book": "nahum",
+    "chapter": 1
+   },
+   "label": "Nahum 1"
+  },
+  {
+   "input": "nah 3:19",
+   "kind": "ref",
+   "ref": {
+    "book": "nahum",
+    "chapter": 3,
+    "vStart": 19
+   },
+   "label": "Nahum 3:19"
+  },
+  {
+   "input": "NAHUM 3",
+   "kind": "ref",
+   "ref": {
+    "book": "nahum",
+    "chapter": 3
+   },
+   "label": "Nahum 3"
+  },
+  {
+   "input": "Nahum 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "nahum",
+   "max": 3,
+   "suggestion": {
+    "book": "nahum",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "Nahum 3:20",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "nahum",
+   "max": 19,
+   "suggestion": {
+    "book": "nahum",
+    "chapter": 3,
+    "vStart": 19
+   }
+  },
+  {
+   "input": "nahum 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "nahum",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Nahum 1:1"
+  },
+  {
+   "input": "nah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "nahum",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Nahum 1:1"
+  },
+  {
+   "input": "na 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "nahum",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Nahum 1:1"
+  },
+  {
+   "input": "Habakkuk 1",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 1
+   },
+   "label": "Habakkuk 1"
+  },
+  {
+   "input": "hab 3:19",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 3,
+    "vStart": 19
+   },
+   "label": "Habakkuk 3:19"
+  },
+  {
+   "input": "HABAKKUK 3",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 3
+   },
+   "label": "Habakkuk 3"
+  },
+  {
+   "input": "Habakkuk 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "habakkuk",
+   "max": 3,
+   "suggestion": {
+    "book": "habakkuk",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "Habakkuk 3:20",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "habakkuk",
+   "max": 19,
+   "suggestion": {
+    "book": "habakkuk",
+    "chapter": 3,
+    "vStart": 19
+   }
+  },
+  {
+   "input": "habakkuk 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Habakkuk 1:1"
+  },
+  {
+   "input": "hab 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Habakkuk 1:1"
+  },
+  {
+   "input": "hb 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "habakkuk",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Habakkuk 1:1"
+  },
+  {
+   "input": "Zephaniah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 1
+   },
+   "label": "Zephaniah 1"
+  },
+  {
+   "input": "zeph 3:20",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 3,
+    "vStart": 20
+   },
+   "label": "Zephaniah 3:20"
+  },
+  {
+   "input": "ZEPHANIAH 3",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 3
+   },
+   "label": "Zephaniah 3"
+  },
+  {
+   "input": "Zephaniah 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "zephaniah",
+   "max": 3,
+   "suggestion": {
+    "book": "zephaniah",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "Zephaniah 3:21",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "zephaniah",
+   "max": 20,
+   "suggestion": {
+    "book": "zephaniah",
+    "chapter": 3,
+    "vStart": 20
+   }
+  },
+  {
+   "input": "zephaniah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zephaniah 1:1"
+  },
+  {
+   "input": "zeph 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zephaniah 1:1"
+  },
+  {
+   "input": "zep 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zephaniah 1:1"
+  },
+  {
+   "input": "zp 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zephaniah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zephaniah 1:1"
+  },
+  {
+   "input": "Haggai 1",
+   "kind": "ref",
+   "ref": {
+    "book": "haggai",
+    "chapter": 1
+   },
+   "label": "Haggai 1"
+  },
+  {
+   "input": "hag 2:23",
+   "kind": "ref",
+   "ref": {
+    "book": "haggai",
+    "chapter": 2,
+    "vStart": 23
+   },
+   "label": "Haggai 2:23"
+  },
+  {
+   "input": "HAGGAI 2",
+   "kind": "ref",
+   "ref": {
+    "book": "haggai",
+    "chapter": 2
+   },
+   "label": "Haggai 2"
+  },
+  {
+   "input": "Haggai 3",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "haggai",
+   "max": 2,
+   "suggestion": {
+    "book": "haggai",
+    "chapter": 2
+   }
+  },
+  {
+   "input": "Haggai 2:24",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "haggai",
+   "max": 23,
+   "suggestion": {
+    "book": "haggai",
+    "chapter": 2,
+    "vStart": 23
+   }
+  },
+  {
+   "input": "haggai 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "haggai",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Haggai 1:1"
+  },
+  {
+   "input": "hag 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "haggai",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Haggai 1:1"
+  },
+  {
+   "input": "hg 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "haggai",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Haggai 1:1"
+  },
+  {
+   "input": "Zechariah 1",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 1
+   },
+   "label": "Zechariah 1"
+  },
+  {
+   "input": "zech 14:21",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 14,
+    "vStart": 21
+   },
+   "label": "Zechariah 14:21"
+  },
+  {
+   "input": "ZECHARIAH 14",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 14
+   },
+   "label": "Zechariah 14"
+  },
+  {
+   "input": "Zechariah 15",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "zechariah",
+   "max": 14,
+   "suggestion": {
+    "book": "zechariah",
+    "chapter": 14
+   }
+  },
+  {
+   "input": "Zechariah 14:22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "zechariah",
+   "max": 21,
+   "suggestion": {
+    "book": "zechariah",
+    "chapter": 14,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "zechariah 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zechariah 1:1"
+  },
+  {
+   "input": "zech 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zechariah 1:1"
+  },
+  {
+   "input": "zec 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zechariah 1:1"
+  },
+  {
+   "input": "zc 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "zechariah",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Zechariah 1:1"
+  },
+  {
+   "input": "Malachi 1",
+   "kind": "ref",
+   "ref": {
+    "book": "malachi",
+    "chapter": 1
+   },
+   "label": "Malachi 1"
+  },
+  {
+   "input": "mal 4:6",
+   "kind": "ref",
+   "ref": {
+    "book": "malachi",
+    "chapter": 4,
+    "vStart": 6
+   },
+   "label": "Malachi 4:6"
+  },
+  {
+   "input": "MALACHI 4",
+   "kind": "ref",
+   "ref": {
+    "book": "malachi",
+    "chapter": 4
+   },
+   "label": "Malachi 4"
+  },
+  {
+   "input": "Malachi 5",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "malachi",
+   "max": 4,
+   "suggestion": {
+    "book": "malachi",
+    "chapter": 4
+   }
+  },
+  {
+   "input": "Malachi 4:7",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "malachi",
+   "max": 6,
+   "suggestion": {
+    "book": "malachi",
+    "chapter": 4,
+    "vStart": 6
+   }
+  },
+  {
+   "input": "malachi 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "malachi",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Malachi 1:1"
+  },
+  {
+   "input": "mal 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "malachi",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Malachi 1:1"
+  },
+  {
+   "input": "ml 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "malachi",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Malachi 1:1"
+  },
+  {
+   "input": "Matthew 1",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 1
+   },
+   "label": "Matthew 1"
+  },
+  {
+   "input": "matt 28:20",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 28,
+    "vStart": 20
+   },
+   "label": "Matthew 28:20"
+  },
+  {
+   "input": "MATTHEW 28",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 28
+   },
+   "label": "Matthew 28"
+  },
+  {
+   "input": "Matthew 29",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "matthew",
+   "max": 28,
+   "suggestion": {
+    "book": "matthew",
+    "chapter": 28
+   }
+  },
+  {
+   "input": "Matthew 28:21",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "matthew",
+   "max": 20,
+   "suggestion": {
+    "book": "matthew",
+    "chapter": 28,
+    "vStart": 20
+   }
+  },
+  {
+   "input": "matthew 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Matthew 1:1"
+  },
+  {
+   "input": "matt 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Matthew 1:1"
+  },
+  {
+   "input": "mat 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Matthew 1:1"
+  },
+  {
+   "input": "mt 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "matthew",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Matthew 1:1"
+  },
+  {
+   "input": "Mark 1",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1
+   },
+   "label": "Mark 1"
+  },
+  {
+   "input": "mark 16:20",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 16,
+    "vStart": 20
+   },
+   "label": "Mark 16:20"
+  },
+  {
+   "input": "MARK 16",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 16
+   },
+   "label": "Mark 16"
+  },
+  {
+   "input": "Mark 17",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "mark",
+   "max": 16,
+   "suggestion": {
+    "book": "mark",
+    "chapter": 16
+   }
+  },
+  {
+   "input": "Mark 16:21",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "mark",
+   "max": 20,
+   "suggestion": {
+    "book": "mark",
+    "chapter": 16,
+    "vStart": 20
+   }
+  },
+  {
+   "input": "mark 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Mark 1:1"
+  },
+  {
+   "input": "mrk 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Mark 1:1"
+  },
+  {
+   "input": "mar 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Mark 1:1"
+  },
+  {
+   "input": "mk 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Mark 1:1"
+  },
+  {
+   "input": "mr 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "mark",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Mark 1:1"
+  },
+  {
+   "input": "Luke 1",
+   "kind": "ref",
+   "ref": {
+    "book": "luke",
+    "chapter": 1
+   },
+   "label": "Luke 1"
+  },
+  {
+   "input": "luke 24:53",
+   "kind": "ref",
+   "ref": {
+    "book": "luke",
+    "chapter": 24,
+    "vStart": 53
+   },
+   "label": "Luke 24:53"
+  },
+  {
+   "input": "LUKE 24",
+   "kind": "ref",
+   "ref": {
+    "book": "luke",
+    "chapter": 24
+   },
+   "label": "Luke 24"
+  },
+  {
+   "input": "Luke 25",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "luke",
+   "max": 24,
+   "suggestion": {
+    "book": "luke",
+    "chapter": 24
+   }
+  },
+  {
+   "input": "Luke 24:54",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "luke",
+   "max": 53,
+   "suggestion": {
+    "book": "luke",
+    "chapter": 24,
+    "vStart": 53
+   }
+  },
+  {
+   "input": "luke 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "luke",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Luke 1:1"
+  },
+  {
+   "input": "luk 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "luke",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Luke 1:1"
+  },
+  {
+   "input": "lk 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "luke",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Luke 1:1"
+  },
+  {
+   "input": "John 1",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 1
+   },
+   "label": "John 1"
+  },
+  {
+   "input": "john 21:25",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 21,
+    "vStart": 25
+   },
+   "label": "John 21:25"
+  },
+  {
+   "input": "JOHN 21",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 21
+   },
+   "label": "John 21"
+  },
+  {
+   "input": "John 22",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "john",
+   "max": 21,
+   "suggestion": {
+    "book": "john",
+    "chapter": 21
+   }
+  },
+  {
+   "input": "John 21:26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "john",
+   "max": 25,
+   "suggestion": {
+    "book": "john",
+    "chapter": 21,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "john 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "John 1:1"
+  },
+  {
+   "input": "jhn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "John 1:1"
+  },
+  {
+   "input": "jn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "John 1:1"
+  },
+  {
+   "input": "joh 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "John 1:1"
+  },
+  {
+   "input": "Acts 1",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 1
+   },
+   "label": "Acts 1"
+  },
+  {
+   "input": "acts 28:31",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 28,
+    "vStart": 31
+   },
+   "label": "Acts 28:31"
+  },
+  {
+   "input": "ACTS 28",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 28
+   },
+   "label": "Acts 28"
+  },
+  {
+   "input": "Acts 29",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "acts",
+   "max": 28,
+   "suggestion": {
+    "book": "acts",
+    "chapter": 28
+   }
+  },
+  {
+   "input": "Acts 28:32",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "acts",
+   "max": 31,
+   "suggestion": {
+    "book": "acts",
+    "chapter": 28,
+    "vStart": 31
+   }
+  },
+  {
+   "input": "acts 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Acts 1:1"
+  },
+  {
+   "input": "act 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Acts 1:1"
+  },
+  {
+   "input": "ac 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "acts",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Acts 1:1"
+  },
+  {
+   "input": "Romans 1",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 1
+   },
+   "label": "Romans 1"
+  },
+  {
+   "input": "rom 16:27",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 16,
+    "vStart": 27
+   },
+   "label": "Romans 16:27"
+  },
+  {
+   "input": "ROMANS 16",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 16
+   },
+   "label": "Romans 16"
+  },
+  {
+   "input": "Romans 17",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "romans",
+   "max": 16,
+   "suggestion": {
+    "book": "romans",
+    "chapter": 16
+   }
+  },
+  {
+   "input": "Romans 16:28",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "romans",
+   "max": 27,
+   "suggestion": {
+    "book": "romans",
+    "chapter": 16,
+    "vStart": 27
+   }
+  },
+  {
+   "input": "romans 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Romans 1:1"
+  },
+  {
+   "input": "rom 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Romans 1:1"
+  },
+  {
+   "input": "ro 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Romans 1:1"
+  },
+  {
+   "input": "rm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "romans",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Romans 1:1"
+  },
+  {
+   "input": "1 Corinthians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 1
+   },
+   "label": "1 Corinthians 1"
+  },
+  {
+   "input": "1 cor 16:24",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 16,
+    "vStart": 24
+   },
+   "label": "1 Corinthians 16:24"
+  },
+  {
+   "input": "1 CORINTHIANS 16",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 16
+   },
+   "label": "1 Corinthians 16"
+  },
+  {
+   "input": "1 Corinthians 17",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-corinthians",
+   "max": 16,
+   "suggestion": {
+    "book": "1-corinthians",
+    "chapter": 16
+   }
+  },
+  {
+   "input": "1 Corinthians 16:25",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-corinthians",
+   "max": 24,
+   "suggestion": {
+    "book": "1-corinthians",
+    "chapter": 16,
+    "vStart": 24
+   }
+  },
+  {
+   "input": "1 corinthians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Corinthians 1:1"
+  },
+  {
+   "input": "1 cor 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Corinthians 1:1"
+  },
+  {
+   "input": "1 co 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-corinthians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Corinthians 1:1"
+  },
+  {
+   "input": "2 Corinthians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-corinthians",
+    "chapter": 1
+   },
+   "label": "2 Corinthians 1"
+  },
+  {
+   "input": "2 cor 13:14",
+   "kind": "ref",
+   "ref": {
+    "book": "2-corinthians",
+    "chapter": 13,
+    "vStart": 14
+   },
+   "label": "2 Corinthians 13:14"
+  },
+  {
+   "input": "2 CORINTHIANS 13",
+   "kind": "ref",
+   "ref": {
+    "book": "2-corinthians",
+    "chapter": 13
+   },
+   "label": "2 Corinthians 13"
+  },
+  {
+   "input": "2 Corinthians 14",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-corinthians",
+   "max": 13,
+   "suggestion": {
+    "book": "2-corinthians",
+    "chapter": 13
+   }
+  },
+  {
+   "input": "2 Corinthians 13:15",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-corinthians",
+   "max": 14,
+   "suggestion": {
+    "book": "2-corinthians",
+    "chapter": 13,
+    "vStart": 14
+   }
+  },
+  {
+   "input": "2 corinthians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-corinthians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Corinthians 1:1"
+  },
+  {
+   "input": "2 cor 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-corinthians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Corinthians 1:1"
+  },
+  {
+   "input": "2 co 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-corinthians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Corinthians 1:1"
+  },
+  {
+   "input": "Galatians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "galatians",
+    "chapter": 1
+   },
+   "label": "Galatians 1"
+  },
+  {
+   "input": "gal 6:18",
+   "kind": "ref",
+   "ref": {
+    "book": "galatians",
+    "chapter": 6,
+    "vStart": 18
+   },
+   "label": "Galatians 6:18"
+  },
+  {
+   "input": "GALATIANS 6",
+   "kind": "ref",
+   "ref": {
+    "book": "galatians",
+    "chapter": 6
+   },
+   "label": "Galatians 6"
+  },
+  {
+   "input": "Galatians 7",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "galatians",
+   "max": 6,
+   "suggestion": {
+    "book": "galatians",
+    "chapter": 6
+   }
+  },
+  {
+   "input": "Galatians 6:19",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "galatians",
+   "max": 18,
+   "suggestion": {
+    "book": "galatians",
+    "chapter": 6,
+    "vStart": 18
+   }
+  },
+  {
+   "input": "galatians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "galatians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Galatians 1:1"
+  },
+  {
+   "input": "gal 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "galatians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Galatians 1:1"
+  },
+  {
+   "input": "ga 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "galatians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Galatians 1:1"
+  },
+  {
+   "input": "Ephesians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "ephesians",
+    "chapter": 1
+   },
+   "label": "Ephesians 1"
+  },
+  {
+   "input": "eph 6:24",
+   "kind": "ref",
+   "ref": {
+    "book": "ephesians",
+    "chapter": 6,
+    "vStart": 24
+   },
+   "label": "Ephesians 6:24"
+  },
+  {
+   "input": "EPHESIANS 6",
+   "kind": "ref",
+   "ref": {
+    "book": "ephesians",
+    "chapter": 6
+   },
+   "label": "Ephesians 6"
+  },
+  {
+   "input": "Ephesians 7",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "ephesians",
+   "max": 6,
+   "suggestion": {
+    "book": "ephesians",
+    "chapter": 6
+   }
+  },
+  {
+   "input": "Ephesians 6:25",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "ephesians",
+   "max": 24,
+   "suggestion": {
+    "book": "ephesians",
+    "chapter": 6,
+    "vStart": 24
+   }
+  },
+  {
+   "input": "ephesians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ephesians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ephesians 1:1"
+  },
+  {
+   "input": "eph 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ephesians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ephesians 1:1"
+  },
+  {
+   "input": "ephes 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "ephesians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Ephesians 1:1"
+  },
+  {
+   "input": "Philippians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 1
+   },
+   "label": "Philippians 1"
+  },
+  {
+   "input": "phil 4:23",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 4,
+    "vStart": 23
+   },
+   "label": "Philippians 4:23"
+  },
+  {
+   "input": "PHILIPPIANS 4",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 4
+   },
+   "label": "Philippians 4"
+  },
+  {
+   "input": "Philippians 5",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "philippians",
+   "max": 4,
+   "suggestion": {
+    "book": "philippians",
+    "chapter": 4
+   }
+  },
+  {
+   "input": "Philippians 4:24",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "philippians",
+   "max": 23,
+   "suggestion": {
+    "book": "philippians",
+    "chapter": 4,
+    "vStart": 23
+   }
+  },
+  {
+   "input": "philippians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philippians 1:1"
+  },
+  {
+   "input": "phil 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philippians 1:1"
+  },
+  {
+   "input": "php 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philippians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philippians 1:1"
+  },
+  {
+   "input": "Colossians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "colossians",
+    "chapter": 1
+   },
+   "label": "Colossians 1"
+  },
+  {
+   "input": "col 4:18",
+   "kind": "ref",
+   "ref": {
+    "book": "colossians",
+    "chapter": 4,
+    "vStart": 18
+   },
+   "label": "Colossians 4:18"
+  },
+  {
+   "input": "COLOSSIANS 4",
+   "kind": "ref",
+   "ref": {
+    "book": "colossians",
+    "chapter": 4
+   },
+   "label": "Colossians 4"
+  },
+  {
+   "input": "Colossians 5",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "colossians",
+   "max": 4,
+   "suggestion": {
+    "book": "colossians",
+    "chapter": 4
+   }
+  },
+  {
+   "input": "Colossians 4:19",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "colossians",
+   "max": 18,
+   "suggestion": {
+    "book": "colossians",
+    "chapter": 4,
+    "vStart": 18
+   }
+  },
+  {
+   "input": "colossians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "colossians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Colossians 1:1"
+  },
+  {
+   "input": "col 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "colossians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Colossians 1:1"
+  },
+  {
+   "input": "1 Thessalonians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 1
+   },
+   "label": "1 Thessalonians 1"
+  },
+  {
+   "input": "1 thess 5:28",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 5,
+    "vStart": 28
+   },
+   "label": "1 Thessalonians 5:28"
+  },
+  {
+   "input": "1 THESSALONIANS 5",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 5
+   },
+   "label": "1 Thessalonians 5"
+  },
+  {
+   "input": "1 Thessalonians 6",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-thessalonians",
+   "max": 5,
+   "suggestion": {
+    "book": "1-thessalonians",
+    "chapter": 5
+   }
+  },
+  {
+   "input": "1 Thessalonians 5:29",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-thessalonians",
+   "max": 28,
+   "suggestion": {
+    "book": "1-thessalonians",
+    "chapter": 5,
+    "vStart": 28
+   }
+  },
+  {
+   "input": "1 thessalonians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Thessalonians 1:1"
+  },
+  {
+   "input": "1 thess 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Thessalonians 1:1"
+  },
+  {
+   "input": "1 thes 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Thessalonians 1:1"
+  },
+  {
+   "input": "1 th 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Thessalonians 1:1"
+  },
+  {
+   "input": "2 Thessalonians 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 1
+   },
+   "label": "2 Thessalonians 1"
+  },
+  {
+   "input": "2 thess 3:18",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 3,
+    "vStart": 18
+   },
+   "label": "2 Thessalonians 3:18"
+  },
+  {
+   "input": "2 THESSALONIANS 3",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 3
+   },
+   "label": "2 Thessalonians 3"
+  },
+  {
+   "input": "2 Thessalonians 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-thessalonians",
+   "max": 3,
+   "suggestion": {
+    "book": "2-thessalonians",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "2 Thessalonians 3:19",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-thessalonians",
+   "max": 18,
+   "suggestion": {
+    "book": "2-thessalonians",
+    "chapter": 3,
+    "vStart": 18
+   }
+  },
+  {
+   "input": "2 thessalonians 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Thessalonians 1:1"
+  },
+  {
+   "input": "2 thess 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Thessalonians 1:1"
+  },
+  {
+   "input": "2 thes 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Thessalonians 1:1"
+  },
+  {
+   "input": "2 th 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-thessalonians",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Thessalonians 1:1"
+  },
+  {
+   "input": "1 Timothy 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 1
+   },
+   "label": "1 Timothy 1"
+  },
+  {
+   "input": "1 tim 6:21",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 6,
+    "vStart": 21
+   },
+   "label": "1 Timothy 6:21"
+  },
+  {
+   "input": "1 TIMOTHY 6",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 6
+   },
+   "label": "1 Timothy 6"
+  },
+  {
+   "input": "1 Timothy 7",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-timothy",
+   "max": 6,
+   "suggestion": {
+    "book": "1-timothy",
+    "chapter": 6
+   }
+  },
+  {
+   "input": "1 Timothy 6:22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-timothy",
+   "max": 21,
+   "suggestion": {
+    "book": "1-timothy",
+    "chapter": 6,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "1 timothy 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Timothy 1:1"
+  },
+  {
+   "input": "1 tim 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Timothy 1:1"
+  },
+  {
+   "input": "1 ti 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Timothy 1:1"
+  },
+  {
+   "input": "1 tm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Timothy 1:1"
+  },
+  {
+   "input": "2 Timothy 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 1
+   },
+   "label": "2 Timothy 1"
+  },
+  {
+   "input": "2 tim 4:22",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 4,
+    "vStart": 22
+   },
+   "label": "2 Timothy 4:22"
+  },
+  {
+   "input": "2 TIMOTHY 4",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 4
+   },
+   "label": "2 Timothy 4"
+  },
+  {
+   "input": "2 Timothy 5",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-timothy",
+   "max": 4,
+   "suggestion": {
+    "book": "2-timothy",
+    "chapter": 4
+   }
+  },
+  {
+   "input": "2 Timothy 4:23",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-timothy",
+   "max": 22,
+   "suggestion": {
+    "book": "2-timothy",
+    "chapter": 4,
+    "vStart": 22
+   }
+  },
+  {
+   "input": "2 timothy 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Timothy 1:1"
+  },
+  {
+   "input": "2 tim 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Timothy 1:1"
+  },
+  {
+   "input": "2 ti 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Timothy 1:1"
+  },
+  {
+   "input": "2 tm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-timothy",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Timothy 1:1"
+  },
+  {
+   "input": "Titus 1",
+   "kind": "ref",
+   "ref": {
+    "book": "titus",
+    "chapter": 1
+   },
+   "label": "Titus 1"
+  },
+  {
+   "input": "titus 3:15",
+   "kind": "ref",
+   "ref": {
+    "book": "titus",
+    "chapter": 3,
+    "vStart": 15
+   },
+   "label": "Titus 3:15"
+  },
+  {
+   "input": "TITUS 3",
+   "kind": "ref",
+   "ref": {
+    "book": "titus",
+    "chapter": 3
+   },
+   "label": "Titus 3"
+  },
+  {
+   "input": "Titus 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "titus",
+   "max": 3,
+   "suggestion": {
+    "book": "titus",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "Titus 3:16",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "titus",
+   "max": 15,
+   "suggestion": {
+    "book": "titus",
+    "chapter": 3,
+    "vStart": 15
+   }
+  },
+  {
+   "input": "titus 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "titus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Titus 1:1"
+  },
+  {
+   "input": "tit 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "titus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Titus 1:1"
+  },
+  {
+   "input": "ti 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "titus",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Titus 1:1"
+  },
+  {
+   "input": "Philemon 1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "phlm 1:25",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 25
+   },
+   "label": "Philemon 25"
+  },
+  {
+   "input": "PHILEMON 1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "Philemon 1:26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "philemon",
+   "max": 25,
+   "suggestion": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "philemon 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "philem 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "phlm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "phm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "philemon",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Philemon 1"
+  },
+  {
+   "input": "Hebrews 1",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 1
+   },
+   "label": "Hebrews 1"
+  },
+  {
+   "input": "heb 13:25",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 13,
+    "vStart": 25
+   },
+   "label": "Hebrews 13:25"
+  },
+  {
+   "input": "HEBREWS 13",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 13
+   },
+   "label": "Hebrews 13"
+  },
+  {
+   "input": "Hebrews 14",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "hebrews",
+   "max": 13,
+   "suggestion": {
+    "book": "hebrews",
+    "chapter": 13
+   }
+  },
+  {
+   "input": "Hebrews 13:26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "hebrews",
+   "max": 25,
+   "suggestion": {
+    "book": "hebrews",
+    "chapter": 13,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "hebrews 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Hebrews 1:1"
+  },
+  {
+   "input": "heb 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "hebrews",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Hebrews 1:1"
+  },
+  {
+   "input": "James 1",
+   "kind": "ref",
+   "ref": {
+    "book": "james",
+    "chapter": 1
+   },
+   "label": "James 1"
+  },
+  {
+   "input": "jas 5:20",
+   "kind": "ref",
+   "ref": {
+    "book": "james",
+    "chapter": 5,
+    "vStart": 20
+   },
+   "label": "James 5:20"
+  },
+  {
+   "input": "JAMES 5",
+   "kind": "ref",
+   "ref": {
+    "book": "james",
+    "chapter": 5
+   },
+   "label": "James 5"
+  },
+  {
+   "input": "James 6",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "james",
+   "max": 5,
+   "suggestion": {
+    "book": "james",
+    "chapter": 5
+   }
+  },
+  {
+   "input": "James 5:21",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "james",
+   "max": 20,
+   "suggestion": {
+    "book": "james",
+    "chapter": 5,
+    "vStart": 20
+   }
+  },
+  {
+   "input": "james 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "james",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "James 1:1"
+  },
+  {
+   "input": "jas 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "james",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "James 1:1"
+  },
+  {
+   "input": "jm 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "james",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "James 1:1"
+  },
+  {
+   "input": "1 Peter 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 1
+   },
+   "label": "1 Peter 1"
+  },
+  {
+   "input": "1 pet 5:14",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 5,
+    "vStart": 14
+   },
+   "label": "1 Peter 5:14"
+  },
+  {
+   "input": "1 PETER 5",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 5
+   },
+   "label": "1 Peter 5"
+  },
+  {
+   "input": "1 Peter 6",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-peter",
+   "max": 5,
+   "suggestion": {
+    "book": "1-peter",
+    "chapter": 5
+   }
+  },
+  {
+   "input": "1 Peter 5:15",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-peter",
+   "max": 14,
+   "suggestion": {
+    "book": "1-peter",
+    "chapter": 5,
+    "vStart": 14
+   }
+  },
+  {
+   "input": "1 peter 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Peter 1:1"
+  },
+  {
+   "input": "1 pet 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Peter 1:1"
+  },
+  {
+   "input": "1 pe 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Peter 1:1"
+  },
+  {
+   "input": "1 pt 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 Peter 1:1"
+  },
+  {
+   "input": "2 Peter 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 1
+   },
+   "label": "2 Peter 1"
+  },
+  {
+   "input": "2 pet 3:18",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 3,
+    "vStart": 18
+   },
+   "label": "2 Peter 3:18"
+  },
+  {
+   "input": "2 PETER 3",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 3
+   },
+   "label": "2 Peter 3"
+  },
+  {
+   "input": "2 Peter 4",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "2-peter",
+   "max": 3,
+   "suggestion": {
+    "book": "2-peter",
+    "chapter": 3
+   }
+  },
+  {
+   "input": "2 Peter 3:19",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-peter",
+   "max": 18,
+   "suggestion": {
+    "book": "2-peter",
+    "chapter": 3,
+    "vStart": 18
+   }
+  },
+  {
+   "input": "2 peter 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Peter 1:1"
+  },
+  {
+   "input": "2 pet 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Peter 1:1"
+  },
+  {
+   "input": "2 pe 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Peter 1:1"
+  },
+  {
+   "input": "2 pt 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-peter",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 Peter 1:1"
+  },
+  {
+   "input": "1 John 1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1
+   },
+   "label": "1 John 1"
+  },
+  {
+   "input": "1 john 5:21",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 5,
+    "vStart": 21
+   },
+   "label": "1 John 5:21"
+  },
+  {
+   "input": "1 JOHN 5",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 5
+   },
+   "label": "1 John 5"
+  },
+  {
+   "input": "1 John 6",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "1-john",
+   "max": 5,
+   "suggestion": {
+    "book": "1-john",
+    "chapter": 5
+   }
+  },
+  {
+   "input": "1 John 5:22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "1-john",
+   "max": 21,
+   "suggestion": {
+    "book": "1-john",
+    "chapter": 5,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "1 john 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 John 1:1"
+  },
+  {
+   "input": "1 jn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 John 1:1"
+  },
+  {
+   "input": "1 jhn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 John 1:1"
+  },
+  {
+   "input": "1 jo 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "1-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "1 John 1:1"
+  },
+  {
+   "input": "2 John 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 John 1"
+  },
+  {
+   "input": "2 john 1:13",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 13
+   },
+   "label": "2 John 13"
+  },
+  {
+   "input": "2 JOHN 1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 John 1"
+  },
+  {
+   "input": "2 John 1:14",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "2-john",
+   "max": 13,
+   "suggestion": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 13
+   }
+  },
+  {
+   "input": "2 john 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 John 1"
+  },
+  {
+   "input": "2 jn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 John 1"
+  },
+  {
+   "input": "2 jhn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 John 1"
+  },
+  {
+   "input": "2 jo 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "2-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "2 John 1"
+  },
+  {
+   "input": "3 John 1",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "3 John 1"
+  },
+  {
+   "input": "3 john 1:14",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 14
+   },
+   "label": "3 John 14"
+  },
+  {
+   "input": "3 JOHN 1",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "3 John 1"
+  },
+  {
+   "input": "3 John 1:15",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "3-john",
+   "max": 14,
+   "suggestion": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 14
+   }
+  },
+  {
+   "input": "3 john 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "3 John 1"
+  },
+  {
+   "input": "3 jn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "3 John 1"
+  },
+  {
+   "input": "3 jhn 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "3 John 1"
+  },
+  {
+   "input": "3 jo 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "3-john",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "3 John 1"
+  },
+  {
+   "input": "Jude 1",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jude 1"
+  },
+  {
+   "input": "jude 1:25",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 25
+   },
+   "label": "Jude 25"
+  },
+  {
+   "input": "JUDE 1",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jude 1"
+  },
+  {
+   "input": "Jude 1:26",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "jude",
+   "max": 25,
+   "suggestion": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 25
+   }
+  },
+  {
+   "input": "jude 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jude 1"
+  },
+  {
+   "input": "jd 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "jude",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Jude 1"
+  },
+  {
+   "input": "Revelation 1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1
+   },
+   "label": "Revelation 1"
+  },
+  {
+   "input": "REVELATION 22",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 22
+   },
+   "label": "Revelation 22"
+  },
+  {
+   "input": "Revelation 23",
+   "kind": "invalid",
+   "reason": "chapter_out_of_range",
+   "book": "revelation",
+   "max": 22,
+   "suggestion": {
+    "book": "revelation",
+    "chapter": 22
+   }
+  },
+  {
+   "input": "Revelation 22:22",
+   "kind": "invalid",
+   "reason": "verse_out_of_range",
+   "book": "revelation",
+   "max": 21,
+   "suggestion": {
+    "book": "revelation",
+    "chapter": 22,
+    "vStart": 21
+   }
+  },
+  {
+   "input": "revelation 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Revelation 1:1"
+  },
+  {
+   "input": "revelations 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Revelation 1:1"
+  },
+  {
+   "input": "rev 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Revelation 1:1"
+  },
+  {
+   "input": "re 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Revelation 1:1"
+  },
+  {
+   "input": "rv 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Revelation 1:1"
+  },
+  {
+   "input": "apocalypse 1:1",
+   "kind": "ref",
+   "ref": {
+    "book": "revelation",
+    "chapter": 1,
+    "vStart": 1
+   },
+   "label": "Revelation 1:1"
+  }
+ ]
+}
