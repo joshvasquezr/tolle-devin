@@ -218,7 +218,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: MiniSearch BSB index measured (gz size, build time, query time); go/no-go for MiniSearch vs custom postings recorded.
   - Verify: numbers in doc; ≤ 3 MB gz or fallback chosen.
 
-- [ ] **P3.2 · Index builder** (M)
+- [x] **P3.2 · Index builder** (M)
   - Needs: P3.1 · Refs: D§3.11, D§6.1
   - Files: `scripts/search-index.ts`
   - Done when: versioned index per PD translation emitted to `/data/{tr}/search.v{hash}.json`; stemming and diacritic folding configured; deterministic output.

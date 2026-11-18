@@ -1,9 +1,9 @@
 # STATE
-Updated: 2026-11-18 07:38 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
+Updated: 2026-11-18 07:39 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P3.2 · Index builder · in progress
+P3.3 · Search worker and query engine · in progress
 
 ## Progress
 - Baseline verified: `main` = `045d980` (docs refinement pushed). Branch `devin/autonomous-p0-p7` from it; one draft PR to `main`.

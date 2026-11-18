@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { BOOKS, PD_TRANSLATIONS, isPdTranslation, type Book, type Chapter, type PdTranslation } from "@tolle/core";
 import { parseUsfm } from "./usfm/parse.ts";
 import { validateTranslation } from "./validate.ts";
+import { writeSearchIndex } from "./search-index.ts";
 
 export const ROOT = new URL("..", import.meta.url).pathname;
 export const SOURCES = join(ROOT, "data/sources");
@@ -59,7 +60,8 @@ async function main(args: string[]): Promise<void> {
       throw new Error(`${tr}: ${errors.length} validation error(s)\n${errors.slice(0, 50).join("\n")}`);
     }
     const n = await writeTranslation(tr, books);
-    console.log(`${tr}: ${books.size} books, ${n} chapters → ${join(OUT, tr)} (${Date.now() - t0} ms)`);
+    const idx = await writeSearchIndex(OUT, tr, books);
+    console.log(`${tr}: ${books.size} books, ${n} chapters, ${idx.name} (${(idx.gz / 1e6).toFixed(2)} MB gz) → ${join(OUT, tr)} (${Date.now() - t0} ms)`);
   }
 }
 
