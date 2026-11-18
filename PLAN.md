@@ -132,7 +132,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: 3 × 1,189 pages generated at `/{tr}/{book}/{n}`; single centered column; `h1` heading (plain text for now); correct `<title>`, description, canonical, OG.
   - Verify: `pnpm --filter web build && ls dist/bsb/john/3`; open locally and compare John 3 and Psalm 23 visually.
 
-- [ ] **P1.4 · Theme and settings** (M)
+- [x] **P1.4 · Theme and settings** (M)
   - Needs: P1.3 · Refs: D§3.9; SPEC R7, §6.4
   - Files: `apps/web/src/scripts/{theme-boot,settings}.ts`, settings popover
   - Done when: inline boot script sets theme before paint (no flash); Aa popover: size (5), font, width, headings, theme, auto-hide; persisted in `localStorage`; CSP-hash for the inline script is generated at build.
@@ -475,6 +475,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P1.1 · Fonts: Source Serif 4 instanced to opsz 12–48, wght 400–500 (72 KB) and Inter wght 400–600 (35 KB), Fontsource Latin subsets. · Keeps optical sizing (D§5.2) at ~60% of the full opsz file's size.
 - 2026-11-18 · P0.13 · No lazy-loading of aliases or picker data: router + parser + books = 6.7 KB gz (aliases ≈ 0.7 KB). Revisit if first-load JS passes 45 KB gz. · Measured in docs/spikes/js-budget.md.
 - 2026-11-18 · P1.3 · Astro build reads chapter JSON from `public/data` relative to the app root (process.cwd()), and canonical/OG URLs use `SITE_URL` until the domain is chosen. · Prerender bundles run from dist/, so import.meta.url paths break.
+- 2026-11-18 · P1.4 · Inline boot script reads the whole `quiet.settings.v1` object (not a separate `localStorage.theme`); CSP and security headers ship as a build-generated `dist/_headers` for Static Assets. · One storage key per D§3.9; hash always matches served bytes.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

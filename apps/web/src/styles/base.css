@@ -43,3 +43,4 @@ button { font: inherit; color: inherit; }
   }
   :root { --t-hover: 0ms; --t-open: 50ms; --t-close: 0ms; --t-fade: 50ms; --t-toolbar: 0ms; }
 }
+.bar { display: flex; align-items: center; gap: 8px; height: 48px; }

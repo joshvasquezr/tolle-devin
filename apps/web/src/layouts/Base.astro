@@ -4,6 +4,8 @@ import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/type.css";
 import { SITE_NAME } from "@tolle/core";
+import Settings from "../components/Settings.astro";
+import { BOOT_SCRIPT } from "../scripts/settings-core.ts";
 
 interface Props {
   title: string;
@@ -19,6 +21,7 @@ const url = new URL(canonical, Astro.site).href;
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script is:inline set:html={BOOT_SCRIPT}></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
@@ -35,7 +38,7 @@ const url = new URL(canonical, Astro.site).href;
   </head>
   <body>
     <a class="skip" href="#main">Skip to text</a>
-    <header class="bar"><slot name="bar" /></header>
+    <header class="bar col"><slot name="bar" /><Settings /></header>
     <main id="main" class="col"><slot /></main>
     <slot name="after" />
   </body>
