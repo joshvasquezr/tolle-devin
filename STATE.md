@@ -3,7 +3,7 @@ Updated: 2026-11-17 23:10 · Lead: Devin (Cognition), handed over by Josh 2026-1
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P0.4 · Verse IDs and types · in progress
+P0.5 · Reference parser · next
 
 ## Progress
 - Baseline verified: `main` = `045d980` (docs refinement pushed). Branch `devin/autonomous-p0-p7` from it; one draft PR to `main`.
@@ -19,7 +19,7 @@ P0.4 · Verse IDs and types · in progress
 - Open doc issue: SPEC §11 "field data" Core Web Vitals has no defined source after the Cloudflare analytics removal.
 
 ## Next
-- Finish P0.4 (`verseId.ts`, `types.ts`, vectors), then P0.5 onward in PLAN order.
+- P0.5 reference parser, then PLAN order.
 
 ## Notes for next session
 - Toolchain: pnpm 12.16.1, TypeScript 6.0.3, Vitest 5.0.5, @types/node 24.19.2, Node ≥ 24.

@@ -50,7 +50,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: 66 books with slug, name, testament, order, chapters, verse counts per chapter, aliases (SBL, Chicago, informal, spelled/Roman ordinals). Totals: 1,189 chapters, 31,102 verses.
   - Verify: unit tests assert the totals and that no alias maps to two books unless intended-ambiguous.
 
-- [ ] **P0.4 · Verse IDs and types** (S)
+- [x] **P0.4 · Verse IDs and types** (S)
   - Needs: P0.3 · Refs: D§3.1 Verse ID, D§3.2
   - Files: `packages/core/src/verseId.ts`, `types.ts`, tests
   - Done when: `encodeVerseId`/`decodeVerseId` round-trip for all 31,102 verses; `Block`, `Item`, `Chapter` types match D§3.2.
@@ -461,6 +461,8 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-17 · docs refinement · The general no-monetization and third-party-script CI checks are mandatory for every public launch and are built in P7.3, not P5.8; P5.8 keeps the ESV-specific checks. P7.3 no longer waits on P6.8 when P6 slips. · Josh decided.
 - 2026-11-17 · docs refinement · Reference bar focus uses / only; Cmd/Ctrl+L stays with the browser (SPEC §6.7, §6.9; D§3.6, D§12). · Josh approved; SPEC §6.9 already says shortcuts never override browser shortcuts.
 - 2026-11-17 · docs refinement · SPEC §14 Q17: repository is public on GitHub; license undecided. · Josh approved.
+- 2026-11-17 · P0.4 · `VerseId` is a branded `number` (`isVerseId`/`toVerseId`, or `encodeVerseId`); `encodeVerseId`/`decodeVerseId` throw `RangeError` on any id outside books.json bounds. Deviation from D§3.1's plain `number`. · Josh approved; matches the `BookId` pattern so unvalidated numbers cannot reach the store or the sync API.
+- 2026-11-17 · P0.4 · `Translation = 'bsb' | 'kjv' | 'web' | 'esv'` and the D§3.2 content types live in `packages/core/src/types.ts`; `PD_TRANSLATIONS` names the static three. Shared vectors in `test-vectors/verse-ids.json` (15 valid, 10 invalid). · Josh approved.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
