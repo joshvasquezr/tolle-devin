@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "wrangler": "4.156.2"
+  },
+  "dependencies": {
+    "@tolle/core": "workspace:*"
   }
 }

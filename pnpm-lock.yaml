@@ -196,6 +196,10 @@ importers:
         version: 1.64.1
 
   apps/worker:
+    dependencies:
+      '@tolle/core':
+        specifier: workspace:*
+        version: link:../../packages/core
     devDependencies:
       wrangler:
         specifier: 4.156.2

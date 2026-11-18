@@ -166,7 +166,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
 
 ## P2 · Navigate
 
-- [ ] **P2.1 · Worker route fallback** (M)
+- [x] **P2.1 · Worker route fallback** (M)
   - Needs: P0.6, P1.8 · Refs: D§1 D2, D§2 routing, D§6.3
   - Files: `apps/worker/src/{index,routes}.ts`, tests
   - Done when: alias and default-translation redirects (301); verse/range URLs return the chapter HTML with rewritten title, description, canonical, OG and `data-focus`; out-of-range verse → 302 to chapter; unknown → 404 page.
@@ -477,6 +477,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P1.3 · Astro build reads chapter JSON from `public/data` relative to the app root (process.cwd()), and canonical/OG URLs use `SITE_URL` until the domain is chosen. · Prerender bundles run from dist/, so import.meta.url paths break.
 - 2026-11-18 · P1.4 · Inline boot script reads the whole `quiet.settings.v1` object (not a separate `localStorage.theme`); CSP and security headers ship as a build-generated `dist/_headers` for Static Assets. · One storage key per D§3.9; hash always matches served bytes.
 - 2026-11-18 · P1.8 · Deploy skeleton code (wrangler.jsonc, minimal Worker, deploy workflow) is committed and verified under local `wrangler dev`; the box stays unticked until a real preview deploy. P2+ tasks that need P1.8 only for its code proceed (standing autonomy: "document external blockers and continue independent tasks"). · No Cloudflare credentials; the dependency is on the deploy, not on code.
+- 2026-11-18 · P2.1 · Verse pages are rewritten with string edits on our own build markup (not HTMLRewriter), so the logic runs and is tested in Node. · Input is our generated HTML; keeps tests runtime-free.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
