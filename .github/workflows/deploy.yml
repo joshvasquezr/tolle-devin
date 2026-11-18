@@ -1,4 +1,6 @@
-# PLAN P1.8 · D§2. Preview versions on every PR; production only by hand.
+# PLAN P1.8 · D§2. Every PR deploys the separate `tolle-preview` Worker (env.preview in
+# wrangler.jsonc: own D1, noindex); production only by hand. Version preview URLs are not
+# used because Cloudflare does not generate them for Workers with Durable Objects.
 # Needs repo secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; without them the
 # preview job is skipped (no external calls, no cost).
 name: Deploy
@@ -36,7 +38,8 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       # SPEC §14 Q1: domain undecided; canonical/OG URLs use this until it is set.
-      SITE_URL: ${{ vars.SITE_URL || 'https://tolle.workers.dev' }}
+      SITE_URL: ${{ github.event_name == 'pull_request' && (vars.PREVIEW_SITE_URL || 'https://tolle-preview.josh-vasquez-ruiz.workers.dev') || vars.SITE_URL || 'https://tolle.workers.dev' }}
+      NOINDEX: ${{ github.event_name == 'pull_request' && '1' || '' }}
     steps:
       - name: Check credentials
         id: creds
@@ -65,12 +68,12 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm build
 
-      - name: Upload preview version
+      - name: Deploy preview
         if: steps.creds.outputs.ok == 'true' && github.event_name == 'pull_request'
         working-directory: apps/worker
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: pnpm exec wrangler versions upload --preview-alias "pr-${PR_NUMBER}"
+        run: |
+          pnpm exec wrangler d1 migrations apply DB --remote --env preview
+          pnpm exec wrangler deploy --env preview
 
       - name: Deploy production
         if: steps.creds.outputs.ok == 'true' && github.event_name == 'workflow_dispatch'

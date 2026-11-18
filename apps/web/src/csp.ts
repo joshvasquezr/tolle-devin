@@ -23,6 +23,7 @@ export function contentSecurityPolicy(): string {
 }
 
 /** Workers Static Assets `_headers` file (applied to asset responses). */
-export function headersFile(): string {
-  return `/*\n  Content-Security-Policy: ${contentSecurityPolicy()}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Strict-Transport-Security: max-age=31536000; includeSubDomains\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Cross-Origin-Opener-Policy: same-origin\n/sw.js\n  Cache-Control: no-cache\n/sw-kill.json\n  Cache-Control: no-store\n`;
+/** noindex: preview deploys must not compete with production in search results. */
+export function headersFile(noindex = process.env.NOINDEX === "1"): string {
+  return `/*\n  Content-Security-Policy: ${contentSecurityPolicy()}\n${noindex ? "  X-Robots-Tag: noindex\n" : ""}  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Strict-Transport-Security: max-age=31536000; includeSubDomains\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Cross-Origin-Opener-Policy: same-origin\n/sw.js\n  Cache-Control: no-cache\n/sw-kill.json\n  Cache-Control: no-store\n`;
 }
