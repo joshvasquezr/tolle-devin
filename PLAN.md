@@ -371,7 +371,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: 90-day sessions with extension; sign-out; account export; delete cascades all rows.
   - Verify: Worker tests.
 
-- [ ] **P6.4 · Sync endpoints** (M)
+- [x] **P6.4 · Sync endpoints** (M)
   - Needs: P6.3, P0.4 · Refs: D§3.12 Sync, D§4.3
   - Files: `highlights/api.ts`, tests
   - Done when: batch upsert with LWW and per-batch `seq`; pull by cursor; `reset` logic; clamping; verse ID validation; `no-store`.
@@ -480,6 +480,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P2.1 · Verse pages are rewritten with string edits on our own build markup (not HTMLRewriter), so the logic runs and is tested in Node. · Input is our generated HTML; keeps tests runtime-free.
 - 2026-11-18 · P3.1 · MiniSearch GO with stopwords, verse text stored in the index file, adjacency re-rank and OR fallback when AND is empty · baseline DESIGN config fails the WEB "love your enemies" check (rank 5) and BSB "faith without works" (BSB says "deeds"); chosen config is 2.54–2.58 MB gz, ≤ 7 ms queries, Mt 5:44 rank ≤ 2 in all PD translations (docs/spikes/search-index.md).
 2026-11-18 · P4 checkpoint · MVP-gate budgets measured locally only: first-load JS 20.2 KB gz (≤ 60); desktop Lighthouse (P1 run) LCP 0.4 s, CLS 0; throttled mobile LCP 1.8 s exceeds 1.0 s · real preview + Josh's session still required, gate stays unticked.
+2026-11-18 · P6.4 · additive migration `0002_purged_seq.sql` (`users.purged_seq`): the purge cron records the highest purged tombstone seq so `GET /highlights` can return `reset: true` for cursors below it (or above `users.seq`) · D§3.12 requires `reset` but D§4.2 has nowhere to remember the horizon; additive, no URL/API change (autonomy, Josh 2026-11-17).
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

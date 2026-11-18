@@ -3,7 +3,7 @@ Updated: 2026-11-18 08:14 · Lead: Devin (Cognition), handed over by Josh 2026-1
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P6.4 · Sync endpoints · in progress
+P6.6 · Sign-in UI · in progress (P6.5 waits on P5.4)
 
 ## Progress
 - Branch `devin/autonomous-p0-p7` (from `main` = `045d980`); one draft PR to `main` (#1).

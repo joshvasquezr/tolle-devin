@@ -19,6 +19,7 @@ export interface UserRow {
   email: string;
   created_at: number;
   seq: number;
+  purged_seq: number;
 }
 
 export const getUserByEmail = (db: D1, email: string) => db.prepare("SELECT * FROM users WHERE email = ?1").bind(email).first<UserRow>();
@@ -29,9 +30,13 @@ export const deleteUser = (db: D1, id: string) => db.prepare("DELETE FROM users 
 /** Daily cron (D§4.2): expired tokens and sessions, tombstones older than 30 days. */
 export function purge(db: D1, nowMs: number): Promise<unknown[]> {
   const s = Math.floor(nowMs / 1000);
+  const horizon = nowMs - 30 * 86_400_000;
   return db.batch([
+    db.prepare(
+      "UPDATE users SET purged_seq = MAX(purged_seq, (SELECT MAX(seq) FROM highlights h WHERE h.user_id = users.id AND h.deleted = 1 AND h.updated_at < ?1)) WHERE EXISTS (SELECT 1 FROM highlights h WHERE h.user_id = users.id AND h.deleted = 1 AND h.updated_at < ?1)",
+    ).bind(horizon),
     db.prepare("DELETE FROM login_tokens WHERE expires_at < ?1").bind(s),
     db.prepare("DELETE FROM sessions WHERE expires_at < ?1").bind(s),
-    db.prepare("DELETE FROM highlights WHERE deleted = 1 AND updated_at < ?1").bind(nowMs - 30 * 86_400_000),
+    db.prepare("DELETE FROM highlights WHERE deleted = 1 AND updated_at < ?1").bind(horizon),
   ]);
 }

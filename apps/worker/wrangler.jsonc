@@ -19,5 +19,6 @@
   "durable_objects": { "bindings": [{ "name": "ESV_BUDGET", "class_name": "EsvBudget" }] },
   // D§4.2 (P6.1). database_id is a placeholder until a Cloudflare account exists; --local works without it.
   "d1_databases": [{ "binding": "DB", "database_name": "tolle", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }],
+  "triggers": { "crons": ["17 3 * * *"] },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EsvBudget"] }]
 }
