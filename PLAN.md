@@ -120,7 +120,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: light/dark tokens (with D7 values); type scale; self-hosted subset WOFF2 with fallback metrics; focus ring; reduced-motion rules. Contrast test passes for every text/background and text/tint pair in both modes.
   - Verify: `pnpm --filter web test contrast`
 
-- [ ] **P1.2 · Chapter renderer** (M)
+- [x] **P1.2 · Chapter renderer** (M)
   - Needs: P0.4 · Refs: D§3.3; SPEC R1–R3
   - Files: `packages/render/src/renderChapter.ts`, snapshots, tests
   - Done when: prose, poetry (indent levels), headings, psalm titles, `nd` small caps, multi-fragment verses; text escaped; verse numbers not selectable.

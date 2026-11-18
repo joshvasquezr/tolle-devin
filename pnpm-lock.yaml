@@ -186,7 +186,11 @@ importers:
 
   packages/core: {}
 
-  packages/render: {}
+  packages/render:
+    dependencies:
+      '@tolle/core':
+        specifier: workspace:*
+        version: link:../core
 
   scripts:
     dependencies:
