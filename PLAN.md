@@ -156,7 +156,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: About lists sources and statuses from `SOURCES.md`; privacy under 300 words; sitemap lists 3,567 chapters; `BreadcrumbList` present.
   - Verify: validate sitemap count; Lighthouse SEO ≥ 95.
 
-- [ ] **P1.8 · Deploy skeleton** (S)
+- [x] **P1.8 · Deploy skeleton** (S)
   - Needs: P0.12, P1.3 · Refs: D§2
   - Files: `apps/worker/wrangler.jsonc`, minimal Worker, deploy workflow
   - Done when: preview deploys of the static site on every PR; production deploy is manual.
@@ -482,7 +482,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 2026-11-18 · P4 checkpoint · MVP-gate budgets measured locally only: first-load JS 20.2 KB gz (≤ 60); desktop Lighthouse (P1 run) LCP 0.4 s, CLS 0; throttled mobile LCP 1.8 s exceeds 1.0 s · real preview + Josh's session still required, gate stays unticked.
 2026-11-18 · P6.4 · additive migration `0002_purged_seq.sql` (`users.purged_seq`): the purge cron records the highest purged tombstone seq so `GET /highlights` can return `reset: true` for cursors below it (or above `users.seq`) · D§3.12 requires `reset` but D§4.2 has nowhere to remember the horizon; additive, no URL/API change (autonomy, Josh 2026-11-17).
 - 2026-11-18 · P0.12 · Real deploy (`tolle-preview.josh-vasquez-ruiz.workers.dev`, wrangler 4.156.2) confirms the local result: asset hits (`/bsb/john/3`) come back with the Assets `etag` and no Worker headers; unmatched/`run_worker_first` paths reach the Worker (`/bsb/john/3/16` 200 with Worker `cache-control: public, max-age=86400`; `/john/3` 301; `/nope-xyz` 404 page; GET `/api/v1/me` 401). Static Assets stays. · Spike passes its exit criterion.
-- 2026-11-18 · P1.8 · Previews deploy a separate Worker `tolle-preview` (`env.preview`: own D1 `tolle-preview`, `NOINDEX=1` → `robots.txt` Disallow all + `X-Robots-Tag: noindex`) instead of `wrangler versions upload --preview-alias`, because Cloudflare generates no version/preview URLs for Workers that implement Durable Objects (`EsvBudget`). One shared preview, not one per PR. `DEV_MAIL` stays local-only, so preview sign-in waits on an email provider. Lighthouse 12 on the live preview `/bsb/john/3`: desktop LCP 0.6 s, CLS 0, perf/a11y/BP 100; throttled mobile LCP 1.9 s (> 1.0 s budget), CLS 0. SEO 66 is the intended noindex. · Durable Object platform limit; preview data must never touch production.
+- 2026-11-18 · P1.8 · Previews deploy a separate Worker `tolle-preview` (`env.preview`: own D1 `tolle-preview`, `NOINDEX=1` → `robots.txt` Disallow all + `X-Robots-Tag: noindex`) instead of `wrangler versions upload --preview-alias`, because Cloudflare generates no version/preview URLs for Workers that implement Durable Objects (`EsvBudget`). One shared preview, not one per PR. `DEV_MAIL` stays local-only, so preview sign-in waits on an email provider. Lighthouse 12 on the live preview `/bsb/john/3`: desktop LCP 0.6 s, CLS 0, perf/a11y/BP 100; throttled mobile LCP 1.9 s (> 1.0 s budget), CLS 0. SEO 66 is the intended noindex. First PR deploy from `deploy.yml` (run 44361621207, attempt 2) applied migrations and deployed `tolle-preview` with the repo secrets. · Durable Object platform limit; preview data must never touch production.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
