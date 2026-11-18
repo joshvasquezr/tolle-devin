@@ -202,7 +202,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: switcher lists BSB, KJV, WEB (ESV added in P5); switching keeps verse and scroll offset; URL and title update.
   - Verify: Playwright: John 3:16 BSB → KJV keeps verse 16 in view.
 
-- [ ] **P2.7 · Chrome auto-hide** (S)
+- [x] **P2.7 · Chrome auto-hide** (S)
   - Needs: P1.4 · Refs: D§3.9; SPEC §6.1
   - Files: `chrome.ts`
   - Done when: bar hides on scroll down, returns on scroll up, top-edge hover, or focus inside; setting turns it off.

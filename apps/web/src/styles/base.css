@@ -66,3 +66,17 @@ h1.ch:focus { outline: none; }
 #keys-help dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; }
 #keys-help dd { margin: 0; color: var(--text-2); }
 #keys-help kbd { font: inherit; font-variant-numeric: tabular-nums; border: 1px solid var(--border); border-radius: 4px; padding: 0 6px; }
+/* SPEC §6.1 sticky top bar; hairline only after scrolling; D§3.9 auto-hide by transform (no layout shift). */
+html { scroll-padding-top: 56px; overflow-x: clip; }
+header.bar {
+  position: sticky; top: 0; z-index: 10;
+  transition: transform var(--t-open) var(--ease);
+}
+/* Full-bleed background behind the centered bar, without clipping its dropdowns. */
+header.bar::before {
+  content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1;
+  background: var(--bg); border-bottom: 1px solid transparent;
+}
+header.bar.scrolled::before { border-bottom-color: var(--border); }
+header.bar.chrome-hidden { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { header.bar { transition: none; } }
