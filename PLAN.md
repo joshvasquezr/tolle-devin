@@ -62,7 +62,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: all rows in SPEC §5.3 pass; ≥ 300 vectors (abbreviations, spacing, `.`/`:`/space separators, en dash, Roman and spelled ordinals, single-chapter books, ambiguity, out-of-range, search fallback, `;` truncation); parse takes < 1 ms per input.
   - Verify: `pnpm --filter core test parse`
 
-- [ ] **P0.6 · Route resolver and path formatter** (S)
+- [x] **P0.6 · Route resolver and path formatter** (S)
   - Needs: P0.5 · Refs: D§3.1 Route; SPEC "URLs"
   - Files: `packages/core/src/route.ts`, tests
   - Done when: `resolveRoute` and `formatPath` cover chapter, verses, alias redirect, default-translation redirect, static, notfound; `parse → formatPath → resolveRoute` round-trips for every chapter.
@@ -465,6 +465,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-17 · P0.4 · `Translation = 'bsb' | 'kjv' | 'web' | 'esv'` and the D§3.2 content types live in `packages/core/src/types.ts`; `PD_TRANSLATIONS` names the static three. Shared vectors in `test-vectors/verse-ids.json` (15 valid, 10 invalid). · Josh approved.
 - 2026-11-18 · P0.5 · Parser edge rules not fixed by SPEC/DESIGN: `c:v-c2:v2` keeps `c:v`; multi-chapter `john 3-4` keeps chapter 3; single-chapter `jude 3-5` is a verse range; a range end past the chapter is clamped; reversed/equal ends collapse to one verse; Roman/spelled ordinals need a separator (so `isa` is not `i sa`); single verse = `vStart` only, range = `vStart`+`vEnd`. · Routine (standing autonomy); stricter-or-simplest reading, all pinned in test-vectors/refs.json.
 - 2026-11-18 · P0.8 · Versemap files live in `packages/core/data/versemap/{tr}.json` (schema 1: `{book, ch, v, canonical[]}` exceptions) and are imported statically, so core stays I/O-free; `toCanonical` returns [] for a local verse with no canonical counterpart. · Routine (standing autonomy).
+- 2026-11-18 · P0.6 · Route canonical form: lowercase translation + slug, no leading zeros, no trailing slash needed (trailing slash tolerated, not redirected); `/{tr}/{book}` → 301 `/{tr}/{book}/1`; `v-v` → single verse; reversed or out-of-range verses → notfound (URLs are strict, the parser is forgiving); ESV parts use `?part=n` (bad part → 301 to part 1). `resolveRoute` takes a `{get()}` query so core stays DOM-free. · Routine (standing autonomy).
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
