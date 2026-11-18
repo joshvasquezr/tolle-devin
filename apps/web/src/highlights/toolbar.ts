@@ -1,7 +1,9 @@
 // D§3.10 Toolbar (SPEC §5.5, §6.8): four tints and, when needed, remove; floats 8 px above the
 // selection (below when there is no room), clamped to the viewport.
 import { COLORS, type Color } from "./store.ts";
-import { applyColor, colorsByVerse } from "./paint.ts";
+import { applyColor, colorsByVerse, paint } from "./paint.ts";
+import { history } from "./history.ts";
+import { openStore } from "./store.ts";
 import { clearVerseSelection, describe, getSelectedVerses } from "./selection.ts";
 
 const NAMES: Record<Color, string> = { sand: "Sand", sage: "Sage", slate: "Slate", rose: "Rose" };
@@ -91,7 +93,7 @@ async function show(): Promise<void> {
 export async function highlight(color: Color | null): Promise<void> {
   const vs = [...getSelectedVerses()];
   if (!vs.length) return;
-  await applyColor(vs, color);
+  history.record(await applyColor(vs, color));
   hideToolbar();
   clearVerseSelection(true);
   const live = document.getElementById("live");
@@ -103,3 +105,18 @@ addEventListener("scroll", () => {
   if (bar?.classList.contains("on") && !place(bar)) hideToolbar();
 }, { passive: true });
 addEventListener("quiet:chapter", hideToolbar);
+
+// Cmd/Ctrl+Z (D§3.10): undo the last highlight change; text fields keep their own undo.
+document.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() !== "z" || e.shiftKey || e.altKey || !(e.metaKey || e.ctrlKey) || e.isComposing) return;
+  if ((e.target as HTMLElement).closest?.("input, textarea, select, [contenteditable]")) return;
+  if (!history.size) return;
+  e.preventDefault();
+  void (async () => {
+    if (await history.undo(await openStore())) {
+      await paint();
+      const live = document.getElementById("live");
+      if (live) live.textContent = "Highlight change undone";
+    }
+  })();
+});

@@ -37,6 +37,7 @@ export const BINDINGS: Binding[] = [
   { keys: ["?"], label: "?", desc: "Show keyboard shortcuts", run: () => showHelp() },
   ...COLORS.map((c, i) => ({ keys: [String(i + 1)], label: i ? "" : "1 – 4", desc: i ? "" : "Highlight selected verses (Sand, Sage, Slate, Rose)", when: hasVerseSelection, run: () => void highlight(c) })),
   { keys: ["0", "Backspace"], label: "0", desc: "Remove highlight from selected verses", when: hasVerseSelection, run: () => void highlight(null) },
+  { keys: [], label: "⌘/Ctrl Z", desc: "Undo the last highlight change", run: () => {} },
   { keys: ["Escape"], label: "Esc", desc: "Close, clear selection, leave input", run: () => clearVerseSelection() },
 ];
 

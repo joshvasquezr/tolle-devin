@@ -264,7 +264,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: toolbar shows four tints and remove; places above or below; applies to whole verses; repaint via `data-hl`; `box-decoration-break: clone` on wraps; `1`–`4`/`0` keys; "highlighted" text for screen readers.
   - Verify: Playwright apply, change, remove; screenshot tests in both themes.
 
-- [ ] **P4.4 · Undo** (S)
+- [x] **P4.4 · Undo** (S)
   - Needs: P4.3 · Refs: D§3.10 Apply step 4
   - Files: `history.ts`
   - Done when: `Cmd/Ctrl+Z` undoes the last 50 operations as new writes with fresh timestamps.

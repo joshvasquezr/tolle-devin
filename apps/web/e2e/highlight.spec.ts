@@ -103,3 +103,17 @@ for (const scheme of ["light", "dark"] as const) {
     await expect(toolbar(page)).toHaveScreenshot(`toolbar-${scheme}.png`, { maxDiffPixelRatio: 0.01 });
   });
 }
+
+test("Ctrl+Z undoes the last highlight changes in order", async ({ page }) => {
+  await page.goto("/bsb/john/3");
+  await pick(page, 2);
+  await page.keyboard.press("1");
+  await pick(page, 2);
+  await page.keyboard.press("4");
+  await expect(verse(page, 2).first()).toHaveAttribute("data-hl", "rose");
+  await page.keyboard.press("Control+z");
+  await expect(verse(page, 2).first()).toHaveAttribute("data-hl", "sand");
+  await expect(page.locator("#live")).toHaveText("Highlight change undone");
+  await page.keyboard.press("Control+z");
+  await expect(verse(page, 2).first()).not.toHaveAttribute("data-hl", /.*/);
+});
