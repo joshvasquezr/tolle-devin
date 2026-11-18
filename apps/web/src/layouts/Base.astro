@@ -45,6 +45,8 @@ const url = new URL(canonical, Astro.site).href;
     <footer class="col foot"><a href="/about">About</a><a href="/privacy">Privacy</a></footer>
     <div id="live" class="sr-only" aria-live="polite"></div>
     <script>
+      // One external module for all islands: Astro would inline small component scripts, which CSP blocks.
+      import "../scripts/settings.ts";
       import "../scripts/pos.ts";
       import "../scripts/router.ts";
     </script>

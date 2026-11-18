@@ -1,15 +1,15 @@
 # STATE
-Updated: 2026-11-18 07:14 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
+Updated: 2026-11-18 07:16 · Lead: Devin (Cognition), handed over by Josh 2026-11-17 from Claude Code
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P1.8 · Deploy skeleton · in progress
+P2.1 · Worker route fallback · in progress (P1.8 code done, deploy verification blocked)
 
 ## Progress
 - Baseline verified: `main` = `045d980` (docs refinement pushed). Branch `devin/autonomous-p0-p7` from it; one draft PR to `main`.
 - P0.4 decisions approved by Josh: invalid ids throw `RangeError` + `isVerseId()`; branded numeric `VerseId`; `Translation = 'bsb' | 'kjv' | 'web' | 'esv'`; content types in `packages/core/src/types.ts`; 10–20 shared vectors in `test-vectors/verse-ids.json`.
 - Toolchain on this VM: Node 24.22.2 (nvm), pnpm 12.16.1 global. Baseline `install --frozen-lockfile`, `-r typecheck`, `-r test` green (72 tests).
-- P0.4–P0.11, P0.13 done. P0.12 local `wrangler dev` result in `docs/spikes/assets-routing.md`; box unticked until a real deploy.
+- P0.4–P0.11, P0.13, P1.1–P1.7 done; P1.8 code done (unticked: no deploy). P0.12 local `wrangler dev` result in `docs/spikes/assets-routing.md`; box unticked until a real deploy.
 
 ## Needs decision
 - (none; external blockers are listed below)

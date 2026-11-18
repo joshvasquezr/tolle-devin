@@ -73,3 +73,30 @@ jobs:
       # SPEC §7 / D§8: secrets never committed. Redacted output only.
       - name: Secret scan (full git history)
         run: gitleaks git . --redact --no-banner --verbose --exit-code 1
+
+  # D§9: static build and browser flows (Playwright + axe) on every PR.
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Install
+        run: |
+          npm install --global "pnpm@${PNPM_VERSION}"
+          pnpm install --frozen-lockfile
+
+      - name: Build (data + site)
+        run: pnpm build
+
+      - name: Install Playwright Chromium
+        run: pnpm --filter @tolle/web exec playwright install --with-deps chromium
+
+      - name: Playwright + axe
+        run: pnpm --filter @tolle/web e2e

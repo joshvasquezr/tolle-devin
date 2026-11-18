@@ -476,6 +476,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P0.13 · No lazy-loading of aliases or picker data: router + parser + books = 6.7 KB gz (aliases ≈ 0.7 KB). Revisit if first-load JS passes 45 KB gz. · Measured in docs/spikes/js-budget.md.
 - 2026-11-18 · P1.3 · Astro build reads chapter JSON from `public/data` relative to the app root (process.cwd()), and canonical/OG URLs use `SITE_URL` until the domain is chosen. · Prerender bundles run from dist/, so import.meta.url paths break.
 - 2026-11-18 · P1.4 · Inline boot script reads the whole `quiet.settings.v1` object (not a separate `localStorage.theme`); CSP and security headers ship as a build-generated `dist/_headers` for Static Assets. · One storage key per D§3.9; hash always matches served bytes.
+- 2026-11-18 · P1.8 · Deploy skeleton code (wrangler.jsonc, minimal Worker, deploy workflow) is committed and verified under local `wrangler dev`; the box stays unticked until a real preview deploy. P2+ tasks that need P1.8 only for its code proceed (standing autonomy: "document external blockers and continue independent tasks"). · No Cloudflare credentials; the dependency is on the deploy, not on code.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
