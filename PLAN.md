@@ -178,7 +178,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: `data-focus` range gets a quiet marker and is scrolled to viewport center; works on direct load and client navigation; the marker is not a highlight.
   - Verify: Playwright on `/bsb/1-corinthians/13/4-7`.
 
-- [ ] **P2.3 · Reference bar** (M)
+- [x] **P2.3 · Reference bar** (M)
   - Needs: P0.5, P1.6 · Refs: D§3.4; SPEC P1–P7, §6.7
   - Files: `refbar.ts`, markup, CSS
   - Done when: combobox ARIA; inline suggestion; ≤ 3 rows for ambiguity; invalid message with suggestion; `Esc` restores label; `Cmd/Ctrl+Enter` forces search; width animation; navigation via router.

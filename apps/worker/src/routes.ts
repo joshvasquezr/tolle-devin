@@ -19,6 +19,7 @@ function outOfRangeVerse(url: URL): Response | null {
   return null;
 }
 
+/** Rewritten verse pages are cached for 24 h in the Cache API (D§6.3); PD only. */
 async function verses(req: Request, env: Env, tr: "bsb" | "kjv" | "web", ref: Ref): Promise<Response> {
   const origin = new URL(req.url).origin;
   const chapterPath = formatPath(tr, { book: ref.book, chapter: ref.chapter });
@@ -27,6 +28,12 @@ async function verses(req: Request, env: Env, tr: "bsb" | "kjv" | "web", ref: Re
     env.ASSETS.fetch(new Request(`${origin}/data/${tr}/${getBook(ref.book).slug}/${ref.chapter}.json`)),
   ]);
   if (!page.ok || !data.ok) throw new Error(`asset ${page.status}/${data.status}`);
+  // Cache key carries the chapter asset's ETag: a new deploy changes the page (and its hashed
+  // script URLs), so stale rewrites are never served after a release.
+  const cache = typeof caches === "undefined" ? undefined : (caches as unknown as { default?: Cache }).default;
+  const key = new Request(`${req.url}${req.url.includes("?") ? "&" : "?"}__v=${encodeURIComponent(page.headers.get("ETag") ?? "0")}`);
+  const hit = await cache?.match(key);
+  if (hit) return hit;
   const text = plainVerses((await data.json()) as Chapter);
   const end = ref.vEnd ?? ref.vStart!;
   const parts: string[] = [];
@@ -48,7 +55,9 @@ async function verses(req: Request, env: Env, tr: "bsb" | "kjv" | "web", ref: Re
   headers.delete("ETag");
   headers.set("Content-Type", "text/html; charset=utf-8");
   headers.set("Cache-Control", `public, max-age=${DAY}`);
-  return new Response(html, { headers });
+  const res = new Response(html, { headers });
+  if (cache && req.method === "GET") await cache.put(key, res.clone());
+  return res;
 }
 
 export async function notFound(req: Request, env: Env): Promise<Response> {
@@ -69,22 +78,11 @@ export async function handlePage(req: Request, env: Env): Promise<Response> {
     case "verses": {
       // ESV pages are added (gated) in P5.
       if (route.tr === "esv") return notFound(req, env);
-      const tr = route.tr;
-      return cached(req, () => verses(req, env, tr, route.ref));
+      return verses(req, env, route.tr, route.ref);
     }
     case "notfound":
       return outOfRangeVerse(url) ?? notFound(req, env);
     default:
       return notFound(req, env);
   }
-}
-
-/** Rewritten verse pages are cached for 24 h in the Cache API (D§6.3); PD only. */
-async function cached(req: Request, make: () => Promise<Response>): Promise<Response> {
-  const cache = typeof caches === "undefined" ? undefined : (caches as unknown as { default?: Cache }).default;
-  const hit = await cache?.match(req);
-  if (hit) return hit;
-  const res = await make();
-  if (cache && req.method === "GET") await cache.put(req, res.clone());
-  return res;
 }

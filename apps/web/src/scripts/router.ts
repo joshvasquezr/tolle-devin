@@ -98,6 +98,14 @@ document.addEventListener("click", (e) => {
   void go(t, url.pathname, "push");
 });
 
+// Programmatic navigation (reference bar, picker): router when possible, else a normal page load.
+addEventListener("quiet:navigate", (e) => {
+  const url = new URL((e as CustomEvent<{ url: string }>).detail.url, location.href);
+  const t = target(url);
+  if (t) void go(t, url.pathname, "push");
+  else location.assign(url.href);
+});
+
 addEventListener("popstate", (e) => {
   const t = current();
   if (!t) {
