@@ -1,6 +1,7 @@
 // D§3.6 keyboard dispatcher. Bindings are data; the "?" list is rendered from the same table (no drift).
 import { openPicker } from "./picker.ts";
 import { toggleTheme } from "./settings.ts";
+import { openSwitcher } from "./translations.ts";
 
 interface Binding {
   keys: string[]; // KeyboardEvent.key values
@@ -28,6 +29,7 @@ export const BINDINGS: Binding[] = [
   { keys: ["ArrowRight"], label: "→", desc: "Next chapter", when: () => noSelection() && onPage(), run: () => follow("bar-next") },
   { keys: ["j", "J"], label: "J / K", desc: "Scroll down / up by a screen", run: () => scrollBy({ top: innerHeight * 0.9, behavior: "smooth" }) },
   { keys: ["k", "K"], label: "", desc: "", run: () => scrollBy({ top: -innerHeight * 0.9, behavior: "smooth" }) },
+  { keys: ["t", "T"], label: "T", desc: "Switch translation", run: openSwitcher },
   { keys: ["d", "D"], label: "D", desc: "Toggle light / dark", run: toggleTheme },
   { keys: ["?"], label: "?", desc: "Show keyboard shortcuts", run: () => showHelp() },
   { keys: ["Escape"], label: "Esc", desc: "Close, clear selection, leave input", run: () => getSelection()?.removeAllRanges() },

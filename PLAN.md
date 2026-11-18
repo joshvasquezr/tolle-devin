@@ -196,7 +196,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: all shortcuts in SPEC §6.9 work; ignored in inputs, with IME composition, and when a popover owns the key; `?` popover is generated from the same binding table.
   - Verify: Playwright matrix (focused input vs body vs popover open).
 
-- [ ] **P2.6 · Translation switcher** (S)
+- [x] **P2.6 · Translation switcher** (S)
   - Needs: P1.6 · Refs: D§3.7; SPEC T2, T3
   - Files: `translations.ts`
   - Done when: switcher lists BSB, KJV, WEB (ESV added in P5); switching keeps verse and scroll offset; URL and title update.

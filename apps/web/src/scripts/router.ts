@@ -51,8 +51,11 @@ function prefetchAdjacent(): void {
 
 let seq = 0;
 
-async function go(t: Target, url: string, mode: "push" | "pop", scrollY = 0): Promise<void> {
+interface Anchor { v: number; offset: number }
+
+async function go(t: Target, url: string, mode: "push" | "pop", scrollY = 0, anchor?: Anchor): Promise<void> {
   const n = ++seq;
+  const startFocus = document.activeElement;
   let ch: Chapter;
   try {
     ch = await load(t);
@@ -76,14 +79,22 @@ async function go(t: Target, url: string, mode: "push" | "pop", scrollY = 0): Pr
     foot?.replaceWith(foot.cloneNode(true));
     document.title = t.label ? `${t.label} — ${TRANSLATION_NAMES[t.tr]}` : chapterTitle(t.tr, t.book, t.chapter);
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", new URL(url, location.origin).href);
-    window.scrollTo(0, scrollY);
+    // D§3.7: a translation switch keeps the same verse at the same viewport offset.
+    const el = anchor && main.querySelector<HTMLElement>(`article.chapter .v[data-v="${anchor.v}"]`);
+    if (el) window.scrollTo(0, window.scrollY + el.getBoundingClientRect().top - anchor.offset);
+    else window.scrollTo(0, scrollY);
   };
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (document.startViewTransition && !reduce) await document.startViewTransition(swap).updateCallbackDone;
   else swap();
-  (main.querySelector<HTMLElement>("h1 .ch-btn") ?? main.querySelector<HTMLElement>("h1"))?.focus({ preventScroll: true });
+  // Move focus to the new heading unless the reader already moved it elsewhere (e.g. "/" into the
+  // reference bar) while the chapter was loading.
+  const now = document.activeElement;
+  if (now === startFocus || !now || now === document.body || main.contains(now)) {
+    (main.querySelector<HTMLElement>("h1 .ch-btn") ?? main.querySelector<HTMLElement>("h1"))?.focus({ preventScroll: true });
+  }
   document.getElementById("live")!.textContent = t.label ?? chapterLabel(t.book, t.chapter);
-  dispatchEvent(new CustomEvent("quiet:chapter", { detail: { scroll: mode === "push" } }));
+  dispatchEvent(new CustomEvent("quiet:chapter", { detail: { scroll: mode === "push" && !anchor } }));
   prefetchAdjacent();
 }
 
@@ -100,9 +111,10 @@ document.addEventListener("click", (e) => {
 
 // Programmatic navigation (reference bar, picker): router when possible, else a normal page load.
 addEventListener("quiet:navigate", (e) => {
-  const url = new URL((e as CustomEvent<{ url: string }>).detail.url, location.href);
+  const { url: raw, anchor } = (e as CustomEvent<{ url: string; anchor?: Anchor }>).detail;
+  const url = new URL(raw, location.href);
   const t = target(url);
-  if (t) void go(t, url.pathname, "push");
+  if (t) void go(t, url.pathname, "push", 0, anchor);
   else location.assign(url.href);
 });
 

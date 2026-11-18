@@ -1,0 +1,22 @@
+---
+// D§3.7 translation switcher (SPEC T2). ESV joins in P5 behind its compliance gate.
+import { PD_TRANSLATIONS, TRANSLATION_NAMES } from "@tolle/core";
+---
+<button id="tr-btn" class="btn tr-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="tr-pop" title="Translation (T)">BSB</button>
+<div id="tr-pop" popover="auto" role="dialog" aria-label="Choose a translation">
+  {PD_TRANSLATIONS.map((t) => (
+    <button type="button" class="tr-opt" data-tr={t}><span class="tr-abbr">{t.toUpperCase()}</span> {TRANSLATION_NAMES[t]}</button>
+  ))}
+</div>
+<style is:global>
+  .tr-btn::after { content: " ▾" / ""; font-size: .7em; color: var(--text-2); }
+  #tr-pop {
+    position: fixed; inset: 52px auto auto 50%; translate: -50% 0; margin: 0; padding: 6px; min-inline-size: 260px;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 10px; font-size: 14px;
+  }
+  #tr-pop:popover-open { animation: pk-in var(--t-open) var(--ease); }
+  .tr-opt { display: block; inline-size: 100%; text-align: start; padding: 8px 10px; background: transparent; border: 0; border-radius: 6px; font: inherit; color: inherit; cursor: pointer; }
+  .tr-opt:hover, .tr-opt:focus-visible { background: var(--hover); }
+  .tr-opt[aria-current="true"] { font-weight: 600; }
+  .tr-abbr { display: inline-block; min-inline-size: 3em; }
+</style>

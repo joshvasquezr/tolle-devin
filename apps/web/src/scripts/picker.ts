@@ -113,7 +113,7 @@ if (panel) {
       const t = trigger();
       t?.setAttribute("aria-expanded", "false");
       // N1: focus returns to the heading (router focuses the new heading after a selection).
-      if (panel.contains(document.activeElement) || document.activeElement === document.body) t?.focus();
+      if (panel.contains(document.activeElement) || document.activeElement === document.body) t?.focus({ preventScroll: true });
     }
   });
   booksView.addEventListener("click", (e) => {
