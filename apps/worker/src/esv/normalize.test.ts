@@ -1,4 +1,4 @@
-// P5.2 (unticked until P5.1 live fixtures): D§3.12 Normalizer against synthetic ESV-shaped markup
+// P5.2: D§3.12 Normalizer against synthetic ESV-shaped markup
 // (placeholder words, no ESV text) and hostile input.
 import { describe, expect, it } from "vitest";
 import { normalizeEsv } from "./normalize.ts";

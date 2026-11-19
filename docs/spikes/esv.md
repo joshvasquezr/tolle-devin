@@ -9,7 +9,7 @@ Response keys: `query`, `canonical`, `parsed` (`[[startVerseId, endVerseId]]`, E
 
 ## Observed markup (tags/classes across the five fixtures)
 - Tags: `h3` (section heading), `h4` (psalm title, class `psalm-title`), `p` (prose paragraph; first has `starts-chapter`), `b` (verse number wrapper), `span`, `br`.
-- Classes: `verse-num` (on `b`), `woc` (words of Christ), `divine-name` (LORD small caps), `block-indent` (poetry container `p`), `line` (poetry line span), `indent` (indented line), `inline`, `begin-line-group` / `end-line-group` (stanza breaks).
+- Classes: `verse-num` (on `b`), `woc` (words of Christ), `divine-name` (only inside headings, e.g. Psalm 23's "The Lord Is My Shepherd"; verse text spells it "LORD" in plain capitals), `block-indent` (poetry container `p`), `line` (poetry line span), `indent` (indented line), `inline`, `begin-line-group` / `end-line-group` (stanza breaks).
 - Query gotcha: `q=Jude 1` returns only verse 1 (book/verse, not chapter); query single-chapter books by book name (`q=Jude`).
 - Omitted verses: Matthew 17 returns 26 verse numbers (17:21 absent), matching `packages/core/data/versemap`.
 

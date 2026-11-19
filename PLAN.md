@@ -307,7 +307,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: live API option names confirmed; fixtures captured for John 3, Psalm 23, Proverbs 3, Jude, one chapter with omitted verses; no fixture exceeds the allowed quantity.
   - Verify: doc lists final query options.
 
-- [ ] **P5.2 · Normalizer** (M)
+- [x] **P5.2 · Normalizer** (M)
   - Needs: P5.1, P0.4 · Refs: D§3.12 Normalizer
   - Files: `apps/worker/src/esv/normalize.ts`, tests
   - Done when: ESV markup → `Block[]` with headings, paragraphs, poetry indents, verse markers; unknown tags dropped; output has no HTML.

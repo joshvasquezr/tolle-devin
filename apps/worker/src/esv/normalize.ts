@@ -1,6 +1,6 @@
 // D§3.12 Normalizer: allow-list tokenizer from ESV passage HTML to Block[] (headings, paragraphs,
 // poetry lines and indents, verse markers, divine name). Unknown tags are dropped, their text kept;
-// output holds no HTML. Tag/class names follow the public API docs and stay unverified until P5.1.
+// output holds no HTML. Tag/class names verified against live fixtures (P5.1, docs/spikes/esv.md).
 import type { Block, Item, Line } from "@tolle/core";
 
 const ENTITIES: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", "#8217": "’", "#8216": "‘", "#8220": "“", "#8221": "”", "#8212": "—", "#8211": "–" };
