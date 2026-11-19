@@ -319,7 +319,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: sliding windows (60/min, 1,000/h, 5,000/day); open/soft(80%)/hard(95%) states; persisted across restarts.
   - Verify: Worker tests simulate bursts and day rollover.
 
-- [ ] **P5.4 · Passage endpoint with cache** (M)
+- [x] **P5.4 · Passage endpoint with cache** (M)
   - Needs: P5.2, P5.3, P0.7 · Refs: D§3.12 Passage flow
   - Files: `apps/worker/src/esv/passage.ts`, tests
   - Done when: validates `book/chapter/part`; KV cache key and TTL ≤ 24 h; single-flight; per-visitor limit; `Cache-Control: private`; key only in upstream header; errors per D§3.12.
@@ -486,6 +486,9 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P5.0 · Crossway replied (verbatim in `docs/esv-compliance.md`): the 500-verse limit covers the whole cache at once, so the ESV server cache must hold ≤ 500 verses in total (stricter than D§3.12, adopted now for P5.4); single-chapter books may be shown whole and indexing is allowed (both loosen rules, so they wait for Josh); citation wording is fixed for P5.6. · Crossway written answer; stricter reading applies by default.
 - 2026-11-18 · P5.0 · Josh approved showing single-chapter ESV books whole (`esvCap` = book length for Obadiah, Philemon, 2 John, 3 John, Jude; Crossway permits it) and keeping ESV pages `noindex` despite Crossway allowing indexing. · Crossway written answer + Josh approval (AGENTS.md: loosening needs both); crawlers would spend the ESV API budget.
 - 2026-11-19 · P5.1 · Live ESV v3 HTML options and markup recorded in `docs/spikes/esv.md`; 5 fixtures (128 verses total) committed with the Crossway citation. Single-chapter books must be queried by book name (`q=Jude`). · Spike passes; normalizer (P5.2) next.
+- 2026-11-19 · P5.4 · ESV cache lives in the memory of the single `EsvBudget` DO, capped at 500 verses total (LRU) with a 24 h TTL, instead of KV with one entry per window. · Crossway: the 500-verse limit covers everything stored at once (`docs/esv-compliance.md`); per-entry KV cannot enforce a global total. Stricter reading of D§3.12.
+- 2026-11-19 · P5.4 · ESV endpoints answer only when `ESV_ENABLED=1` and `ESV_API_KEY` and `ESV_BUDGET` are present; otherwise 404. Per-visitor limit is a per-isolate 20/min counter on a hashed IP key until the rate-limiting binding is wired. · Keeps ESV hidden on the preview until P5.5–P5.8 pass; the binding adds config and is not needed for correctness.
+- 2026-11-19 · P5.4 · Upstream query is `<Book name> <chapter>:<vStart>-<vEnd>`; responses whose `parsed` range leaves the requested window are refused (503 esv_unavailable). · The P5.1 spike showed `Jude 1` means verse 1; the range check guarantees one call never exceeds the cap.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

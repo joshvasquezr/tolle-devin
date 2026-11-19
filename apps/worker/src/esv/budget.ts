@@ -1,5 +1,8 @@
 // D§3.12 Budget (SPEC §8.1): upstream ESV calls counted in sliding windows (60/min, 1,000/h,
 // 5,000/day). Soft at ≥ 80% of any window (cache-only, no search), hard at ≥ 95% (no upstream).
+import type { Block } from "@tolle/core";
+import { VerseCappedCache } from "./cache.ts";
+
 export const WINDOWS = [
   { ms: 60_000, limit: 60 },
   { ms: 3_600_000, limit: 1_000 },
@@ -50,10 +53,12 @@ interface DoState {
 
 /**
  * The EsvBudget durable object (one global instance, idFromName("global")). Timestamps persist in
- * DO storage, so restarts and evictions keep the windows. Requests: POST /consume {kind}, GET /state.
+ * DO storage, so restarts and evictions keep the windows. Requests: POST /consume {kind}, GET /state,
+ * GET /cache?key=… and PUT /cache {key, blocks, verses} (the 500-verse ESV cache, memory only).
  */
 export class EsvBudget {
   private ts: number[] = [];
+  private readonly cache = new VerseCappedCache();
   private readonly state: DoState;
   private readonly clock: () => number;
   constructor(state: DoState, _env?: unknown, clock: () => number = Date.now) {
@@ -74,6 +79,14 @@ export class EsvBudget {
       this.ts = r.ts;
       await this.state.storage.put("ts", this.ts);
       return Response.json({ ok: r.ok, state: r.ok ? stateOf(this.ts, now) : r.state });
+    }
+    if (url.pathname === "/cache") {
+      if (req.method === "GET") return Response.json({ blocks: this.cache.get(url.searchParams.get("key") ?? "", now) ?? null });
+      if (req.method === "PUT") {
+        const b = (await req.json().catch(() => ({}))) as { key?: unknown; blocks?: unknown; verses?: unknown };
+        const ok = typeof b.key === "string" && Array.isArray(b.blocks) && this.cache.put(b.key, b.blocks as Block[], Number(b.verses), now);
+        return Response.json({ ok });
+      }
     }
     if (req.method === "GET" && url.pathname === "/state") return Response.json({ state: stateOf(prune(this.ts, now), now) });
     return new Response("not found", { status: 404 });

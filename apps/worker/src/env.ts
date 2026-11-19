@@ -7,6 +7,10 @@ export interface Env {
   ASSETS: AssetsBinding;
   /** P5: absent until ESV is enabled (compliance-gated). */
   ESV_BUDGET?: DoNamespace;
+  /** Worker secret (`wrangler secret put ESV_API_KEY`); only ever sent upstream in the Authorization header. */
+  ESV_API_KEY?: string;
+  /** Compliance gate: ESV endpoints answer only when "1" (P5.8 checks pass and Josh enables it). */
+  ESV_ENABLED?: string;
   /** P6: accounts and sync (D§4.2). */
   DB?: import("./db.ts").D1;
   /** Magic-link email sender; none configured yet (sending is a no-op). */
