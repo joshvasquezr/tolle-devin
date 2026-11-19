@@ -1,9 +1,8 @@
 // P5.5 · D§3.12 ESV search (SPEC S6): proxied, shares the budget (refused from soft on), nothing cached.
 import { BOOKS, ESV_CITATION, esvCap, parseInput } from "@tolle/core";
 import { sha256Hex } from "../auth/crypto.ts";
-import { defaults, int, reply, type EsvDeps, type EsvEnv } from "./passage.ts";
+import { ESV_API_BASE, defaults, int, reply, type EsvDeps, type EsvEnv } from "./passage.ts";
 
-export const ESV_SEARCH_UPSTREAM = "https://api.esv.org/v3/passage/search/";
 // One page may be all from one book, so it must fit the smallest per-book cap (Haggai 19, 2 John 13).
 export const SEARCH_PAGE_SIZE = Math.min(10, ...BOOKS.map((b) => esvCap(b.id)));
 
@@ -21,7 +20,7 @@ export async function handleEsvSearch(req: Request, env: EsvEnv, deps: EsvDeps =
   if (!budget.ok) return reply({ error: "esv_busy" }, 503);
   try {
     const params = new URLSearchParams({ q: query, "page-size": String(SEARCH_PAGE_SIZE), page: String(page) });
-    const res = await deps.fetch(`${ESV_SEARCH_UPSTREAM}?${params}`, { headers: { Authorization: `Token ${env.ESV_API_KEY}` } });
+    const res = await deps.fetch(`${env.ESV_UPSTREAM ?? ESV_API_BASE}passage/search/?${params}`, { headers: { Authorization: `Token ${env.ESV_API_KEY}` } });
     if (!res.ok) return reply({ error: "esv_unavailable" }, 503);
     const data = (await res.json()) as { total_pages?: number; results?: { reference?: unknown; content?: unknown }[] };
     const results = [];

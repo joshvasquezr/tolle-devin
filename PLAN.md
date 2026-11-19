@@ -331,7 +331,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: proxied search with page-size within the verse cap; shares the budget.
   - Verify: Worker tests.
 
-- [ ] **P5.6 · ESV client shell and rendering** (M)
+- [x] **P5.6 · ESV client shell and rendering** (M)
   - Needs: P5.4, P1.6, P2.6 · Refs: D§1 D6, D§3.8; SPEC T5, T6
   - Files: `/esv/*` shell page, client loader
   - Done when: ESV appears in the switcher; shell page is `noindex` with no ESV text; loader renders via the shared renderer; paging control for multi-window chapters; skeleton after 200 ms; no ESV prefetch; ESV text kept out of SW, IndexedDB, and any persistent store.
@@ -490,6 +490,8 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-19 · P5.4 · ESV endpoints answer only when `ESV_ENABLED=1` and `ESV_API_KEY` and `ESV_BUDGET` are present; otherwise 404. Per-visitor limit is a per-isolate 20/min counter on a hashed IP key until the rate-limiting binding is wired. · Keeps ESV hidden on the preview until P5.5–P5.8 pass; the binding adds config and is not needed for correctness.
 - 2026-11-19 · P5.4 · Upstream query is `<Book name> <chapter>:<vStart>-<vEnd>`; responses whose `parsed` range leaves the requested window are refused (503 esv_unavailable). · The P5.1 spike showed `Jude 1` means verse 1; the range check guarantees one call never exceeds the cap.
 - 2026-11-19 · P5.5 · ESV search page size is `min(10, smallest esvCap)` and search results are never cached. · A page could be all from one book (Haggai's cap is 19); not caching keeps search outside the 500-verse storage total.
+- 2026-11-19 · P5.6 · ESV shell is the static page `/esv/` (no text, noindex); the Worker serves it for ESV chapter/verse URLs only when ESV is enabled. The switcher lists ESV only in builds with `ESV_ENABLED=1`; CI builds that way, deploys do not yet. · Keeps ESV invisible on the preview until P5.7–P5.8 pass and Josh enables it.
+- 2026-11-19 · P5.6 · The client fetches ESV with `cache: "no-store"`; e2e uses a placeholder-text mock through the Worker var `ESV_UPSTREAM` (local Playwright only). · Keeps ESV text out of the HTTP cache as well as SW/IndexedDB; tests never need the real key or quota.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

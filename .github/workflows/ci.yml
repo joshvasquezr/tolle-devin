@@ -78,6 +78,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
+    # P5.6: CI builds list ESV in the switcher; e2e serves it from a placeholder mock (apps/web/e2e/esv-mock.ts).
+    env:
+      ESV_ENABLED: "1"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

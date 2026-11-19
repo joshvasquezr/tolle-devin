@@ -1,10 +1,11 @@
 ---
-// D§3.7 translation switcher (SPEC T2). ESV joins in P5 behind its compliance gate.
-import { PD_TRANSLATIONS, TRANSLATION_NAMES } from "@tolle/core";
+// D§3.7 translation switcher (SPEC T2). ESV is listed only in builds with ESV_ENABLED=1 (compliance gate, P5.6).
+import { PD_TRANSLATIONS, TRANSLATION_NAMES, type Translation } from "@tolle/core";
+const options: Translation[] = [...PD_TRANSLATIONS, ...(process.env.ESV_ENABLED === "1" ? (["esv"] as const) : [])];
 ---
 <button id="tr-btn" class="btn tr-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="tr-pop" title="Translation (T)">BSB</button>
 <div id="tr-pop" popover="auto" role="dialog" aria-label="Choose a translation">
-  {PD_TRANSLATIONS.map((t) => (
+  {options.map((t) => (
     <button type="button" class="tr-opt" data-tr={t}><span class="tr-abbr">{t.toUpperCase()}</span> {TRANSLATION_NAMES[t]}</button>
   ))}
 </div>

@@ -11,6 +11,8 @@ export interface Env {
   ESV_API_KEY?: string;
   /** Compliance gate: ESV endpoints answer only when "1" (P5.8 checks pass and Josh enables it). */
   ESV_ENABLED?: string;
+  /** Local Playwright only: base URL replacing https://api.esv.org/v3/ (a placeholder-text mock). */
+  ESV_UPSTREAM?: string;
   /** P6: accounts and sync (D§4.2). */
   DB?: import("./db.ts").D1;
   /** Magic-link email sender; none configured yet (sending is a no-op). */

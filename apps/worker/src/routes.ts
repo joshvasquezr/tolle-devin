@@ -2,6 +2,7 @@
 import { TRANSLATION_NAMES, formatPath, formatRef, getBook, isTranslation, plainVerses, resolveRoute, type Chapter, type Ref } from "@tolle/core";
 import type { Env } from "./env.ts";
 import { rewriteVerseHtml, trimDescription } from "./rewrite.ts";
+import { esvEnabled } from "./esv/passage.ts";
 
 const VERSES = /^\d{1,3}(?:-\d{1,3})?$/;
 const DAY = 86_400;
@@ -68,6 +69,16 @@ export async function notFound(req: Request, env: Env): Promise<Response> {
   });
 }
 
+/** P5.6 · D§1 D6: ESV chapter and verse URLs get the static noindex shell; the passage loads client-side. */
+async function esvShell(req: Request, env: Env): Promise<Response> {
+  const page = await env.ASSETS.fetch(new Request(new URL("/esv/", req.url)));
+  if (!page.ok) return notFound(req, env);
+  const headers = new Headers(page.headers);
+  headers.set("X-Robots-Tag", "noindex");
+  headers.set("Cache-Control", "public, max-age=300");
+  return new Response(req.method === "HEAD" ? null : page.body, { status: 200, headers });
+}
+
 export async function handlePage(req: Request, env: Env): Promise<Response> {
   if (req.method !== "GET" && req.method !== "HEAD") return new Response(null, { status: 405, headers: { Allow: "GET, HEAD" } });
   const url = new URL(req.url);
@@ -75,9 +86,10 @@ export async function handlePage(req: Request, env: Env): Promise<Response> {
   switch (route.kind) {
     case "redirect":
       return redirect(route.to, route.status);
+    case "chapter":
+      return route.tr === "esv" && esvEnabled(env) ? esvShell(req, env) : notFound(req, env);
     case "verses": {
-      // ESV pages are added (gated) in P5.
-      if (route.tr === "esv") return notFound(req, env);
+      if (route.tr === "esv") return esvEnabled(env) ? esvShell(req, env) : notFound(req, env);
       return verses(req, env, route.tr, route.ref);
     }
     case "notfound":

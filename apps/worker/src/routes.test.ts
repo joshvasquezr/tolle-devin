@@ -16,6 +16,7 @@ const assets: Record<string, string> = {
   "/bsb/john/3": PAGE,
   "/data/bsb/john/3.json": JSON.stringify(john3),
   "/404": "<h1>Not found</h1>",
+  "/esv/": "<h1>English Standard Version</h1>",
 };
 const env: Env = {
   ASSETS: {
@@ -84,5 +85,20 @@ describe("verse URLs", () => {
   it("escapes rewritten values; ESV verse URLs are not served before P5", async () => {
     expect((await get("/esv/john/3/16")).status).toBe(404);
     expect((await worker.fetch(new Request("https://x.test/bsb/john/3/16", { method: "POST" }), env)).status).toBe(405);
+  });
+});
+
+describe("P5.6 ESV shell (D§1 D6)", () => {
+  const budget = { idFromName: () => "g", get: () => ({ fetch: async () => Response.json({}) }) };
+  const on: Env = { ...env, ESV_ENABLED: "1", ESV_API_KEY: "fake-esv-key", ESV_BUDGET: budget };
+  it.each(["/esv/john/3", "/esv/john/3/16", "/esv/haggai/2?part=2"])("%s → 200 shell, noindex, assets' CSP kept", async (path) => {
+    const res = await worker.fetch(new Request(`https://x.test${path}`), on);
+    expect(res.status).toBe(200);
+    expect(res.headers.get("X-Robots-Tag")).toBe("noindex");
+    expect(res.headers.get("Content-Security-Policy")).toBe("default-src 'self'");
+    expect(await res.text()).toBe("<h1>English Standard Version</h1>");
+  });
+  it("gate off → 404 for ESV chapters too", async () => {
+    expect((await get("/esv/john/3")).status).toBe(404);
   });
 });

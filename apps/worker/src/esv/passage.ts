@@ -6,7 +6,7 @@ import { Limiter } from "../auth/ratelimit.ts";
 import { sha256Hex } from "../auth/crypto.ts";
 import { normalizeEsv } from "./normalize.ts";
 
-export const ESV_UPSTREAM = "https://api.esv.org/v3/passage/html/";
+export const ESV_API_BASE = "https://api.esv.org/v3/";
 // Final options from the P5.1 spike (docs/spikes/esv.md).
 export const ESV_OPTIONS: Readonly<Record<string, string>> = {
   "include-passage-references": "false",
@@ -86,7 +86,7 @@ async function miss(env: EsvEnv, stub: ReturnType<DoNamespace["get"]>, deps: Esv
   // Explicit chapter:verse range so single-chapter books are not read as book+verse (spike: "Jude 1" = verse 1).
   const params = new URLSearchParams({ q: `${b.name} ${chapter}:${vStart}-${vEnd}`, ...ESV_OPTIONS });
   try {
-    const res = await deps.fetch(`${ESV_UPSTREAM}?${params}`, { headers: { Authorization: `Token ${env.ESV_API_KEY}` } });
+    const res = await deps.fetch(`${env.ESV_UPSTREAM ?? ESV_API_BASE}passage/html/?${params}`, { headers: { Authorization: `Token ${env.ESV_API_KEY}` } });
     if (!res.ok) return "unavailable";
     const data = (await res.json()) as { parsed?: number[][]; passages?: string[] };
     // Never serve more than the requested window: the upstream range must sit inside it.

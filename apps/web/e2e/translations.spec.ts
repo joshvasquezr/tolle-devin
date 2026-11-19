@@ -13,7 +13,8 @@ test("John 3:16 BSB → KJV keeps verse 16 at the same place", async ({ page }) 
   await page.mouse.click(5, 650);
   await page.keyboard.press("t");
   const pop = page.getByRole("dialog", { name: "Choose a translation" });
-  await expect(pop.getByRole("button")).toHaveCount(3);
+  // ESV is listed only in builds made with ESV_ENABLED=1 (CI builds that way; deploys do not yet).
+  await expect(pop.getByRole("button")).toHaveCount(process.env.ESV_ENABLED === "1" ? 4 : 3);
   await pop.getByRole("button", { name: /King James Version/ }).click();
   await expect(page).toHaveURL("/kjv/john/3/16");
   await expect(page).toHaveTitle("John 3:16 — King James Version");
@@ -36,7 +37,9 @@ test("T opens the switcher; chapter pages keep the scrolled verse", async ({ pag
     const r = await new AxeBuilder({ page }).include("#tr-pop").include("header").analyze();
     expect(r.violations, scheme).toEqual([]);
   }
-  await page.keyboard.press("ArrowDown");
+  // WEB → KJV → BSB going up, so the path is the same whether or not ESV is listed after WEB.
+  await page.keyboard.press("ArrowUp");
+  await page.keyboard.press("ArrowUp");
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL("/bsb/psalms/119");
   const after = await page.locator('article .v[data-v="100"]').first().evaluate((el) => el.getBoundingClientRect().top);
