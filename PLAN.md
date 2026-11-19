@@ -337,7 +337,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: ESV appears in the switcher; shell page is `noindex` with no ESV text; loader renders via the shared renderer; paging control for multi-window chapters; skeleton after 200 ms; no ESV prefetch; ESV text kept out of SW, IndexedDB, and any persistent store.
   - Verify: Playwright on John 3 and Jude; test that no ESV text exists in the SW cache or IndexedDB.
 
-- [ ] **P5.7 · Attribution, copyright page, outage fallback** (S)
+- [x] **P5.7 · Attribution, copyright page, outage fallback** (S)
   - Needs: P5.6 · Refs: SPEC §8.1 attribution rows; D§7
   - Files: ESV notice component, `/about/esv-copyright`, copy hook
   - Done when: each ESV page shows label, notice, esv.org link, and link to the copyright page; copying ESV text adds the citation; busy/down shows the "Read in BSB" note.
@@ -492,6 +492,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-19 · P5.5 · ESV search page size is `min(10, smallest esvCap)` and search results are never cached. · A page could be all from one book (Haggai's cap is 19); not caching keeps search outside the 500-verse storage total.
 - 2026-11-19 · P5.6 · ESV shell is the static page `/esv/` (no text, noindex); the Worker serves it for ESV chapter/verse URLs only when ESV is enabled. The switcher lists ESV only in builds with `ESV_ENABLED=1`; CI builds that way, deploys do not yet. · Keeps ESV invisible on the preview until P5.7–P5.8 pass and Josh enables it.
 - 2026-11-19 · P5.6 · The client fetches ESV with `cache: "no-store"`; e2e uses a placeholder-text mock through the Worker var `ESV_UPSTREAM` (local Playwright only). · Keeps ESV text out of the HTTP cache as well as SW/IndexedDB; tests never need the real key or quota.
+- 2026-11-19 · P5.7 · The ESV notice and the copy citation use Crossway's full required citation (`ESV_CITATION`), not SPEC's earlier short form. · Crossway's written reply prescribes that wording (`docs/esv-compliance.md`); the external rule wins.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

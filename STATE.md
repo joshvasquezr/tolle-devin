@@ -3,11 +3,11 @@ Updated: 2026-11-19 12:30 · Lead: Devin (Cognition), handed over by Josh 2026-1
 Approved phase: P0–P7 under standing autonomy (AGENTS.md "Standing autonomy"; Josh 2026-11-17)
 
 ## Current task
-P5.7 · ESV attribution, copyright page, outage fallback · next
+P5.8 · ESV compliance CI checks · next
 
 ## Progress
 - Branch `devin/autonomous-p0-p7` (from `main` = `045d980`); one draft PR to `main` (#1).
-- Done: P0.4–P0.13, P1.1–P1.8, P2.1–P2.7, P3.1–P3.5, P4.1–P4.7, P5.0–P5.6, P6.1–P6.4, P6.6–P6.8, P7.3, P7.4 (see PLAN boxes).
+- Done: P0.4–P0.13, P1.1–P1.8, P2.1–P2.7, P3.1–P3.5, P4.1–P4.7, P5.0–P5.7, P6.1–P6.4, P6.6–P6.8, P7.3, P7.4 (see PLAN boxes).
 - Partial, unticked: P6.5 OpenAPI waits on P5.4; P7.1 automated a11y done, manual VoiceOver/keyboard + Josh sign-off left (`docs/a11y-checklist.md`); P7.2 JS budget in CI, Lighthouse CI on a production build left.
 - P0.12, P1.8 done (2026-11-18): every PR push deploys https://tolle-preview.josh-vasquez-ruiz.workers.dev from `deploy.yml` (own D1, noindex); production deploy stays manual.
 - P4 checkpoint (2026-11-18): frozen install ok; `-r typecheck` 0 errors; `-r test` core 885, render 9, worker 15, web 82, scripts 44; build 3,572 pages; Playwright + axe 61 passed (selection.spec also in Firefox + WebKit); first-load JS 20.2 KB gz.
@@ -26,7 +26,7 @@ P5.7 · ESV attribution, copyright page, outage fallback · next
 - Open doc issue: SPEC §11 "field data" Core Web Vitals has no defined source after the Cloudflare analytics removal.
 
 ## Next
-- P5.7 attribution, P5.8 compliance CI, then P6.5. Josh: MVP session on the preview; tolle.bible → Resend domain; email provider choice → real magic links; Josh manual a11y pass → P7.1; deployed build → P7.2 Lighthouse CI; beta → P7.5; P7.6.
+- P5.8 compliance CI, then P6.5. Josh: MVP session on the preview; tolle.bible → Resend domain; email provider choice → real magic links; Josh manual a11y pass → P7.1; deployed build → P7.2 Lighthouse CI; beta → P7.5; P7.6.
 
 ## Notes for next session
 - Toolchain: Node 24.22.2 (nvm), pnpm 12.16.1, TypeScript 6.0.3, Vitest 5.0.5, Playwright 1.64.1 (chromium, firefox, webkit installed).

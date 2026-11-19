@@ -93,3 +93,39 @@ test("no ESV text in the SW cache, IndexedDB or localStorage; no prefetch of ESV
   }, MARKER);
   expect(leaks).toEqual([]);
 });
+
+test.describe("P5.7 attribution", () => {
+  test.use({ permissions: ["clipboard-read", "clipboard-write"] });
+  test("ESV pages show the label, notice, esv.org and copyright-page links; copy adds the citation", async ({ page }) => {
+    await page.goto("/esv/jude/1");
+    await expect(page.getByRole("button", { name: "Translation: ESV" })).toBeVisible();
+    await expect(page).toHaveTitle(/English Standard Version/);
+    const notice = page.locator("#esv-notice");
+    await expect(notice).toContainText("Scripture quotations are from the ESV® Bible");
+    await expect(notice).toContainText("The ESV may not be translated into any other language.");
+    await expect(notice.getByRole("link", { name: "esv.org" })).toHaveAttribute("href", "https://www.esv.org/");
+    await expect(notice.getByRole("link", { name: "ESV copyright" })).toHaveAttribute("href", "/about/esv-copyright");
+    await page.evaluate(() => {
+      const v = document.querySelector('article.chapter .v[data-v="3"]')!;
+      const r = document.createRange();
+      r.selectNodeContents(v);
+      getSelection()!.removeAllRanges();
+      getSelection()!.addRange(r);
+    });
+    await page.waitForTimeout(60);
+    await page.keyboard.press("ControlOrMeta+c");
+    const text = await page.evaluate(() => navigator.clipboard.readText());
+    expect(text).toMatch(/— Jude 3 \(ESV\)\nScripture quotations are from the ESV® Bible .* The ESV may not be translated into any other language\.$/);
+    await page.getByRole("link", { name: "ESV copyright" }).click();
+    await expect(page).toHaveURL("/about/esv-copyright");
+    await expect(page.locator("main")).toContainText("© 2001 by Crossway");
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  });
+  test("public-domain pages carry none of the ESV attribution", async ({ page }) => {
+    await page.goto("/bsb/john/3");
+    await expect(page.locator("#esv-notice")).toHaveCount(0);
+    await expect(page.locator('a[href="https://www.esv.org/"], a[href="/about/esv-copyright"]')).toHaveCount(0);
+    await expect(page.locator("main")).not.toContainText("Crossway");
+  });
+});
+

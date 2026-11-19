@@ -1,9 +1,10 @@
 // P5.6 · D§1 D6, D§3.8, SPEC T5: load the ESV window for the shell's URL from the Worker and render it with
 // the shared renderer. The text lives only in the DOM and `current`: never prefetched, fetched with
 // cache: "no-store", and never written to the SW cache, IndexedDB or localStorage.
-import { TRANSLATION_NAMES, esvPartForVerse, formatPath, formatRef, resolveRoute, type BookId, type Chapter } from "@tolle/core";
+import { ESV_CITATION, TRANSLATION_NAMES, esvPartForVerse, formatPath, formatRef, resolveRoute, type BookId, type Chapter } from "@tolle/core";
 import { escapeHtml } from "@tolle/render";
 import { chapterLabel, chapterMainHtml, chapterTitle } from "../lib/page.ts";
+import { setCopyCitation } from "../highlights/copy.ts";
 
 interface Want { book: BookId; chapter: number; part: number; focus?: string; label?: string }
 
@@ -30,6 +31,11 @@ export function partsHtml(c: Pick<Chapter, "book" | "chapter" | "part" | "parts"
   return `<nav class="esv-parts" aria-label="Parts of this chapter">${items.join("")}</nav>`;
 }
 
+/** P5.7 · SPEC §8.1 attribution: one quiet line below the chapter with the notice, esv.org and the copyright page. */
+export function noticeHtml(): string {
+  return `<p class="esv-notice" id="esv-notice">${escapeHtml(ESV_CITATION)} <a href="https://www.esv.org/">esv.org</a> · <a href="/about/esv-copyright">ESV copyright</a></p>`;
+}
+
 async function load(root: HTMLElement, w: Want, retry: boolean): Promise<void> {
   const main = document.getElementById("main")!;
   root.setAttribute("aria-busy", "true");
@@ -44,7 +50,7 @@ async function load(root: HTMLElement, w: Want, retry: boolean): Promise<void> {
   if (!res?.ok) return fail(root, w, retry);
   const body = (await res.json()) as Required<Pick<Chapter, "book" | "chapter" | "blocks" | "range" | "parts" | "part">>;
   current = { tr: "esv", book: body.book, chapter: body.chapter, blocks: body.blocks, range: body.range, parts: body.parts, part: body.part };
-  main.innerHTML = chapterMainHtml(current) + partsHtml(current);
+  main.innerHTML = chapterMainHtml(current) + partsHtml(current) + noticeHtml();
   if (w.focus) main.dataset.focus = w.focus;
   else delete main.dataset.focus;
   document.title = w.label ? `${w.label} — ${TRANSLATION_NAMES.esv}` : chapterTitle("esv", w.book, w.chapter);
@@ -69,4 +75,8 @@ function fail(root: HTMLElement, w: Want, retried: boolean): void {
 
 const root = document.getElementById("esv-root");
 const w = root && want();
-if (root && w) void load(root, w, false);
+if (root && w) {
+  // SPEC §8.1 clipboard: copied ESV text carries Crossway's citation.
+  setCopyCitation((tr) => (tr === "esv" ? ESV_CITATION : null));
+  void load(root, w, false);
+}
