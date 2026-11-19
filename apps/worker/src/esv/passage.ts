@@ -37,17 +37,17 @@ export interface EsvDeps {
   inflight: Map<string, Promise<Outcome>>;
 }
 // D§3.12 per-visitor throttle, 20/min per hashed IP key [A]; per isolate until the rate-limiting binding is wired.
-const defaults: EsvDeps = { fetch: (i, n) => fetch(i, n), now: Date.now, visitors: new Limiter(20, 60_000), inflight: new Map() };
+export const defaults: EsvDeps = { fetch: (i, n) => fetch(i, n), now: Date.now, visitors: new Limiter(20, 60_000), inflight: new Map() };
 
-type EsvEnv = Env & { ESV_API_KEY: string; ESV_BUDGET: DoNamespace };
+export type EsvEnv = Env & { ESV_API_KEY: string; ESV_BUDGET: DoNamespace };
 export const esvEnabled = (env: Env): env is EsvEnv => env.ESV_ENABLED === "1" && !!env.ESV_API_KEY && !!env.ESV_BUDGET;
 
-const reply = (body: unknown, status = 200) =>
+export const reply = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
     headers: { "Content-Type": "application/json", "Cache-Control": status === 200 ? "private, max-age=300" : "no-store", "X-Robots-Tag": "noindex" },
   });
-const int = (s: string | null) => (s !== null && /^[1-9]\d{0,2}$/.test(s) ? Number(s) : 0);
+export const int = (s: string | null) => (s !== null && /^[1-9]\d{0,2}$/.test(s) ? Number(s) : 0);
 
 export async function handleEsvPassage(req: Request, env: EsvEnv, deps: EsvDeps = defaults): Promise<Response> {
   if (req.method !== "GET") return reply({ error: "bad_request" }, 400);

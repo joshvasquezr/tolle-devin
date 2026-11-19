@@ -325,7 +325,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: validates `book/chapter/part`; KV cache key and TTL ≤ 24 h; single-flight; per-visitor limit; `Cache-Control: private`; key only in upstream header; errors per D§3.12.
   - Verify: Worker tests with mocked upstream: hit, miss, soft state, hard state, bad part, key absent from responses.
 
-- [ ] **P5.5 · Search endpoint** (S)
+- [x] **P5.5 · Search endpoint** (S)
   - Needs: P5.4 · Refs: D§3.12; SPEC S6
   - Files: `esv/search.ts`
   - Done when: proxied search with page-size within the verse cap; shares the budget.
@@ -489,6 +489,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-19 · P5.4 · ESV cache lives in the memory of the single `EsvBudget` DO, capped at 500 verses total (LRU) with a 24 h TTL, instead of KV with one entry per window. · Crossway: the 500-verse limit covers everything stored at once (`docs/esv-compliance.md`); per-entry KV cannot enforce a global total. Stricter reading of D§3.12.
 - 2026-11-19 · P5.4 · ESV endpoints answer only when `ESV_ENABLED=1` and `ESV_API_KEY` and `ESV_BUDGET` are present; otherwise 404. Per-visitor limit is a per-isolate 20/min counter on a hashed IP key until the rate-limiting binding is wired. · Keeps ESV hidden on the preview until P5.5–P5.8 pass; the binding adds config and is not needed for correctness.
 - 2026-11-19 · P5.4 · Upstream query is `<Book name> <chapter>:<vStart>-<vEnd>`; responses whose `parsed` range leaves the requested window are refused (503 esv_unavailable). · The P5.1 spike showed `Jude 1` means verse 1; the range check guarantees one call never exceeds the cap.
+- 2026-11-19 · P5.5 · ESV search page size is `min(10, smallest esvCap)` and search results are never cached. · A page could be all from one book (Haggai's cap is 19); not caching keeps search outside the 500-verse storage total.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.

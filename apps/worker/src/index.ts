@@ -10,6 +10,7 @@ import { handleSync } from "./highlights/api.ts";
 import { purge } from "./db.ts";
 import { handleMetrics } from "./metrics.ts";
 import { esvEnabled, handleEsvPassage } from "./esv/passage.ts";
+import { handleEsvSearch } from "./esv/search.ts";
 
 const limits = newLimits();
 // Local `wrangler dev` only: every Playwright request shares one IP key, so the 20/hour limit would trip.
@@ -21,6 +22,7 @@ export default {
     if (pathname === "/api/v1/metrics") return handleMetrics(req, env.METRICS);
     if (env.DEV_MAIL === "1" && pathname === "/api/v1/dev/mail") return json(devOutbox.get(new URL(req.url).searchParams.get("to") ?? "") ?? null);
     if (pathname === "/api/v1/esv/passage" && esvEnabled(env)) return handleEsvPassage(req, env);
+    if (pathname === "/api/v1/esv/search" && esvEnabled(env)) return handleEsvSearch(req, env);
     if (env.DB && req.method === "POST") {
       const auth = { DB: env.DB, mailer: env.MAILER ?? (env.DEV_MAIL === "1" ? devMailer : noMailer), limits: env.DEV_MAIL === "1" ? devLimits : limits };
       if (pathname === "/api/v1/auth/request") return requestLink(req, auth, Date.now());
