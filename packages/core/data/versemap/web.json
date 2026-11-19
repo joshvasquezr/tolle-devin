@@ -1,0 +1,56 @@
+{
+ "schema": 1,
+ "exceptions": [
+  {
+   "book": "romans",
+   "ch": 14,
+   "v": 24,
+   "canonical": [
+    45016025
+   ]
+  },
+  {
+   "book": "romans",
+   "ch": 14,
+   "v": 25,
+   "canonical": [
+    45016026
+   ]
+  },
+  {
+   "book": "romans",
+   "ch": 14,
+   "v": 26,
+   "canonical": [
+    45016027
+   ]
+  }
+ ],
+ "omitted": [
+  {
+   "book": "luke",
+   "ch": 17,
+   "v": 36
+  },
+  {
+   "book": "acts",
+   "ch": 8,
+   "v": 37
+  },
+  {
+   "book": "acts",
+   "ch": 15,
+   "v": 34
+  },
+  {
+   "book": "acts",
+   "ch": 24,
+   "v": 7
+  },
+  {
+   "book": "romans",
+   "ch": 16,
+   "v": 25
+  }
+ ]
+}

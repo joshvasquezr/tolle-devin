@@ -1,0 +1,86 @@
+{
+ "schema": 1,
+ "exceptions": [],
+ "omitted": [
+  {
+   "book": "matthew",
+   "ch": 17,
+   "v": 21
+  },
+  {
+   "book": "matthew",
+   "ch": 18,
+   "v": 11
+  },
+  {
+   "book": "matthew",
+   "ch": 23,
+   "v": 14
+  },
+  {
+   "book": "mark",
+   "ch": 7,
+   "v": 16
+  },
+  {
+   "book": "mark",
+   "ch": 9,
+   "v": 44
+  },
+  {
+   "book": "mark",
+   "ch": 9,
+   "v": 46
+  },
+  {
+   "book": "mark",
+   "ch": 11,
+   "v": 26
+  },
+  {
+   "book": "mark",
+   "ch": 15,
+   "v": 28
+  },
+  {
+   "book": "luke",
+   "ch": 17,
+   "v": 36
+  },
+  {
+   "book": "luke",
+   "ch": 23,
+   "v": 17
+  },
+  {
+   "book": "john",
+   "ch": 5,
+   "v": 4
+  },
+  {
+   "book": "acts",
+   "ch": 8,
+   "v": 37
+  },
+  {
+   "book": "acts",
+   "ch": 15,
+   "v": 34
+  },
+  {
+   "book": "acts",
+   "ch": 24,
+   "v": 7
+  },
+  {
+   "book": "acts",
+   "ch": 28,
+   "v": 29
+  },
+  {
+   "book": "romans",
+   "ch": 16,
+   "v": 24
+  }
+ ]
+}

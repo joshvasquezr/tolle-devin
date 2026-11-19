@@ -1,0 +1,11 @@
+---
+// Served by the Worker for unmatched paths (P1.8; D§2). Not indexed.
+import Base from "../layouts/Base.astro";
+import { SITE_NAME } from "@tolle/core";
+---
+<Base title={`Not found — ${SITE_NAME}`} canonical="/404" noindex>
+  <div class="prose">
+    <h1 class="ch">Not found</h1>
+    <p>There is no page at this address. Try <a href="/bsb/john/1">John 1</a> or the <a href="/">last chapter you read</a>.</p>
+  </div>
+</Base>

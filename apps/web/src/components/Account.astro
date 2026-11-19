@@ -1,0 +1,55 @@
+---
+// SPEC A1, A2: a quiet "Sign in" link in the corner; email → "check your inbox" (D§1 D4).
+---
+<div class="acct">
+  <button id="acct-btn" class="link-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="acct-pop">Sign in</button>
+  <div id="acct-pop" class="pop" role="dialog" aria-labelledby="acct-title" hidden>
+    <form id="acct-form" novalidate>
+      <h2 id="acct-title" class="t">Sign in to sync highlights</h2>
+      <label for="acct-email">Email</label>
+      <input id="acct-email" name="email" type="email" autocomplete="email" required />
+      <button type="submit" class="go">Email me a link</button>
+      <p id="acct-err" class="note" role="alert"></p>
+    </form>
+    <div id="acct-in" hidden>
+      <h2 id="acct-in-title" class="t">Account</h2>
+      <p class="note" id="acct-who"></p>
+      <p class="note" id="acct-last" role="status"></p>
+      <div class="row"><button type="button" id="acct-sync" class="go">Sync now</button><a id="acct-export" class="go" href="/api/v1/account/export" download="quiet-account.json">Export data</a></div>
+      <label class="chk"><input type="checkbox" id="acct-clear" />Also clear this device</label>
+      <div class="row"><button type="button" id="acct-out" class="go">Sign out</button><button type="button" id="acct-del" class="go">Delete account</button></div>
+      <div id="acct-confirm" hidden>
+        <p class="note">Delete your account and all synced highlights? This can't be undone. Highlights on this device stay.</p>
+        <div class="row"><button type="button" id="acct-del-yes" class="go">Delete permanently</button><button type="button" id="acct-del-no" class="go">Cancel</button></div>
+      </div>
+    </div>
+    <div id="acct-sent" hidden>
+      <h2 class="t" tabindex="-1">Check your inbox</h2>
+      <p class="note">We sent a sign-in link to <span id="acct-to"></span>. It works once, for 15 minutes.</p>
+    </div>
+  </div>
+</div>
+<style>
+  .acct { position: relative; flex: none; }
+  .link-btn { font: inherit; font-size: 14px; color: var(--text-2); background: none; border: 0; padding: 6px 4px; cursor: pointer; }
+  .link-btn:hover { color: var(--text); }
+  .pop {
+    position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; width: 280px;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; font-size: 14px; animation: pop-in var(--t-open) var(--ease);
+  }
+  form { display: grid; gap: 6px; }
+  .t { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  label { color: var(--text-2); font-size: 12px; }
+  input { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+  .go { font: inherit; color: var(--text); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; cursor: pointer; justify-self: start; }
+  .note { margin: 0; color: var(--text-2); font-size: 12px; }
+  .note:empty { display: none; }
+  #acct-in, #acct-confirm { display: grid; gap: 8px; }
+  #acct-in[hidden], #acct-confirm[hidden] { display: none; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  a.go { text-decoration: none; }
+  .chk { display: inline-flex; gap: 6px; align-items: center; color: var(--text); font-size: 13px; }
+  @keyframes pop-in { from { opacity: 0; transform: translateY(4px); } }
+  @media (prefers-reduced-motion: reduce) { @keyframes pop-in { from { opacity: 0; } } }
+</style>

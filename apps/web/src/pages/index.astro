@@ -1,0 +1,15 @@
+---
+// SPEC R6: `/` returns to the stored chapter; first visit shows BSB John 1.
+import Base from "../layouts/Base.astro";
+import { getBook, toBookId } from "@tolle/core";
+import { describe, loadChapter } from "../lib/chapters.ts";
+import { chapterMainHtml, chapterTitle } from "../lib/page.ts";
+import { LANDING_SCRIPT } from "../scripts/pos-core.ts";
+
+const john = getBook(toBookId("john"));
+const chapter = loadChapter("bsb", john, 1);
+---
+<Base title={chapterTitle("bsb", john.id, 1)} description={describe(chapter)} canonical="/bsb/john/1">
+  <script slot="head" is:inline set:html={LANDING_SCRIPT}></script>
+  <Fragment set:html={chapterMainHtml(chapter)} />
+</Base>

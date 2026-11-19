@@ -1,0 +1,33 @@
+{
+  "description": "Canonical verse IDs (D§3.1, D§1 D3): bookOrder*1000000 + chapter*1000 + verse, KJV/Protestant versification. Contract for every port (web, worker, iOS).",
+  "version": 1,
+  "valid": [
+    { "book": "genesis", "chapter": 1, "verse": 1, "id": 1001001 },
+    { "book": "genesis", "chapter": 50, "verse": 26, "id": 1050026 },
+    { "book": "esther", "chapter": 8, "verse": 9, "id": 17008009 },
+    { "book": "psalms", "chapter": 117, "verse": 2, "id": 19117002 },
+    { "book": "psalms", "chapter": 119, "verse": 176, "id": 19119176 },
+    { "book": "song-of-solomon", "chapter": 8, "verse": 14, "id": 22008014 },
+    { "book": "obadiah", "chapter": 1, "verse": 21, "id": 31001021 },
+    { "book": "malachi", "chapter": 4, "verse": 6, "id": 39004006 },
+    { "book": "matthew", "chapter": 1, "verse": 1, "id": 40001001 },
+    { "book": "john", "chapter": 3, "verse": 16, "id": 43003016 },
+    { "book": "1-corinthians", "chapter": 13, "verse": 4, "id": 46013004 },
+    { "book": "philemon", "chapter": 1, "verse": 25, "id": 57001025 },
+    { "book": "3-john", "chapter": 1, "verse": 14, "id": 64001014 },
+    { "book": "jude", "chapter": 1, "verse": 25, "id": 65001025 },
+    { "book": "revelation", "chapter": 22, "verse": 21, "id": 66022021 }
+  ],
+  "invalid": [
+    { "id": 0, "why": "zero" },
+    { "id": -43003016, "why": "negative" },
+    { "id": 43003016.5, "why": "not an integer" },
+    { "id": 1000001, "why": "chapter 0" },
+    { "id": 1001000, "why": "verse 0" },
+    { "id": 1001032, "why": "Genesis 1 has 31 verses" },
+    { "id": 1051001, "why": "Genesis has 50 chapters" },
+    { "id": 67001001, "why": "no 67th book" },
+    { "id": 64001015, "why": "3 John has 14 verses (KJV numbering)" },
+    { "id": 999999, "why": "book 0" }
+  ]
+}

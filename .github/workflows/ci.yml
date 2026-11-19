@@ -73,3 +73,51 @@ jobs:
       # SPEC §7 / D§8: secrets never committed. Redacted output only.
       - name: Secret scan (full git history)
         run: gitleaks git . --redact --no-banner --verbose --exit-code 1
+
+  # D§9: static build and browser flows (Playwright + axe) on every PR.
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    # P5.6: CI builds list ESV in the switcher; e2e serves it from a placeholder mock (apps/web/e2e/esv-mock.ts).
+    env:
+      ESV_ENABLED: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Install
+        run: |
+          npm install --global "pnpm@${PNPM_VERSION}"
+          pnpm install --frozen-lockfile
+
+      - name: Build (data + site)
+        run: pnpm build
+
+      - name: Compliance checks (no ads, donations, trackers or third-party scripts; no ESV key or text)
+        run: node scripts/compliance.ts
+
+      # P5.8: proves the ESV checks can fail the job — a generated bad dist must trip every one.
+      - name: Compliance self-test
+        run: node scripts/compliance.ts --self-test
+
+      - name: Budgets (first-load JS ≤ 60 KB gz)
+        run: node scripts/budgets.ts
+
+      - name: Unit tests that need generated data (search indexes)
+        run: pnpm --filter @tolle/web test search && pnpm --filter @tolle/scripts check:search
+      # Ubuntu mirrors occasionally stall during install-deps; retry with a bounded wait instead of burning the job timeout.
+      - name: Install Playwright browsers
+        run: |
+          for attempt in 1 2 3; do
+            timeout 9m pnpm --filter @tolle/web exec playwright install --with-deps chromium firefox webkit && exit 0
+            echo "::warning::playwright install attempt ${attempt} failed or stalled; retrying"
+          done
+          exit 1
+
+      - name: Playwright + axe
+        run: pnpm --filter @tolle/web e2e

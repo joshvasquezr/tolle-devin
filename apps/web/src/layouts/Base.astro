@@ -1,0 +1,71 @@
+---
+// Page shell (D§5.4 landmarks, D§6.3 metadata). The <h1> and article come from the page.
+import "../styles/tokens.css";
+import "../styles/base.css";
+import "../styles/type.css";
+import { SITE_NAME } from "@tolle/core";
+import Settings from "../components/Settings.astro";
+import Account from "../components/Account.astro";
+import RefBar from "../components/RefBar.astro";
+import Picker from "../components/Picker.astro";
+import Translations from "../components/Translations.astro";
+import { BOOT_SCRIPT } from "../scripts/settings-core.ts";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+const { title, description, canonical, ogType = "website", noindex = false } = Astro.props;
+const url = new URL(canonical, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline set:html={BOOT_SCRIPT}></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={url} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={url} />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/source-serif-4-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to text</a>
+    <header class="bar col"><RefBar /><Translations /><slot name="bar" /><Settings /><Account /></header>
+    <main id="main" class="col"><slot /></main>
+    <Picker />
+    <slot name="after" />
+    <footer class="col foot"><a href="/about">About</a><a href="/privacy">Privacy</a></footer>
+    <div id="live" class="sr-only" aria-live="polite"></div>
+    <script>
+      // One external module for all islands: Astro would inline small component scripts, which CSP blocks.
+      import "../scripts/settings.ts";
+      import "../scripts/pos.ts";
+      import "../scripts/focus.ts";
+      import "../scripts/refbar.ts";
+      import "../scripts/picker.ts";
+      import "../scripts/translations.ts";
+      import "../scripts/keys.ts";
+      import "../scripts/chrome.ts";
+      import "../scripts/search-page.ts";
+      import "../scripts/sw-register.ts";
+      import "../highlights/index.ts";
+      import "../scripts/account.ts";
+      import "../scripts/auth-verify.ts";
+      import "../scripts/router.ts";
+      import "../scripts/esv.ts";
+    </script>
+  </body>
+</html>

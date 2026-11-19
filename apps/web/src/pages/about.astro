@@ -1,0 +1,26 @@
+---
+// P1.7: About (SPEC §8.2). Sources and statuses come from data/sources/SOURCES.md.
+import Base from "../layouts/Base.astro";
+import { SITE_NAME } from "@tolle/core";
+import { loadSources } from "../lib/sources.ts";
+
+const rows = loadSources();
+---
+<Base title={`About — ${SITE_NAME}`} description="A quiet, fast Bible reader with public-domain translations." canonical="/about">
+  <div class="prose">
+    <h1 class="ch">About</h1>
+    <p>{SITE_NAME} is a quiet place to read the Bible: just the text, fast, with no ads, tracking or paid tiers.</p>
+    <h2>Translations and sources</h2>
+    <p>The texts below are in the public domain. They are built unmodified from the publishers' own files, apart from Unicode normalization and typographic quotes.</p>
+    {rows.map((r) => (
+      <section class="src">
+        <h3>{r.name} ({r.tr.toUpperCase()})</h3>
+        <p><strong>Status:</strong> {r.status}</p>
+        <p><strong>Source:</strong> <a href={r.url}>{r.url}</a></p>
+        <p><strong>Version:</strong> {r.version}</p>
+        <p class="sha"><strong>SHA-256:</strong> <code>{r.sha256}</code></p>
+      </section>
+    ))}
+    <p>See also the <a href="/privacy">privacy page</a>.</p>
+  </div>
+</Base>

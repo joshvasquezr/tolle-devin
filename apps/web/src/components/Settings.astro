@@ -1,0 +1,54 @@
+---
+// D§3.9 settings popover (SPEC R7). Light-dismiss, Esc closes, focus returns to the trigger (D§5.4).
+const sizes = [0, 1, 2, 3, 4];
+---
+<div class="aa">
+  <button id="aa-btn" class="btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="aa-pop" aria-label="Reading settings">Aa</button>
+  <div id="aa-pop" class="pop" role="dialog" aria-label="Reading settings" hidden>
+    <fieldset><legend>Text size</legend>
+      {sizes.map((n) => <label><input type="radio" name="size" value={String(n)} /><span class={`sz sz${n}`}>A</span></label>)}
+    </fieldset>
+    <fieldset><legend>Font</legend>
+      <label><input type="radio" name="font" value="serif" />Serif</label>
+      <label><input type="radio" name="font" value="sans" />Sans</label>
+    </fieldset>
+    <fieldset><legend>Width</legend>
+      <label><input type="radio" name="width" value="narrow" />Narrow</label>
+      <label><input type="radio" name="width" value="default" />Default</label>
+    </fieldset>
+    <fieldset><legend>Theme</legend>
+      <label><input type="radio" name="theme" value="light" />Light</label>
+      <label><input type="radio" name="theme" value="dark" />Dark</label>
+      <label><input type="radio" name="theme" value="system" />System</label>
+    </fieldset>
+    <fieldset><legend>Options</legend>
+      <label><input type="checkbox" name="headings" />Section headings</label>
+      <label><input type="checkbox" name="autohide" />Hide bar while reading</label>
+    </fieldset>
+    <fieldset><legend>Highlights</legend>
+      <button type="button" id="hl-export" class="link">Export highlights</button>
+      <button type="button" id="hl-import" class="link">Import highlights</button>
+      <input type="file" id="hl-file" accept="application/json,.json" hidden />
+      <p id="hl-status" class="hl-status" role="status"></p>
+    </fieldset>
+  </div>
+</div>
+<style>
+  .aa { position: relative; margin-inline-start: auto; }
+  .pop {
+    position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; width: 260px;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; font-size: 14px;
+    animation: pop-in var(--t-open) var(--ease);
+  }
+  fieldset { border: 0; margin: 0 0 10px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+  legend { color: var(--text-2); font-size: 12px; padding: 0 0 4px; width: 100%; }
+  label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; min-height: 28px; }
+  .sz0 { font-size: 13px; } .sz1 { font-size: 14px; } .sz2 { font-size: 16px; } .sz3 { font-size: 18px; } .sz4 { font-size: 20px; }
+  input { accent-color: var(--text); margin: 0; }
+  .link { font: inherit; color: var(--text); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .hl-status { width: 100%; margin: 0; color: var(--text-2); font-size: 12px; }
+  .hl-status:empty { display: none; }
+  @keyframes pop-in { from { opacity: 0; transform: translateY(4px); } }
+  @media (prefers-reduced-motion: reduce) { @keyframes pop-in { from { opacity: 0; } } }
+</style>

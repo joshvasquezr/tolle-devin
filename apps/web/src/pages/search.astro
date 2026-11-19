@@ -1,0 +1,30 @@
+---
+// P3.4 results page (SPEC S2, §5.4; D§3.11): static shell + island. Not indexed.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import Base from "../layouts/Base.astro";
+import { BOOKS, PD_TRANSLATIONS, SITE_NAME } from "@tolle/core";
+const manifest = JSON.parse(readFileSync(join(process.cwd(), "public/data/search-manifest.json"), "utf8")) as Record<string, string>;
+const urls = Object.fromEntries(PD_TRANSLATIONS.map((t) => [t, `/data/${t}/${manifest[t]}`]));
+---
+<Base title={`Search — ${SITE_NAME}`} canonical="/search" noindex>
+  <section id="search" class="search" data-index={JSON.stringify(urls)}>
+    <h1 class="ch" id="search-title" tabindex="-1">Search</h1>
+    <div class="search-controls">
+      <label for="search-scope">Scope</label>
+      <select id="search-scope">
+        <option value="">All</option>
+        <option value="ot">Old Testament</option>
+        <option value="nt">New Testament</option>
+        {BOOKS.map((b) => <option value={b.slug}>{b.name}</option>)}
+      </select>
+    </div>
+    <p id="search-status" class="search-status" role="status"></p>
+    <ol id="search-results" class="search-results"></ol>
+    <nav id="search-pager" class="search-pager" aria-label="Result pages" hidden>
+      <a id="search-prev" rel="prev">Previous</a>
+      <span id="search-page"></span>
+      <a id="search-next" rel="next">Next</a>
+    </nav>
+  </section>
+</Base>

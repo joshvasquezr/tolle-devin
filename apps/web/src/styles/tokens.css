@@ -1,0 +1,35 @@
+/* D§5.1 tokens (SPEC §6.3 values, D7 tertiary). No other colors anywhere. */
+:root {
+  --bg: #fff; --surface: #fff; --text: #111; --text-2: #5c5c5c; --text-3: #767676;
+  --border: #e8e8e8; --hover: #f5f5f5; --focus: #111;
+  --hl-sand: #f1ebdd; --hl-sage: #e4ebe1; --hl-slate: #e3e8ee; --hl-rose: #f0e3e3;
+  --measure: 680px; --step: 19px; --lh: 1.7;
+  --ease: cubic-bezier(.2,.6,.2,1);
+  --t-hover: 120ms; --t-open: 150ms; --t-close: 100ms; --t-fade: 120ms; --t-toolbar: 100ms;
+  --font-read: "Source Serif 4", "Source Serif Fallback", Georgia, serif;
+  --font-ui: "Inter", "Inter Fallback", system-ui, sans-serif;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0f0f0f; --surface: #181818; --text: #ececec; --text-2: #a3a3a3; --text-3: #808080;
+  --border: #262626; --hover: #1c1c1c; --focus: #ececec;
+  --hl-sand: rgb(210 190 140 / .18); --hl-sage: rgb(150 180 150 / .18);
+  --hl-slate: rgb(140 165 200 / .18); --hl-rose: rgb(200 150 150 / .18);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0f0f0f; --surface: #181818; --text: #ececec; --text-2: #a3a3a3; --text-3: #808080;
+    --border: #262626; --hover: #1c1c1c; --focus: #ececec;
+    --hl-sand: rgb(210 190 140 / .18); --hl-sage: rgb(150 180 150 / .18);
+    --hl-slate: rgb(140 165 200 / .18); --hl-rose: rgb(200 150 150 / .18);
+    color-scheme: dark;
+  }
+}
+/* Five text sizes (R7), selected by data-size on <html>. */
+:root[data-size="0"] { --step: 16px; }
+:root[data-size="1"] { --step: 17px; }
+:root[data-size="3"] { --step: 21px; }
+:root[data-size="4"] { --step: 24px; }
+:root[data-width="narrow"] { --measure: 580px; }
+:root[data-font="sans"] { --font-read: var(--font-ui); }

@@ -1,0 +1,31 @@
+---
+// P1.3: one static page per public-domain chapter (3 × 1,189). D§6.3 metadata.
+import Base from "../../../layouts/Base.astro";
+import { SITE_NAME, formatPath, type Book, type PdTranslation } from "@tolle/core";
+import { chapterPaths, describe, loadChapter } from "../../../lib/chapters.ts";
+import { chapterMainHtml, chapterTitle } from "../../../lib/page.ts";
+
+export function getStaticPaths() {
+  return chapterPaths();
+}
+
+interface Props { tr: PdTranslation; book: Book; n: number }
+const { tr, book, n } = Astro.props;
+const chapter = loadChapter(tr, book, n);
+const path = formatPath(tr, { book: book.id, chapter: n });
+// D§6.3 BreadcrumbList: site → book (chapter 1) → chapter.
+const crumbs = [
+  { name: SITE_NAME, path: "/" },
+  { name: book.name, path: formatPath(tr, { book: book.id, chapter: 1 }) },
+  { name: chapterTitle(tr, book.id, n), path },
+];
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: new URL(c.path, Astro.site).href })),
+}).replace(/</g, "\\u003c");
+---
+<Base title={chapterTitle(tr, book.id, n)} description={describe(chapter)} canonical={path} ogType="article">
+  <script slot="head" type="application/ld+json" is:inline set:html={jsonLd}></script>
+  <Fragment set:html={chapterMainHtml(chapter)} />
+</Base>

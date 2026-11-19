@@ -1,0 +1,33 @@
+// D§2: Static Assets serve the built site; the Worker sees only unmatched paths and /api/*
+// (P0.12 spike, docs/spikes/assets-routing.md). Production deploys are manual (deploy.yml).
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "tolle",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": { "enabled": false },
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*"]
+  },
+  // D§3.12: one global EsvBudget instance counts upstream ESV calls (P5.3).
+  "durable_objects": { "bindings": [{ "name": "ESV_BUDGET", "class_name": "EsvBudget" }] },
+  // D§4.2 (P6.1). database_id is a placeholder until a Cloudflare account exists; --local works without it.
+  "d1_databases": [{ "binding": "DB", "database_name": "tolle", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }],
+  "triggers": { "crons": ["17 3 * * *"] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EsvBudget"] }],
+  // Non-production preview (deploy.yml). A separate Worker because Cloudflare generates no
+  // preview/version URLs for Workers that implement Durable Objects. Own D1, so preview data never touches production.
+  "env": {
+    "preview": {
+      "name": "tolle-preview",
+      "durable_objects": { "bindings": [{ "name": "ESV_BUDGET", "class_name": "EsvBudget" }] },
+      "d1_databases": [{ "binding": "DB", "database_name": "tolle-preview", "database_id": "517e6daf-d8a4-406f-995f-f12a1c16f245", "migrations_dir": "migrations" }]
+    }
+  }
+}

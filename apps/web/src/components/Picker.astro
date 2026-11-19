@@ -1,0 +1,49 @@
+---
+// D§3.5 book/chapter picker (SPEC N1–N7). Book buttons are inlined so opening needs no network (N7).
+import { BOOKS } from "@tolle/core";
+const ot = BOOKS.filter((b) => b.testament === "ot");
+const nt = BOOKS.filter((b) => b.testament === "nt");
+---
+<div id="picker" popover="auto" role="dialog" aria-label="Choose a book and chapter">
+  <div id="picker-books" class="pk-view">
+    <div class="pk-col"><h2 class="pk-label">Old Testament</h2>{ot.map((b) => <button type="button" class="pk-book" data-book={b.id} tabindex="-1">{b.name}</button>)}</div>
+    <div class="pk-col"><h2 class="pk-label">New Testament</h2>{nt.map((b) => <button type="button" class="pk-book" data-book={b.id} tabindex="-1">{b.name}</button>)}</div>
+  </div>
+  <div id="picker-chapters" class="pk-view" hidden>
+    <div class="pk-head"><button type="button" id="picker-back" class="btn" aria-label="Back to books">←</button><h2 id="picker-book" class="pk-title"></h2></div>
+    <div id="picker-grid" class="pk-grid" role="group" aria-labelledby="picker-book"></div>
+  </div>
+</div>
+<style is:global>
+  #picker {
+    position: fixed; inset: 96px auto auto 50%; translate: -50% 0; margin: 0;
+    inline-size: min(640px, calc(100vw - 32px)); max-block-size: calc(100vh - 112px); overflow: auto;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+    font-size: 14px;
+  }
+  #picker:popover-open { animation: pk-in var(--t-open) var(--ease); }
+  #picker-books { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+  .pk-col { display: grid; grid-template-columns: 1fr 1fr; align-content: start; gap: 0 8px; }
+  .pk-label { grid-column: 1 / -1; font-size: 12px; font-weight: 500; color: var(--text-2); margin: 0 0 4px; }
+  .pk-book, .pk-grid button {
+    block-size: 32px; padding: 0 8px; text-align: start; background: transparent; border: 0; border-radius: 6px; cursor: pointer;
+    font: inherit; color: inherit; transition: background-color var(--t-hover) var(--ease);
+  }
+  .pk-book:hover, .pk-grid button:hover { background: var(--hover); }
+  .pk-book[aria-current="true"] { font-weight: 600; }
+  .pk-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .pk-title { font-size: 16px; font-weight: 500; margin: 0; }
+  .pk-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+  .pk-grid button { text-align: center; font-variant-numeric: tabular-nums; }
+  .pk-grid button[aria-current="page"] { background: var(--text); color: var(--bg); }
+  .pk-view:not([hidden]) { animation: pk-slide var(--t-open) var(--ease); }
+  @keyframes pk-in { from { opacity: 0; transform: translateY(4px); } }
+  @keyframes pk-slide { from { opacity: 0; transform: translateX(8px); } }
+  @media (prefers-reduced-motion: reduce) {
+    @keyframes pk-in { from { opacity: 0; } }
+    @keyframes pk-slide { from { opacity: 0; } }
+  }
+  .ch-btn { all: unset; cursor: pointer; border-radius: 6px; }
+  .ch-btn::after { content: " ▾" / ""; font-size: .5em; color: var(--text-2); vertical-align: middle; }
+  .ch-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+</style>

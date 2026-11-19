@@ -1,0 +1,14 @@
+---
+// P5.7 · SPEC §8.1 attribution (4): the ESV copyright page linked from every ESV notice. Citation is Crossway's
+// verbatim wording (docs/esv-compliance.md); this page holds no ESV text.
+import Base from "../../layouts/Base.astro";
+import { ESV_CITATION, SITE_NAME } from "@tolle/core";
+---
+<Base title={`ESV copyright — ${SITE_NAME}`} description="Copyright and permission notice for the English Standard Version." canonical="/about/esv-copyright">
+  <div class="prose">
+    <h1 class="ch">ESV copyright</h1>
+    <p>{ESV_CITATION}</p>
+    <p>{SITE_NAME} shows the ESV through Crossway's ESV API for free, non-commercial reading. ESV text is loaded when you open a passage and is never stored on this site.</p>
+    <p>Learn more about the ESV at <a href="https://www.esv.org/">esv.org</a>.</p>
+  </div>
+</Base>

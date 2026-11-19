@@ -1,0 +1,15 @@
+---
+// P6.6 / D§1 D4: magic-link landing page. noindex; the token stays in the fragment.
+import Base from "../../layouts/Base.astro";
+import { SITE_NAME } from "@tolle/core";
+---
+<Base title={`Signing in — ${SITE_NAME}`} canonical="/auth/verify" noindex>
+  <div class="prose" id="verify">
+    <h1 class="ch">Signing in…</h1>
+    <p id="verify-msg" role="status"></p>
+    <p><button id="verify-retry" type="button" class="retry" hidden>Send a new link</button></p>
+  </div>
+</Base>
+<style>
+  .retry { font: inherit; color: var(--text); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+</style>
