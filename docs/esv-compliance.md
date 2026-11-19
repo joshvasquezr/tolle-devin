@@ -20,6 +20,6 @@ Questions sent by Josh to Crossway (ESV API team) on 2026-11-18. Reply received 
 | Topic | Crossway's answer | Effect |
 |---|---|---|
 | Caching | 500 verses is a cap on the **whole cache at once**, not per entry. No required TTL. | **Stricter** than SPEC §8.1 / D§3.12 (one window per entry, many entries). Adopted now: the server-side ESV cache must hold ≤ 500 verses in total across all entries (P5.4). The 24 h TTL stays as project policy. |
-| Half a book | Single-chapter books may be shown whole. Multi-chapter books: not addressed. | Loosens the external rule for Obadiah, Philemon, 2 John, 3 John, Jude only. Project policy change needs Josh's approval (AGENTS.md); until then `esvCap` stays strict. Multi-chapter books keep min(500, floor(half book)). |
-| Indexing | No policy; indexing allowed. | External rule allows indexing. ESV pages stay `noindex` shells (project policy, D5–D6) unless Josh decides otherwise. |
+| Half a book | Single-chapter books may be shown whole. Multi-chapter books: not addressed. | Loosens the external rule for Obadiah, Philemon, 2 John, 3 John, Jude only. Josh approved 2026-11-18: `esvCap` shows single-chapter books whole. Multi-chapter books keep min(500, floor(half book)). |
+| Indexing | No policy; indexing allowed. | External rule allows indexing. Josh decided 2026-11-18 to keep ESV pages as `noindex` shells (project policy, D5–D6): crawlers would spend the 5,000/day API budget, and ESV text loads client-side. |
 | Citation | Exact wording above (adds the Creative Commons and translation sentences). | P5.6 attribution uses this exact text. The site must not be published under a Creative Commons licence while it quotes ESV. |

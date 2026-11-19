@@ -1,4 +1,4 @@
-// ESV page windows (D§3.1 ESV windowing; SPEC §8.1 "500 verses or half a book").
+// ESV page windows (D§3.1 ESV windowing; SPEC §8.1 "500 verses or half a book", single-chapter books whole per docs/esv-compliance.md).
 import { chapterVerses, getBook, verseCount, type BookId } from "./books.ts";
 
 export interface EsvWindow {
@@ -7,9 +7,10 @@ export interface EsvWindow {
   readonly vEnd: number;
 }
 
-/** Max verses one ESV request or page may show for this book. */
+/** Max verses one ESV request or page may show for this book. Single-chapter books are shown whole (Crossway, docs/esv-compliance.md). */
 export function esvCap(book: BookId): number {
-  return Math.min(500, Math.floor(verseCount(getBook(book)) / 2));
+  const b = getBook(book);
+  return b.chapters === 1 ? Math.min(500, verseCount(b)) : Math.min(500, Math.floor(verseCount(b) / 2));
 }
 
 /** Fewest balanced windows under the cap; `part` is 1-based. Throws RangeError for a bad chapter. */

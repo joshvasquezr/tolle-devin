@@ -22,8 +22,8 @@ describe("formatPath", () => {
     );
   });
   it("ESV part > 1 adds ?part=n; PD ignores part", () => {
-    expect(formatPath("esv", { book: toBookId("jude"), chapter: 1 }, 2)).toBe("/esv/jude/1?part=2");
-    expect(formatPath("esv", { book: toBookId("jude"), chapter: 1 }, 1)).toBe("/esv/jude/1");
+    expect(formatPath("esv", { book: toBookId("haggai"), chapter: 2 }, 2)).toBe("/esv/haggai/2?part=2");
+    expect(formatPath("esv", { book: toBookId("haggai"), chapter: 2 }, 1)).toBe("/esv/haggai/2");
     expect(formatPath("bsb", { book: toBookId("jude"), chapter: 1 }, 2)).toBe("/bsb/jude/1");
   });
 });
@@ -41,9 +41,10 @@ describe("resolveRoute", () => {
   });
 
   it("ESV chapter with a valid part; bad part redirects to part 1", () => {
-    expect(r("/esv/jude/1", "part=3")).toEqual({ kind: "chapter", tr: "esv", book: "jude", chapter: 1, part: 3 });
-    expect(r("/esv/jude/1", "part=4")).toEqual({ kind: "redirect", to: "/esv/jude/1", status: 301 });
-    expect(r("/esv/jude/1", "part=x")).toEqual({ kind: "redirect", to: "/esv/jude/1", status: 301 });
+    expect(r("/esv/haggai/2", "part=2")).toEqual({ kind: "chapter", tr: "esv", book: "haggai", chapter: 2, part: 2 });
+    expect(r("/esv/haggai/2", "part=3")).toEqual({ kind: "redirect", to: "/esv/haggai/2", status: 301 });
+    expect(r("/esv/haggai/2", "part=x")).toEqual({ kind: "redirect", to: "/esv/haggai/2", status: 301 });
+    expect(r("/esv/jude/1", "part=2")).toEqual({ kind: "redirect", to: "/esv/jude/1", status: 301 });
     expect(r("/bsb/jude/1", "part=2")).toEqual({ kind: "chapter", tr: "bsb", book: "jude", chapter: 1 });
   });
 
@@ -57,7 +58,7 @@ describe("resolveRoute", () => {
     expect(r("/bsb/john/3/16-16")).toEqual(red("/bsb/john/3/16"));
     expect(r("/bsb/john/3/016")).toEqual(red("/bsb/john/3/16"));
     expect(r("/bsb/john")).toEqual(red("/bsb/john/1"));
-    expect(r("/esv/jd/1", "part=2")).toEqual(red("/esv/jude/1?part=2"));
+    expect(r("/esv/hag/2", "part=2")).toEqual(red("/esv/haggai/2?part=2"));
   });
 
   it("default-translation redirects for /{book}/{chapter}[/{verses}]", () => {

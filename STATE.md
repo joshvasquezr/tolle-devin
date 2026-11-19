@@ -16,7 +16,7 @@ None unblocked · stopped at external/human blockers (see Blockers)
 - MVP gate unticked: preview is live; needs Josh's manual session (three chapters, five references, three searches, ten highlights).
 
 ## Needs decision
-- Crossway allows single-chapter ESV books whole and ESV indexing; adopt either? (both loosen project policy; `docs/esv-compliance.md`)
+- (none; external blockers are listed below)
 
 ## Blockers
 - Throttled mobile LCP on the live preview is 1.9 s (> 1.0 s budget); desktop 0.6 s. P7.2 open.
