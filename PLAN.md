@@ -295,7 +295,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
 
 ## P5 · ESV
 
-- [ ] **P5.0 · Compliance questions to Crossway** (S, human)
+- [x] **P5.0 · Compliance questions to Crossway** (S, human)
   - Needs: none (start early) · Refs: SPEC §14 Q13, §8.1; D§12
   - Files: `docs/esv-compliance.md`
   - Done when: Josh has sent the questions (cache limits, half-book calculation, indexing, attribution wording) and the answers are recorded. Until then every **[A]** stays at the stricter reading.
@@ -483,6 +483,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 2026-11-18 · P6.4 · additive migration `0002_purged_seq.sql` (`users.purged_seq`): the purge cron records the highest purged tombstone seq so `GET /highlights` can return `reset: true` for cursors below it (or above `users.seq`) · D§3.12 requires `reset` but D§4.2 has nowhere to remember the horizon; additive, no URL/API change (autonomy, Josh 2026-11-17).
 - 2026-11-18 · P0.12 · Real deploy (`tolle-preview.josh-vasquez-ruiz.workers.dev`, wrangler 4.156.2) confirms the local result: asset hits (`/bsb/john/3`) come back with the Assets `etag` and no Worker headers; unmatched/`run_worker_first` paths reach the Worker (`/bsb/john/3/16` 200 with Worker `cache-control: public, max-age=86400`; `/john/3` 301; `/nope-xyz` 404 page; GET `/api/v1/me` 401). Static Assets stays. · Spike passes its exit criterion.
 - 2026-11-18 · P1.8 · Previews deploy a separate Worker `tolle-preview` (`env.preview`: own D1 `tolle-preview`, `NOINDEX=1` → `robots.txt` Disallow all + `X-Robots-Tag: noindex`) instead of `wrangler versions upload --preview-alias`, because Cloudflare generates no version/preview URLs for Workers that implement Durable Objects (`EsvBudget`). One shared preview, not one per PR. `DEV_MAIL` stays local-only, so preview sign-in waits on an email provider. Lighthouse 12 on the live preview `/bsb/john/3`: desktop LCP 0.6 s, CLS 0, perf/a11y/BP 100; throttled mobile LCP 1.9 s (> 1.0 s budget), CLS 0. SEO 66 is the intended noindex. First PR deploy from `deploy.yml` (run 44361621207, attempt 2) applied migrations and deployed `tolle-preview` with the repo secrets. · Durable Object platform limit; preview data must never touch production.
+- 2026-11-18 · P5.0 · Crossway replied (verbatim in `docs/esv-compliance.md`): the 500-verse limit covers the whole cache at once, so the ESV server cache must hold ≤ 500 verses in total (stricter than D§3.12, adopted now for P5.4); single-chapter books may be shown whole and indexing is allowed (both loosen rules, so they wait for Josh); citation wording is fixed for P5.6. · Crossway written answer; stricter reading applies by default.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
