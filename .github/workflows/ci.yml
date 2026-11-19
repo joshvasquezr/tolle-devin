@@ -98,8 +98,12 @@ jobs:
       - name: Build (data + site)
         run: pnpm build
 
-      - name: Compliance checks (no ads, donations, trackers or third-party scripts)
+      - name: Compliance checks (no ads, donations, trackers or third-party scripts; no ESV key or text)
         run: node scripts/compliance.ts
+
+      # P5.8: proves the ESV checks can fail the job — a generated bad dist must trip every one.
+      - name: Compliance self-test
+        run: node scripts/compliance.ts --self-test
 
       - name: Budgets (first-load JS ≤ 60 KB gz)
         run: node scripts/budgets.ts

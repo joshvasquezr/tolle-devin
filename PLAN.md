@@ -343,7 +343,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: each ESV page shows label, notice, esv.org link, and link to the copyright page; copying ESV text adds the citation; busy/down shows the "Read in BSB" note.
   - Verify: Playwright asserts all four attribution elements on ESV pages and absence on others.
 
-- [ ] **P5.8 · Compliance CI checks** (S)
+- [x] **P5.8 · Compliance CI checks** (S)
   - Needs: P5.7 · Refs: D§8, D§9 "Compliance checks"
   - Files: `scripts/compliance.ts`, CI step
   - Done when: CI fails if the ESV key value appears in `dist/`, or if ESV text appears in `dist/`/SW config/sync types/sitemap. The general ad, donation and third-party script checks are built in P7.3 and are not repeated here.
@@ -493,6 +493,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-19 · P5.6 · ESV shell is the static page `/esv/` (no text, noindex); the Worker serves it for ESV chapter/verse URLs only when ESV is enabled. The switcher lists ESV only in builds with `ESV_ENABLED=1`; CI builds that way, deploys do not yet. · Keeps ESV invisible on the preview until P5.7–P5.8 pass and Josh enables it.
 - 2026-11-19 · P5.6 · The client fetches ESV with `cache: "no-store"`; e2e uses a placeholder-text mock through the Worker var `ESV_UPSTREAM` (local Playwright only). · Keeps ESV text out of the HTTP cache as well as SW/IndexedDB; tests never need the real key or quota.
 - 2026-11-19 · P5.7 · The ESV notice and the copy citation use Crossway's full required citation (`ESV_CITATION`), not SPEC's earlier short form. · Crossway's written reply prescribes that wording (`docs/esv-compliance.md`); the external rule wins.
+- 2026-11-19 · P5.8 · ESV text is detected by 8-word shingles of the P5.1 fixtures minus shingles found in the public-domain data; P5.8's "bad file in a test branch" is replaced by a CI self-test step that builds a bad dist and must trip every check, plus unit tests. · Pushing real ESV text to a branch just to fail CI would publish it again; the self-test proves the same on every run.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
