@@ -301,7 +301,7 @@ Note: `SPEC.md` §10 puts ESV before highlights. This plan swaps them so the MVP
   - Done when: Josh has sent the questions (cache limits, half-book calculation, indexing, attribution wording) and the answers are recorded. Until then every **[A]** stays at the stricter reading.
   - Verify: answers pasted into the doc.
 
-- [ ] **P5.1 · Spike: ESV response fidelity** (S)
+- [x] **P5.1 · Spike: ESV response fidelity** (S)
   - Needs: P0.7 · Refs: D§3.12, D§12
   - Files: `apps/worker/test/fixtures/esv/*` (small, within quote limits), `docs/spikes/esv.md`
   - Done when: live API option names confirmed; fixtures captured for John 3, Psalm 23, Proverbs 3, Jude, one chapter with omitted verses; no fixture exceeds the allowed quantity.
@@ -485,6 +485,7 @@ Record outcomes of spikes and any deviations here (date · task · decision · r
 - 2026-11-18 · P1.8 · Previews deploy a separate Worker `tolle-preview` (`env.preview`: own D1 `tolle-preview`, `NOINDEX=1` → `robots.txt` Disallow all + `X-Robots-Tag: noindex`) instead of `wrangler versions upload --preview-alias`, because Cloudflare generates no version/preview URLs for Workers that implement Durable Objects (`EsvBudget`). One shared preview, not one per PR. `DEV_MAIL` stays local-only, so preview sign-in waits on an email provider. Lighthouse 12 on the live preview `/bsb/john/3`: desktop LCP 0.6 s, CLS 0, perf/a11y/BP 100; throttled mobile LCP 1.9 s (> 1.0 s budget), CLS 0. SEO 66 is the intended noindex. First PR deploy from `deploy.yml` (run 44361621207, attempt 2) applied migrations and deployed `tolle-preview` with the repo secrets. · Durable Object platform limit; preview data must never touch production.
 - 2026-11-18 · P5.0 · Crossway replied (verbatim in `docs/esv-compliance.md`): the 500-verse limit covers the whole cache at once, so the ESV server cache must hold ≤ 500 verses in total (stricter than D§3.12, adopted now for P5.4); single-chapter books may be shown whole and indexing is allowed (both loosen rules, so they wait for Josh); citation wording is fixed for P5.6. · Crossway written answer; stricter reading applies by default.
 - 2026-11-18 · P5.0 · Josh approved showing single-chapter ESV books whole (`esvCap` = book length for Obadiah, Philemon, 2 John, 3 John, Jude; Crossway permits it) and keeping ESV pages `noindex` despite Crossway allowing indexing. · Crossway written answer + Josh approval (AGENTS.md: loosening needs both); crawlers would spend the ESV API budget.
+- 2026-11-19 · P5.1 · Live ESV v3 HTML options and markup recorded in `docs/spikes/esv.md`; 5 fixtures (128 verses total) committed with the Crossway citation. Single-chapter books must be queried by book name (`q=Jude`). · Spike passes; normalizer (P5.2) next.
 
 ## Open items needing Josh
 1. Product name and domain (`SPEC.md` §14 Q1) before P1.1 sets the wordmark.
