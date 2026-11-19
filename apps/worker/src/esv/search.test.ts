@@ -6,7 +6,7 @@ import { handleEsvSearch, SEARCH_PAGE_SIZE } from "./search.ts";
 import { handleEsvPassage, type EsvDeps } from "./passage.ts";
 import { Limiter } from "../auth/ratelimit.ts";
 
-const KEY = "test-key-0123456789abcdef0123456789abcdef";
+const KEY = "fake-esv-key";
 const NOW = 60 * 86_400_000;
 const upstreamBody = { page: 1, total_pages: 3, total_results: 25, results: [{ reference: "John 3:16", content: "Placeholder <b>words</b> one." }, { reference: "Jude 1:3", content: "Placeholder two." }, { reference: "nonsense", content: "x" }] };
 

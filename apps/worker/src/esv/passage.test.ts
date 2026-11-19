@@ -8,7 +8,7 @@ import { Limiter } from "../auth/ratelimit.ts";
 import worker from "../index.ts";
 import type { Env } from "../env.ts";
 
-const KEY = "test-key-0123456789abcdef0123456789abcdef";
+const KEY = "fake-esv-key";
 const fixture = readFileSync(new URL("../../test/fixtures/esv/john-3.json", import.meta.url), "utf8");
 const NOW = 50 * 86_400_000;
 
